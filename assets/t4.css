@@ -62,7 +62,7 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .pg-hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,42,29,.28) 0%,rgba(246,248,245,0) 40%,rgba(246,248,245,.6) 78%,var(--bg) 100%)}
 .pg-head{position:relative;z-index:1;margin-top:-92px;text-align:center}
 .pg-head small{display:block;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--au-d)}
-.pg-head h1{margin:6px 0 0;font:600 clamp(32px,4vw,46px)/1.1 var(--serif);color:var(--g8)}
+.pg-head h1,.pg-head .h1{margin:6px 0 0;font:600 clamp(32px,4vw,46px)/1.1 var(--serif);color:var(--g8)}
 .pg-head p{max-width:560px;margin:12px auto 0;color:var(--muted);font-size:15.5px}
 .pg-body{padding:30px 0 80px}
 
@@ -367,4 +367,30 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .kh-cov{margin-bottom:20px}
 .kh-info{margin:24px 0 18px}
 .foot .fb img{height:34px}
+}
+
+/* ===== revisi 3: kepala terkunci, hero lebih jernih, koleksi pas satu layar ===== */
+.home .top{position:sticky;background:var(--g8);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.hero{min-height:calc(100vh - var(--head));min-height:calc(100svh - var(--head))}
+.hero .wrap{padding-top:40px;padding-bottom:56px}
+.hero:before{background:linear-gradient(90deg,rgba(6,34,23,.62) 0%,rgba(6,34,23,.42) 34%,rgba(6,34,23,.08) 62%,rgba(6,34,23,0) 100%)}
+.hero h1,.hero .lead,.eyebrow{text-shadow:0 2px 14px rgba(0,0,0,.35)}
+/* koleksi: spanduk lebih ringkas agar kitab terlihat utuh */
+.pg-hero{height:clamp(170px,17vw,230px)}
+.pg-head{margin-top:-58px}
+.pg-head h1,.pg-head .h1{font-size:clamp(30px,3vw,40px)}
+.pg-head p{margin-top:6px;font-size:15px}
+.pg-body{padding:20px 0 64px}
+.tools{margin-bottom:24px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:26px 22px}
+.card h3{margin-top:12px;font-size:18px}
+/* katalog di beranda = tampilan koleksi */
+.home-kol{padding:0;min-height:calc(100vh - var(--head));scroll-margin-top:var(--head)}
+@media (max-width:760px){
+.hero .wrap{padding-top:9vh}
+.hero:before{background:linear-gradient(180deg,rgba(6,34,23,.68) 0%,rgba(6,34,23,.45) 34%,rgba(6,34,23,0) 62%)}
+.pg-hero{height:160px}
+.pg-head{margin-top:-46px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
+.home-kol{min-height:0;padding:0}
 }
