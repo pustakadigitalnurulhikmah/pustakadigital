@@ -546,6 +546,6 @@ body.kol:before{transform:translateZ(0)}
 .hero h1{order:1}
 .hero .lead{order:3;margin:0;padding:0;font-size:clamp(18.5px,1.7vw,22px)}
 /* revisi 20: deskripsi tetap menempel di bawah judul; saat menyempit keduanya naik bersama */
-.home .hero .wrap{justify-content:flex-start;padding-top:calc(var(--head) + clamp(40px,7vh,60px));padding-bottom:clamp(56px,calc(738px - 62vw),45vh)}
+.home .hero .wrap{justify-content:flex-start;padding-top:calc(var(--head) + clamp(40px,7vh,60px));padding-bottom:clamp(56px,calc(738px - 62vw),min(45vh,calc(100svh - 440px)))}
 .hero-in{margin:auto 0}
 .hero-in:before{flex:0 0 22px}
