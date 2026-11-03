@@ -121,17 +121,17 @@ $$('p,h2,h3,h4,li,blockquote,div,td',body).forEach(function(el){
 var judul=$('h1',art).textContent.trim();
 /* kepala baca */
 var kh=document.createElement('div');kh.className='k-bacahead';
-kh.innerHTML='<div class="wrap"><button type="button" class="kb-kembali">&#8249; Informasi Kitab</button><b>'+esc(judul)+'</b></div>';
+kh.innerHTML='<div class="wrap"><button type="button" class="kb-kembali">&#8249; Kembali</button><b>'+esc(judul)+'</b></div>';
 var hero=$('.k-hero',art);art.insertBefore(kh,hero.nextSibling);
 var rtl=$('.rtools',art);
 /* satu bab per tampilan */
-var h2s=Array.prototype.filter.call(body.children,function(e){return e.tagName==='H2'&&e.textContent.trim()});
+var h2s=Array.prototype.filter.call(body.children,function(e){return (e.tagName==='H2'||(e.tagName==='H3'&&e.classList.contains('bab')))&&e.textContent.trim()});
 var bag=[],idx=-1,KEY='kb-pos:'+location.pathname,go=null;
 if(h2s.length>=2){
   var cur=null;
   var baru=function(j){var s=document.createElement('section');s.className='bagian';s.setAttribute('data-judul',j);bag.push(s);return s};
   Array.prototype.slice.call(body.childNodes).forEach(function(n){
-    if(n.nodeType===1&&h2s.indexOf(n)>=0){cur=baru(n.getAttribute('data-toc')||n.textContent.trim().replace(/\s+/g,' '));if(n.getAttribute('data-jenis')==='id')cur.classList.add('bag-id')}
+    if(n.nodeType===1&&h2s.indexOf(n)>=0){cur=baru(n.getAttribute('data-toc')||n.textContent.trim().replace(/\s+/g,' '));if(n.getAttribute('data-jenis')==='id')cur.classList.add('bag-id');if(n.tagName==='H3')cur.setAttribute('data-sub','1')}
     else if(!cur){if((n.nodeType===1&&n.style.display!=='none')||(n.nodeType===3&&n.textContent.trim())){cur=baru('Pendahuluan');cur.classList.add('bag-id')}else return}
     cur.appendChild(n);
   });
@@ -181,7 +181,7 @@ if(h2s.length>=2){
 }
 /* informasi kitab */
 var IC={user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',bab:'<svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".6"/><circle cx="4" cy="12" r=".6"/><circle cx="4" cy="18" r=".6"/></svg>',globe:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9s1.3-6.4 3.8-9z"/></svg>',tag:'<svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>'};
-var nb=bag.length?bag.filter(function(s){return !s.classList.contains('bag-id')}).length:0;
+var nb=bag.length?bag.filter(function(s){return !s.classList.contains('bag-id')&&!s.hasAttribute('data-sub')}).length:0;
 var ar=kd('ar'),pen=L.penulis,trj=kd('penerjemah'),desk=kd('desk'),bhs=kd('bahasa')||'Arab – Indonesia',fmt=kd('format')||'Teks berharakat & terjemah',jb=nb?nb+' bab':'';
 var ka=$('.k-ar',hero);if(ar)ka.textContent=ar;else ka.remove();
 $('.k-pen',hero).innerHTML=pen?IC.user+'<span>'+esc(pen)+'</span>':'';
