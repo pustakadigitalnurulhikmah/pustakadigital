@@ -579,3 +579,16 @@ body.kol .pg-head,.home-kol .pg-head{padding-top:2px}
 /* lapisan latar koleksi di GPU sendiri agar tidak dilukis ulang saat gulir */
 body.kol:before{transform:translateZ(0);will-change:transform}
 .over .top{will-change:transform}
+/* ===== revisi 17 ===== */
+/* gulir mulus: kepala hanya memudar lewat opacity (tanpa lukis ulang tiap bingkai) */
+.over .top,.over .top.gulir{transition:none;box-shadow:none}
+.over .top:after{transition:opacity .6s ease;will-change:opacity;box-shadow:0 1px 0 rgba(20,36,27,.08),0 6px 18px rgba(20,36,27,.06)}
+/* PC: tombol Kembali dan mode baca tetap terkunci saat digulir */
+@media (min-width:1024px){
+#kitab .k-bacahead{position:sticky!important;top:var(--head);background:rgba(251,251,249,.97);backdrop-filter:none;-webkit-backdrop-filter:none}
+#kitab .rtools{position:sticky!important;top:calc(var(--head) + 54px);background:rgba(251,251,249,.97);backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+/* latar pekat agar teks di bawahnya tidak tembus */
+.top,.home .top,.over .top:after{background:#fbfbf9}
+.over .top{background:transparent}
+@media (min-width:1024px){#kitab .k-bacahead,#kitab .rtools{background:#fbfbf9}}
