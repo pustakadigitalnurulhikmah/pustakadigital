@@ -429,3 +429,10 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .post-body .tr,.post-body .tr-auto{font-size:18px;line-height:1.7}
 }
+
+/* ===== revisi 5: tanpa lapisan hijau di beranda, terjemah kembali ke Lora ===== */
+.hero:before{display:none}
+.hero h1,.hero .lead,.eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.4)}
+.over .top,.over .top:after{transition-duration:.8s}
+.post-body .tr,.post-body .tr-auto{font-family:var(--terj);font-style:italic;font-size:18px;line-height:1.85}
+@media (max-width:760px){.post-body .tr,.post-body .tr-auto{font-size:16px;line-height:1.8}}
