@@ -240,7 +240,7 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .nav{position:absolute;top:var(--head);left:12px;right:12px;flex-direction:column;gap:2px;padding:8px;background:var(--g8);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.3);opacity:0;visibility:hidden;transform:translateY(-6px);transition:.2s}
 .nav.open{opacity:1;visibility:visible;transform:none}
 .nav a{padding:12px 16px;border-radius:10px;font-size:15.5px}
-.hero{background-image:url(/assets/latar-utama-hp.webp);background-position:center}
+
 .hero:before{background:linear-gradient(180deg,rgba(6,34,23,.45)0,rgba(6,34,23,.08) 22%,rgba(6,34,23,.5) 48%,rgba(6,34,23,.92) 78%)}
 .hero .wrap{justify-content:flex-end;padding-bottom:84px}
 .hero-in{text-align:center;margin:0 auto}
@@ -534,3 +534,6 @@ body.kol:before{transform:translateZ(0)}
 #kitab .k-bacahead,#kitab .rtools{background:#fbfbf9}
 }
 
+
+/* revisi 18: satu gambar beranda di semua lebar, geser halus (tanpa lompatan di 760px); menara tinggi tampil di HP */
+.hero{background-image:url(/assets/latar-utama.webp);background-size:cover;background-position:clamp(70%,calc(95% - 2vw),100%) center}
