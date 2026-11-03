@@ -33,7 +33,7 @@ function semua(cb){
     });selesai();
   };
   s.onerror=function(){cache=[];selesai()};
-  s.src='/feed.js?alt=json-in-script&max-results=500&callback='+fn;document.body.appendChild(s);
+  s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&alt=json-in-script&max-results=500&callback='+fn;document.body.appendChild(s);
   function selesai(){antre.forEach(function(f){f(cache)});antre=[]}
 }
 
