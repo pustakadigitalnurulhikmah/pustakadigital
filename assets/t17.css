@@ -548,3 +548,7 @@ body.kol:before,.home-kol{background-image:linear-gradient(180deg,rgba(251,251,2
 .home .hero .wrap{padding-bottom:20vh;padding-bottom:20svh}
 .hero .lead{font-size:19px;padding-top:20px}
 }
+/* HP: keterangan di atas panel kaca putih agar terbaca di atas bangunan */
+@media (max-width:760px){
+.hero .lead{background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(154,122,44,.22);border-radius:12px;padding:12px 16px;color:#8a6b20;font-size:18.5px}
+}
