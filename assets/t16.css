@@ -541,3 +541,10 @@ body.kol .pg-head,.home-kol .pg-head{margin-top:0;padding-top:20px}
 }
 /* tulisan judul koleksi tetap terbaca di atas kubah */
 body.kol:before,.home-kol{background-image:linear-gradient(180deg,rgba(251,251,249,.62) 0%,rgba(251,251,249,.35) 22%,rgba(251,251,249,0) 38%),url('/assets/latar-katalog-2048.webp')}
+
+/* ===== revisi 12: keterangan beranda miring emas; HP sedikit lebih ke atas ===== */
+.hero .lead{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--au-d);font-size:clamp(19px,1.7vw,22px);line-height:1.55;text-shadow:none}
+@media (max-width:760px){
+.home .hero .wrap{padding-bottom:20vh;padding-bottom:20svh}
+.hero .lead{font-size:19px;padding-top:20px}
+}
