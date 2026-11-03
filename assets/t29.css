@@ -549,3 +549,5 @@ body.kol:before{transform:translateZ(0)}
 .home .hero .wrap{justify-content:flex-start;padding-top:calc(var(--head) + clamp(40px,7vh,60px));padding-bottom:clamp(56px,calc(738px - 62vw),min(45vh,calc(100svh - 440px)))}
 .hero-in{margin:auto 0}
 .hero-in:before{flex:0 0 22px}
+/* revisi 21: tanpa strip sebelum "Perpustakaan Kitab Digital" */
+.eyebrow:before{display:none}
