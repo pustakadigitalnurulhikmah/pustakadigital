@@ -495,3 +495,19 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .post-body .bab .ar{font-size:1.3em}
 .post-body .basmalah{font-size:24px}
 }
+
+/* ===== revisi 9: kepala tanpa warna (putih kaca) ===== */
+.top,.home .top{background:rgba(255,255,255,.86);color:var(--head-ink);box-shadow:0 1px 0 rgba(20,36,27,.08)}
+.over .top{background:transparent;box-shadow:none}
+.over .top:after{background:rgba(255,255,255,.86)}
+.over .top.gulir{box-shadow:0 1px 0 rgba(20,36,27,.08),0 6px 18px rgba(20,36,27,.06)}
+.top .lg-t,.over .top.gulir .lg-t{display:none}
+.top .lg-g,.over .top.gulir .lg-g{display:block}
+.top .brand b,.over .top.gulir .brand b{color:var(--g8)}
+.top .brand small,.over .top.gulir .brand small{color:#5b6c63}
+.top .burger,.over .top.gulir .burger{color:var(--g8)}
+@media (min-width:761px){
+.top .nav a,.over .top.gulir .nav a{color:var(--ink2)}
+.top .nav a:hover{color:var(--g8);background:rgba(12,58,40,.05)}
+.top .nav a.on,.over .top.gulir .nav a.on{color:var(--au-d)}
+}
