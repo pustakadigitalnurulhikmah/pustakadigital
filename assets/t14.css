@@ -516,3 +516,26 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .rtools{position:static!important}
 .k-bacahead{position:static!important}
 @media (max-width:1023px){.bab-toc{position:fixed;top:calc(var(--head) + 12px)}}
+
+/* ===== revisi 11: deskripsi beranda HP di bawah; latar koleksi penuh halaman ===== */
+@media (max-width:760px){
+.home .hero .wrap{padding-bottom:36px}
+.hero-in{flex:1;display:flex;flex-direction:column}
+.hero .lead{margin-top:auto;padding-top:28px}
+}
+/* halaman Koleksi: gambar katalog jadi latar seluruh halaman */
+body.kol{background:transparent}
+body.kol:before{content:'';position:fixed;inset:0;z-index:-1;background:#eef2ee url('/assets/latar-katalog-2048.webp') center top/cover no-repeat}
+body.kol .pg-hero{background:none;height:calc(var(--head) + 10px)}
+body.kol .pg-hero:after{display:none}
+body.kol .pg-head{margin-top:0;padding-top:clamp(12px,4vh,40px)}
+body.kol main{min-height:100vh;min-height:100svh}
+/* katalog di beranda: latar memenuhi bagian koleksi */
+.home-kol{position:relative;min-height:100vh;min-height:100svh;background:#eef2ee url('/assets/latar-katalog-2048.webp') center top/cover no-repeat}
+.home-kol .pg-hero{background:none;height:calc(var(--head) + 10px)}
+.home-kol .pg-hero:after{display:none}
+.home-kol .pg-head{margin-top:0;padding-top:clamp(12px,4vh,40px)}
+@media (max-width:760px){
+body.kol .pg-hero,.home-kol .pg-hero{height:calc(var(--head) + 4px)}
+body.kol .pg-head,.home-kol .pg-head{margin-top:0;padding-top:20px}
+}
