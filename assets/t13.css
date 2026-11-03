@@ -514,3 +514,5 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 
 /* revisi 10: alat baca tidak terkunci */
 .rtools{position:static!important}
+.k-bacahead{position:static!important}
+@media (max-width:1023px){.bab-toc{position:fixed;top:calc(var(--head) + 12px)}}
