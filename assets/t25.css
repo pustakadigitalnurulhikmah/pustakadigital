@@ -536,4 +536,4 @@ body.kol:before{transform:translateZ(0)}
 
 
 /* revisi 18: satu gambar beranda di semua lebar, geser halus (tanpa lompatan di 760px); menara tinggi tampil di HP */
-.hero{background-image:url(/assets/latar-utama.webp);background-size:cover;background-position:clamp(70%,calc(95% - 2vw),100%) center}
+.hero{background-image:url(/assets/latar-utama.webp);background-size:cover;background-position:calc(95% - 2vw) center}
