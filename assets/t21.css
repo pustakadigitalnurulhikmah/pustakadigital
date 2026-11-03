@@ -570,3 +570,12 @@ body.kol .pg-head,.home-kol .pg-head{padding-top:4px}
 body.kol .pg-hero,.home-kol .pg-hero{height:var(--head)}
 body.kol .pg-head,.home-kol .pg-head{padding-top:2px}
 }
+/* revisi 16: keterangan beranda PC hijau tua seperti HP; gulir lebih ringan */
+.hero .lead{color:var(--g8)}
+/* kaca buram di kepala diganti putih hampir pekat: blur dihitung ulang tiap gulir di atas gambar besar */
+.top,.home .top,.over .top.gulir{backdrop-filter:none;-webkit-backdrop-filter:none}
+.top,.home .top,.over .top:after{background:rgba(255,255,255,.95)}
+.over .top{background:transparent}
+/* lapisan latar koleksi di GPU sendiri agar tidak dilukis ulang saat gulir */
+body.kol:before{transform:translateZ(0);will-change:transform}
+.over .top{will-change:transform}
