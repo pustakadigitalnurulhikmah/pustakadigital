@@ -537,3 +537,11 @@ body.kol:before{transform:translateZ(0)}
 
 /* revisi 18: satu gambar beranda di semua lebar, geser halus (tanpa lompatan di 760px); menara tinggi tampil di HP */
 .hero{background-image:url(/assets/latar-utama.webp);background-size:cover;background-position:calc(95% - 2vw) center}
+/* revisi 19: teks beranda bergeser perlahan antara HP dan PC (tanpa lompatan di 760px) */
+.home .hero .wrap{justify-content:center;padding-top:calc(var(--head) + clamp(40px,7vh,60px));padding-bottom:clamp(56px,calc(300px - 20vw),20svh)}
+.hero-in{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;text-align:left;margin:0}
+.hero-in:before{content:"";order:2;flex:0 1 clamp(22px,calc(550px - 50vw),80vh);min-height:22px}
+.eyebrow{order:0;align-self:flex-start;font-size:clamp(11px,1.65vw,12.5px);letter-spacing:clamp(2.4px,.4vw,3px)}
+.eyebrow:before{display:block;width:clamp(24px,4.5vw,34px)}
+.hero h1{order:1}
+.hero .lead{order:3;margin:0;padding:0;font-size:clamp(18.5px,1.7vw,22px)}
