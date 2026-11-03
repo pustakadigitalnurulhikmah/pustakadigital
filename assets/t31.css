@@ -551,7 +551,7 @@ body.kol:before{transform:translateZ(0)}
 .hero-in:before{flex:0 0 22px}
 /* revisi 21: tanpa strip sebelum "Perpustakaan Kitab Digital" */
 .eyebrow:before{display:none}
-/* revisi 22: strip pendek; menu header hilang satu per satu (Pengarang → Koleksi Kitab → Beranda) */
+/* revisi 22: strip pendek; menu header hilang satu per satu (Pengarang → Koleksi → Beranda) */
 .eyebrow{gap:10px}
 .eyebrow:before{display:block;width:18px}
 .burger{margin-left:4px}
@@ -567,12 +567,12 @@ body.kol:before{transform:translateZ(0)}
 .nav a.on,.over .top:not(.gulir) .nav a.on{color:var(--au-d);font-weight:500}
 .burger{display:none}
 }
-@media (max-width:620px){
+@media (max-width:560px){
 .burger{display:grid}
 #nav a[data-nav=penulis]{display:none}
 .nav-drop a[data-nav=penulis]{display:block}
 }
-@media (max-width:510px){
+@media (max-width:460px){
 #nav a[data-nav=daftar]{display:none}
 .nav-drop a[data-nav=daftar]{display:block}
 }
