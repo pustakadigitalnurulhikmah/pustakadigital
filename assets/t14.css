@@ -539,3 +539,5 @@ body.kol main{min-height:100vh;min-height:100svh}
 body.kol .pg-hero,.home-kol .pg-hero{height:calc(var(--head) + 4px)}
 body.kol .pg-head,.home-kol .pg-head{margin-top:0;padding-top:20px}
 }
+/* tulisan judul koleksi tetap terbaca di atas kubah */
+body.kol:before,.home-kol{background-image:linear-gradient(180deg,rgba(251,251,249,.62) 0%,rgba(251,251,249,.35) 22%,rgba(251,251,249,0) 38%),url('/assets/latar-katalog-2048.webp')}
