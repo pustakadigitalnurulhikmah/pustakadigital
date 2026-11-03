@@ -1,7 +1,7 @@
 /* Pustaka Digital Nurul Hikmah — skrip tema (rombak 2026-11) */
 (function(){
 var CFG={
-  mutiara:{'Bahasa Arab':'Ilmu nahwu adalah ilmu alat; dengannya segala ilmu pengetahuan yang berbahasa Arab dapat dipahami.'},
+  mutiara:{'Ilmu Nahwu':'Ilmu nahwu adalah ilmu alat; dengannya segala ilmu pengetahuan yang berbahasa Arab dapat dipahami.'},
   prefixPenulis:'Penulis:',
   khusus:['Pilihan','Populer']
 };
@@ -44,6 +44,11 @@ if(bm&&nav){bm.onclick=function(e){e.stopPropagation();nav.classList.toggle('ope
 var P=location.pathname.replace(/\.html$/,''),act='';
 if(P==='/'||P==='/index')act='home';else if(P.indexOf('/p/daftar-kitab')===0||P.indexOf('/search')===0||/^\/\d{4}\//.test(P))act='daftar';else if(P.indexOf('/p/penulis')===0)act='penulis';
 $$('.nav a').forEach(function(a){if(a.getAttribute('data-nav')===act)a.classList.add('on')});
+
+/* ===== Katalog di beranda ===== */
+var bk=$('#beranda-kitab');
+if(bk){bk.innerHTML='<div class="grid">'+skel(6)+'</div>';
+  semua(function(all){$('.grid',bk).innerHTML=all.length?all.slice(0,12).map(cardHTML).join(''):kosong('Koleksi sedang disiapkan.')})}
 
 /* ===== Koleksi kitab ===== */
 var dk=$('#daftar-kitab');

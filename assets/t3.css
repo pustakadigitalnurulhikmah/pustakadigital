@@ -300,3 +300,71 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .foot .wrap{flex-direction:column;align-items:flex-start;gap:12px}
 }
 
+
+/* ===== revisi 2: hijau hanya di kepala & kaki, beranda + katalog, logo ===== */
+:root{--bg:#fbfbf9;--line:#e6e8e4;--line2:#f0f1ee;--head-ink:#1f2b25;--soft:#f3f4f1}
+.brand img{display:block;height:44px;width:auto}
+.foot .fb{display:flex;align-items:center;gap:12px}
+.foot .fb img{height:40px;width:auto}
+/* judul & label netral */
+.pg-head h1,.card h3,.pitem b,.k-hero h1,.kh-info h3,.bt-h,.k-bacahead b,.post-body h2,.post-body h3{color:var(--head-ink)}
+.pg-hero:after{background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(251,251,249,0) 38%,rgba(251,251,249,.65) 78%,var(--bg) 100%)}
+.card .tag,.k-tags a,.pitem span{background:var(--soft);border-color:var(--line);color:#4c5852}
+.chip.on{background:var(--head-ink);border-color:var(--head-ink)}
+.k-hero:before{background:linear-gradient(180deg,rgba(251,251,249,.6) 0%,rgba(251,251,249,.9) 45%,var(--bg) 100%)}
+.k-hero .k-ar{color:var(--head-ink)}
+.kh-meta svg,.kh-info h3 svg,.bt-h svg,.k-hero .k-pen svg{color:var(--au-d)}
+.kb-kembali,.rtools button{color:var(--head-ink)}
+.rtools button.on{background:var(--head-ink);border-color:var(--head-ink);color:#fff}
+.post-body .bab .ar,.post-body .basmalah{color:var(--head-ink)}
+.post-body .bag-id h2.bab .tr,.post-body .judul-id{color:var(--head-ink)}
+.post-body blockquote{background:var(--soft)}
+.lanjut{background:var(--soft);border-color:var(--line);color:var(--head-ink)}
+.kosong a{color:var(--au-d)!important}
+/* sampul utuh, tidak terpotong */
+.cover{aspect-ratio:auto;background:transparent}
+.cover img{height:auto;object-fit:initial}
+.grid{align-items:start}
+/* beranda: layar penuh lalu katalog */
+.hero-foot{display:none}
+.home-kol{padding:64px 0 80px}
+.sec-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:0 0 28px}
+.sec-h small{display:block;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--au-d)}
+.sec-h h2{margin:6px 0 0;font:600 clamp(28px,3vw,38px)/1.1 var(--serif);color:var(--head-ink)}
+.sec-h a{flex:none;font-size:14.5px;font-weight:600;color:var(--au-d)}
+.sec-h a:hover{text-decoration:underline}
+/* daftar isi */
+.bab-toc{background:#f5faf6;border-color:#dcebe1}
+.bab-toc a:hover{background:#e8f3ec;color:var(--head-ink)}
+.bab-toc a.on{background:#dcece2;color:var(--head-ink)}
+.bt-h{border-color:#dcebe1}
+@media (max-width:1023px){
+.rtools{position:sticky;top:calc(var(--head) + 54px);z-index:25;margin:0 -10px 14px;padding:8px 10px;background:rgba(251,251,249,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.bab-toc{position:fixed;top:calc(var(--head) + 108px);left:12px;right:auto;bottom:auto;width:min(360px,calc(100% - 24px));max-height:62vh;margin:0;border:1px solid #d3e6d9;border-radius:14px;box-shadow:0 16px 40px rgba(8,42,29,.18);transform:translateY(-8px) scale(.98);transform-origin:top left;opacity:0;visibility:hidden;transition:transform .2s,opacity .2s,visibility 0s .2s}
+.toc-buka .bab-toc{transform:none;opacity:1;visibility:visible;transition:transform .2s,opacity .2s}
+.toc-buka .toc-tirai{background:transparent}
+.toc-buka body{overflow:visible}
+.bab-toc a{padding:9px 10px;font-size:14.5px}
+.bt-h{padding:12px 14px}
+}
+@media (min-width:700px) and (max-width:1023px){.bab-toc{left:var(--gut);margin-left:0}}
+@media (max-width:760px){
+.brand img{height:38px}
+.hero:before{background:linear-gradient(180deg,rgba(6,34,23,.9) 0%,rgba(6,34,23,.78) 38%,rgba(6,34,23,.3) 68%,rgba(6,34,23,.1) 100%)}
+.hero .wrap{justify-content:flex-start;padding-top:calc(var(--head) + 9vh);padding-bottom:40px}
+.hero-in{text-align:left;margin:0}
+.eyebrow:before{display:block;width:24px}
+.hero .lead{margin-left:0}
+.home-kol{padding:44px 0 56px}
+.sec-h{align-items:flex-start;flex-direction:column;gap:8px;margin-bottom:22px}
+.k-bacahead .wrap{height:50px}
+.rtools{top:calc(var(--head) + 50px)}
+.bab-toc{top:calc(var(--head) + 104px)}
+.kh-main{display:contents}
+.kh-info{order:20}
+.kh-aksi{order:30;margin-top:0}
+.kh-grid{gap:0}
+.kh-cov{margin-bottom:20px}
+.kh-info{margin:24px 0 18px}
+.foot .fb img{height:34px}
+}
