@@ -395,3 +395,37 @@ svg.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;st
 .home-kol{min-height:0;padding:0}
 }
 @media (min-width:761px){.pg-hero{height:clamp(160px,15vw,200px)}.pg-head{margin-top:-52px}.tools{margin-bottom:20px}.pg-body{padding-top:16px}}
+
+/* ===== revisi 4: kepala transparan di layar pertama, hijau saat digulir ===== */
+.over .top{position:fixed;left:0;right:0;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.18) 70%,rgba(0,0,0,0));box-shadow:none;transition:background-color .45s ease,box-shadow .45s ease}
+.over .top:after{content:'';position:absolute;inset:0;z-index:-1;background:var(--g8);opacity:0;transition:opacity .45s ease}
+.over .top.gulir{background:transparent;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.over .top.gulir:after{opacity:1}
+.over .top .brand,.over .top .nav a{text-shadow:0 1px 6px rgba(0,0,0,.3)}
+.over .top.gulir .brand,.over .top.gulir .nav a{text-shadow:none}
+.home .hero{min-height:100vh;min-height:100svh}
+.home .hero .wrap{padding-top:calc(var(--head) + 40px)}
+/* spanduk koleksi: bagian atas gambar utuh, kepala menumpang di atasnya */
+.over .pg-hero{height:clamp(280px,28vw,360px);background-position:center top}
+.over .pg-head{margin-top:-112px}
+.home-kol .pg-hero{background-position:center top}
+.pg-hero:after{background:linear-gradient(180deg,rgba(251,251,249,0) 0%,rgba(251,251,249,0) 50%,rgba(251,251,249,.75) 80%,var(--bg) 100%)}
+.home-kol .pg-hero{height:clamp(220px,22vw,290px)}
+.home-kol .pg-head{margin-top:-104px}
+/* tanpa kotak saring selama koleksi masih sedikit */
+#daftar-kitab .tools{display:none}
+.pg-body{padding-top:22px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:24px 22px}
+.card h3{font-size:17px;margin-top:10px}
+.card .by{font-size:13px}
+/* terjemah memakai huruf judul bab (Crimson Pro miring) */
+.post-body .tr,.post-body .tr-auto{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.75}
+@media (max-width:760px){
+.over .pg-hero{height:230px}
+.over .pg-head{margin-top:-62px}
+.home-kol .pg-hero{height:170px}
+.home-kol .pg-head{margin-top:-50px}
+.home .hero .wrap{padding-top:calc(var(--head) + 7vh)}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.post-body .tr,.post-body .tr-auto{font-size:18px;line-height:1.7}
+}

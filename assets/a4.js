@@ -38,6 +38,8 @@ function semua(cb){
 }
 
 /* ===== Kepala ===== */
+var top=$('.top');
+if(top&&document.body.classList.contains('over')){var g=function(){top.classList.toggle('gulir',window.pageYOffset>24)};g();window.addEventListener('scroll',g,{passive:true})}
 var y=$('#thn');if(y)y.textContent=new Date().getFullYear();
 var nav=$('#nav'),bm=$('#btnMenu');
 if(bm&&nav){bm.onclick=function(e){e.stopPropagation();nav.classList.toggle('open')};document.addEventListener('click',function(e){if(!nav.contains(e.target))nav.classList.remove('open')})}
