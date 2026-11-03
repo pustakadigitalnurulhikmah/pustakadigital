@@ -567,7 +567,7 @@ body.kol:before{transform:translateZ(0)}
 .nav a.on,.over .top:not(.gulir) .nav a.on{color:var(--au-d);font-weight:500}
 .burger{display:none}
 }
-@media (max-width:560px){
+@media (max-width:520px){
 .burger{display:grid}
 #nav a[data-nav=penulis]{display:none}
 .nav-drop a[data-nav=penulis]{display:block}
