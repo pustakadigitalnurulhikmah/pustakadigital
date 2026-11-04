@@ -9,10 +9,10 @@ var pf=new St.PageFlip(el,{width:467,height:662,size:'stretch',minWidth:300,maxW
  startPage:rtl?M-1:0});
 pf.loadFromImages(src);
 var no=document.getElementById('no'),cari=document.getElementById('ke');
-function tulis(){var i=pf.getCurrentPageIndex(),a=i,b=i;
- if(pf.getOrientation()==='landscape'){if(i>0&&i<N-1&&(i%2)===1)b=i+1;else if(i>0&&i<N-1)a=i-1}
- var p=[a,b].map(function(x){return rtl?N-x:x+1}).sort(function(x,y){return x-y});
- no.textContent=(p[0]===p[1]?p[0]:p[0]+'–'+p[1])+' / '+N}
+function tulis(){var i=pf.getCurrentPageIndex(),ix=[i];
+ if(pf.getOrientation()==='landscape'&&i>0)ix=i%2?[i,i+1]:[i-1,i];
+ var p=ix.filter(function(x){return x<M}).map(function(x){return rtl?M-x:x+1}).filter(function(x){return x<=N}).sort(function(x,y){return x-y});
+ no.textContent=(p.length>1?p[0]+'–'+p[p.length-1]:p[0])+' / '+N}
 pf.on('flip',tulis);pf.on('init',tulis);pf.on('changeOrientation',tulis);
 function maju(){rtl?pf.flipPrev():pf.flipNext()}function mundur(){rtl?pf.flipNext():pf.flipPrev()}
 document.getElementById('kiri').onclick=function(){rtl?maju():mundur()};
