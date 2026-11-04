@@ -611,3 +611,11 @@ body.kol:before{transform:translateZ(0)}
 .mode-cat .post-body .bab{margin-bottom:1em}
 .post-body p.kosong-cat{text-align:center!important;color:var(--muted);font-style:italic}
 @media (max-width:600px){.rtools:has(.btn-cat){display:grid!important;grid-template-columns:1fr 1fr;gap:6px}.rtools:has(.btn-cat) button{width:100%;min-width:0;padding:0 8px}}
+/* revisi 27: di PC tombol mode baca sebaris dengan tombol Kembali */
+.kb-mode{display:none}
+@media (min-width:1024px){
+#kitab .rtools{display:none!important}
+.kb-mode{display:flex;gap:8px;margin-left:auto;flex:none}
+.kb-mode button{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;border-radius:999px;font-weight:600;font-size:13px;white-space:nowrap;cursor:pointer;border:1px solid #e3cf98;color:var(--au-d);background:#fff}
+.kb-mode button.on{background:linear-gradient(180deg,#d7b35c,#bf9a3f);border-color:#bf9a3f;color:#1f2b25}
+}
