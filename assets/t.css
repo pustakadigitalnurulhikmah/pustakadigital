@@ -706,3 +706,8 @@ body.kol:before{transform:translateZ(0)}
 .kr-bab li:before{content:counter(kb);min-width:22px;font-weight:600;color:var(--au-d);font-variant-numeric:tabular-nums}
 @media (max-width:860px){.kr-in{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:480px){.kr-bab{columns:1}}
+/* revisi 49: daftar isi ringkasan bisa diklik; ringkasan disembunyikan saat membaca */
+#kitab.buka .k-ringkas{display:none}
+.kr-ket{margin:-4px 0 12px!important;font-size:13.5px!important;color:var(--muted)!important}
+.kr-bab a{color:inherit;text-decoration:none;transition:color .15s}
+.kr-bab a:hover{color:var(--g6)}

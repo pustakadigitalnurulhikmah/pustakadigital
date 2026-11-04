@@ -172,6 +172,7 @@ if(h2s.length>=2){
   $('.pv',bawah).onclick=function(){go(idx-1,true)};$('.nx',bawah).onclick=function(){go(idx+1,true)};
   $$('a',bawah).forEach(function(a){a.onkeydown=function(e){if(e.key==='Enter')a.click()}});
   window.addEventListener('popstate',function(){var i=dariHash();art.classList.toggle('buka',i>=0);if(i<0)lb();go(i<0?0:i,false)});
+  $$('.k-ringkas a[href^="#"]').forEach(function(a){a.onclick=function(e){e.preventDefault();try{history.pushState(null,'',a.getAttribute('href'))}catch(x){}var i=dariHash();if(i<0)return;art.classList.add('buka');go(i,false);window.scrollTo({top:0,behavior:'instant'})}});
   document.addEventListener('keydown',function(e){if(!art.classList.contains('buka')||/INPUT|SELECT|TEXTAREA/.test((e.target||{}).tagName||''))return;
     if(e.key==='ArrowRight')go(idx+1,true);else if(e.key==='ArrowLeft')go(idx-1,true)});
   var mulai=dariHash();if(mulai>=0)art.classList.add('buka');go(mulai>=0?mulai:0,false);
