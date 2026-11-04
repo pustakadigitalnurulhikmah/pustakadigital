@@ -202,10 +202,8 @@ $('.kh-bagi',hero).onclick=function(){var u=location.href.split('#')[0],s=$('spa
   if(navigator.share)navigator.share({title:judul,url:u}).catch(function(){});
   else if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){s.textContent='Tautan disalin';setTimeout(function(){s.textContent='Bagikan'},1800)});
   else prompt('Salin tautan:',u)};
-/* mode baca */
-var modes=$$('[data-mode]',rtl);
-function setMode(m){art.classList.toggle('mode-ar',m==='mode-ar');modes.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m)});STORE.set('kb-mode',m)}
+/* mode baca */ if(body&&rtl&&body.querySelector('p.cat')){var cb=document.createElement('button');cb.type='button';cb.className='btn-cat';cb.setAttribute('data-mode','mode-cat');cb.textContent='Catatan';rtl.appendChild(cb);$$('section.bagian',body).forEach(function(s){if(!s.querySelector('p.cat')){var k=document.createElement('p');k.className='kosong-cat';k.textContent='Tidak ada catatan pada bagian ini.';s.appendChild(k)}})}
+var modes=$$('[data-mode]',rtl); function setMode(m){art.classList.toggle('mode-ar',m==='mode-ar');art.classList.toggle('mode-cat',m==='mode-cat');modes.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===m)});STORE.set('kb-mode',m)}
 modes.forEach(function(b){b.onclick=function(){setMode(b.getAttribute('data-mode'))}});
-setMode(STORE.get('kb-mode')==='mode-ar'?'mode-ar':'');
-/* catatan kaki */ if(body&&rtl&&body.querySelector('sup.fn')){var cb=document.createElement('button');cb.type='button';cb.className='btn-cat';cb.textContent='Catatan';rtl.appendChild(cb);var setCat=function(v){art.classList.toggle('ada-cat',v);cb.classList.toggle('on',v);cb.setAttribute('aria-pressed',v?'true':'false');STORE.set('kb-cat',v?'1':'0')};cb.onclick=function(){setCat(!art.classList.contains('ada-cat'))};setCat(STORE.get('kb-cat')==='1');body.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('sup.fn a,a.cat-n');if(!a)return;var el=document.getElementById(a.getAttribute('href').slice(1));if(el){e.preventDefault();el.scrollIntoView({block:'center',behavior:'smooth'});el.classList.add('sorot');setTimeout(function(){el.classList.remove('sorot')},1600)}})}
+var m0=STORE.get('kb-mode');setMode(m0==='mode-ar'||(m0==='mode-cat'&&$('.btn-cat',rtl))?m0:'');
 })();
