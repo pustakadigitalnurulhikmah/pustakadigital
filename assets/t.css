@@ -619,3 +619,5 @@ body.kol:before{transform:translateZ(0)}
 .kb-mode button{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;border-radius:999px;font-weight:600;font-size:13px;white-space:nowrap;cursor:pointer;border:1px solid #e3cf98;color:var(--au-d);background:#fff}
 .kb-mode button.on{background:linear-gradient(180deg,#d7b35c,#bf9a3f);border-color:#bf9a3f;color:#1f2b25}
 }
+/* revisi 28: baris Kembali + tombol mode tidak dikunci; yang terkunci hanya header situs */
+@media (min-width:1024px){#kitab .k-bacahead{position:static!important}.bab-toc{top:calc(var(--head) + 16px);max-height:calc(100vh - var(--head) - 32px)}}
