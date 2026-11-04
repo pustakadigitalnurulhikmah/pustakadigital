@@ -182,7 +182,7 @@ if(h2s.length>=2){
 /* informasi kitab */
 var IC={user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',bab:'<svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".6"/><circle cx="4" cy="12" r=".6"/><circle cx="4" cy="18" r=".6"/></svg>',globe:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9s1.3-6.4 3.8-9z"/></svg>',tag:'<svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>'};
 var nb=bag.length?bag.filter(function(s){return !s.classList.contains('bag-id')&&!s.hasAttribute('data-sub')}).length:0;
-var ar=kd('ar'),pen=L.penulis,trj=kd('penerjemah'),desk=kd('desk'),bhs=kd('bahasa')||'Arab – Indonesia',fmt=kd('format')||'Teks berharakat & terjemah',jb=nb?nb+' bab':'';
+var ar=kd('ar'),pen=L.penulis,trj=kd('penerjemah'),desk=kd('desk'),bhs=kd('bahasa')||'Arab – Indonesia',fmt=kd('format')||'Teks berharakat & terjemah',jb=kd('isi')||(nb?nb+' bab':'');
 var ka=$('.k-ar',hero);if(ar)ka.textContent=ar;else ka.remove();
 $('.k-pen',hero).innerHTML=pen?IC.user+'<span>'+esc(pen)+'</span>':'';
 $('.kh-meta',hero).innerHTML=[[IC.bab,'Isi',jb],[IC.globe,'Bahasa',bhs],[IC.tag,'Kategori',L.kategori]].filter(function(m){return m[2]}).map(function(m){return '<div>'+m[0]+'<span><small>'+m[1]+'</small><b>'+esc(m[2])+'</b></span></div>'}).join('');

@@ -692,3 +692,17 @@ body.kol:before{transform:translateZ(0)}
 .hero-btn{order:4}
 .home-sec .pg-body{padding-bottom:clamp(44px,5vw,64px)}
 .home-sec+.b-sec{padding-top:clamp(20px,3vw,36px)}
+/* revisi 48: ringkasan kitab di halaman info (flipbook) */
+.k-ringkas{background:var(--bg);padding:clamp(28px,4vw,48px) var(--gut) clamp(40px,5vw,64px)}
+.kr-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px);align-items:start}
+.kr-blok{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,2.4vw,30px)}
+.kr-blok h2{margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line2);font:600 clamp(21px,1.9vw,25px)/1.25 var(--serif);color:var(--g8);display:flex;align-items:center;gap:10px}
+.kr-blok h2:before{content:"";width:8px;height:8px;background:var(--au);transform:rotate(45deg);flex:none}
+.kr-blok p{margin:0 0 12px;font-size:15px;line-height:1.8;color:var(--ink2)}
+.kr-blok p:last-child{margin-bottom:0}
+.kr-blok p.ttd{text-align:right;font-style:italic;color:var(--muted)}
+.kr-bab{margin:0;padding:0;list-style:none;counter-reset:kb;columns:2;column-gap:24px}
+.kr-bab li{counter-increment:kb;break-inside:avoid;display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14.5px;line-height:1.45;color:var(--ink2)}
+.kr-bab li:before{content:counter(kb);min-width:22px;font-weight:600;color:var(--au-d);font-variant-numeric:tabular-nums}
+@media (max-width:860px){.kr-in{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.kr-bab{columns:1}}
