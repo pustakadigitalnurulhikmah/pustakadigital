@@ -140,7 +140,7 @@ if(h2s.length>=2){
   var side=document.createElement('aside');side.className='bab-toc';side.setAttribute('aria-label','Daftar isi');
   side.innerHTML='<div class="bt-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.3 5.2 7.9 4.6 4 4.6v13.2c3.9 0 6.3.6 8 1.9 1.7-1.3 4.1-1.9 8-1.9V4.6c-3.9 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/></svg>Daftar Isi<button type="button" class="bt-x" aria-label="Tutup daftar isi">&#215;</button></div><ol>'+bag.map(function(s,i){
     var o='<li><a href="#bagian-'+(i+1)+'" data-i="'+i+'" data-main="1"><i class="ti"></i><span>'+esc(s.getAttribute('data-judul'))+'</span></a></li>';
-    $$('h3',s).forEach(function(h,k){var j=(h.getAttribute('data-toc')||h.textContent).trim().replace(/\s+/g,' ');if(!j)return;if(!h.id)h.id='sub-'+(i+1)+'-'+(k+1);
+    $$('h3',s).forEach(function(h,k){if(h.classList.contains('fasal'))return;var j=(h.getAttribute('data-toc')||h.textContent).trim().replace(/\s+/g,' ');if(!j)return;if(!h.id)h.id='sub-'+(i+1)+'-'+(k+1);
       o+='<li><a href="#'+h.id+'" data-i="'+i+'" data-h="'+h.id+'"><i class="ti"></i><span>'+esc(j)+'</span></a></li>'});
     return o}).join('')+'</ol>';
   var kol=document.createElement('div');kol.className='k-kol';
