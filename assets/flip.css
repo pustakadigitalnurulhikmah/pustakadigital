@@ -25,3 +25,6 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 /* satu halaman: bayang jilid di tepi punggung */
 .fb-cermin:not(.dua).ada-kanan .tn{display:block;left:0;width:7%;background:linear-gradient(270deg,rgba(0,0,0,0) 0,rgba(0,0,0,.03) 50%,rgba(0,0,0,.09) 85%,rgba(0,0,0,.18) 100%)}
 .fb-cermin.dua .fb-blok{box-shadow:none}
+/* revisi: bayang tengah dua halaman lebih ramping & tipis */
+.dua.ada-kiri .tk{width:3.2%;background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.03) 50%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.15) 100%)}
+.dua.ada-kanan .tn{width:3.2%;background:linear-gradient(270deg,rgba(0,0,0,0) 0,rgba(0,0,0,.025) 50%,rgba(0,0,0,.07) 82%,rgba(0,0,0,.13) 100%)}
