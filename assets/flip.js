@@ -4,6 +4,7 @@
 var st=document.getElementById('stage'),zm=document.getElementById('book'),bar=document.getElementById('bar'),no=document.getElementById('no');
 var N=+zm.dataset.n,rtl=zm.dataset.arah==='rtl',dir=zm.dataset.dir,R=+(zm.dataset.rasio||0.7048),KEY='fb:'+dir;
 var cm=document.createElement('div');cm.className='fb-cermin'+(rtl?' rtl':'');zm.appendChild(cm);
+var tl=document.createElement('div');tl.className='fb-tulang';tl.innerHTML='<i class="tk"></i><i class="tn"></i>';cm.appendChild(tl);
 function url(p){return dir+(p<10?'0':'')+p+'.svg'}
 var cache={};function gbr(i){if(i<0||i>=N)return null;var g=cache[i];if(!g){g=new Image();g.alt='';g.draggable=false;g.src=url(i+1);cache[i]=g;if(g.decode)g.decode().catch(function(){})}return g}
 function muat(i){for(var j=i-3;j<=i+4;j++)gbr(j)}
@@ -19,10 +20,12 @@ function buat(){if(pf){idx=pf.getCurrentPageIndex();try{pf.destroy()}catch(e){}}
     maxShadowOpacity:.4,flippingTime:800,drawShadow:true,startPage:idx,autoSize:false});
   pf.loadFromHTML(divs);
   pf.on('flip',function(e){idx=e.data;muat(idx);isiDiv(idx);tulis()});
-  pf.on('changeState',function(e){sibuk=e.data!=='read'});
+  pf.on('changeState',function(e){sibuk=e.data!=='read';cm.classList.toggle('gerak',sibuk)});
   tulis();st.classList.toggle('zoom',z>1.001)}
 function isiDiv(i){for(var j=i-3;j<=i+4;j++){var d=divs[j];if(d&&!d.firstChild){var g=gbr(j);if(g)d.appendChild(g)}}}
-function tulis(){var i=idx,ix=[i];if(spread&&i>0)ix=i%2?[i,i+1]:[i-1,i];
+function punggung(){var a=-1,b=-1;if(spread){if(idx===0)b=0;else{a=idx%2?idx:idx-1;b=a+1<N?a+1:-1}}else b=idx;
+  cm.classList.toggle('ada-kiri',spread&&a>=0);cm.classList.toggle('ada-kanan',b>=0);cm.classList.toggle('dua',spread)}
+function tulis(){punggung();var i=idx,ix=[i];if(spread&&i>0)ix=i%2?[i,i+1]:[i-1,i];
   var p=ix.filter(function(x){return x<N}).map(function(x){return x+1});no.textContent=(p.length>1?p[0]+'–'+p[1]:p[0])+' / '+N;
   try{localStorage.setItem(KEY,i+1)}catch(e){}}
 function ukur(){var W=st.clientWidth,H=st.clientHeight,pad=W<600?6:22;spread=W>=800&&W/H>1.15;
@@ -37,9 +40,11 @@ var lipat=null; /* {d,mundurP,y} */
 function mulaiLipat(arah,y){var r=rect(),mundurP=arah<0&&!spread;if(arah>0&&idx>=N-1)return null;if(arah<0&&idx<=0)return null;
   var d=arah>0?0:(spread?1:0);
   if(mundurP){var t=pf.getCurrentPageIndex()-1;pf.turnToPage(t);idx=t;isiDiv(t)}
-  var L={d:d,mp:mundurP,y:y==null?bawah():y};
-  var a=titik(d,0,L.y);a.x+=d===0?-1:1;pf.startUserTouch(a);var b=titik(d,.02,L.y);pf.userMove(b,true);
-  L.set=function(u){u=Math.max(.02,Math.min(.985,u));L.u=u;pf.userMove(titik(d,L.mp?1-u:u,L.y),true)};L.set(.02);return L}
+  var y0=y==null?bawah():y,bw=y0>=r.top+r.height/2,ky=bw?r.top+r.height-1:r.top+1,dk=Math.abs(y0-ky)<r.height*.2;
+  var L={d:d,mp:mundurP,y0:y0,ky:ky,dk:dk,y:dk?y0:ky};
+  var a=titik(d,0,y0);a.x+=d===0?-1:1;pf.startUserTouch(a);var b=titik(d,.02,L.y);pf.userMove(b,true);
+  L.set=function(u,fy){if(fy!=null){var t=L.dk?fy:L.ky+(fy-L.y0);L.y=Math.max(r.top-r.height*.15,Math.min(r.top+r.height*1.15,t))}
+    u=Math.max(.02,Math.min(.985,u));L.u=u;pf.userMove(titik(d,L.mp?1-u:u,L.y),true)};L.set(.02);return L}
 function akhiri(L,jadi){/* jadi=true: halaman berpindah sesuai arah */var u=L.mp?(jadi?0:1):(jadi?1:0);var dari=L.u,t0=performance.now(),dur=Math.max(160,520*Math.abs(u-(L.mp?1-dari:dari)));
   var a0=L.mp?1-dari:dari;if(anim)cancelAnimationFrame(anim);
   (function f(now){var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=a0+(u-a0)*e;pf.userMove(titik(L.d,Math.max(.015,Math.min(.985,v)),L.y),true);
@@ -58,7 +63,7 @@ st.addEventListener('pointermove',function(e){if(!pt||pt.id!==e.pointerId||pinch
   if(!pt.m&&Math.abs(dx)+Math.abs(dy)>8)pt.m=true;if(!pt.m)return;
   if(z>1.001){if(pt.mouse){st.scrollLeft=pt.sl-dx;st.scrollTop=pt.stp-dy}return}
   if(pt.x0===undefined){if(sibuk){pt.m='x';return}var maj=(dx>0)===rtl;lipat=mulaiLipat(maj?1:-1,kb(e.clientX,e.clientY).y);if(!lipat){pt.m='x';return}pt.maj=maj;pt.x0=pt.x}
-  if(!lipat)return;var w=spread?pw:pw*.85,g=(pt.maj===rtl?dx:-dx);lipat.set(g/(w*1.6))});
+  if(!lipat)return;var w=spread?pw:pw*.85,g=(pt.maj===rtl?dx:-dx);lipat.set(g/(w*1.6),kb(e.clientX,e.clientY).y)});
 function lepas(e){if(!pt||pt.id!==e.pointerId)return;var p=pt;pt=null;
   if(lipat){var L=lipat;lipat=null;var cepat=Date.now()-p.t<350,ok=L.u>.3||(cepat&&L.u>.05);bilah(false);akhiri(L,ok);return}
   if(p.m||e.type==='pointercancel')return;
