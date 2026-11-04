@@ -603,3 +603,7 @@ body.kol:before{transform:translateZ(0)}
 .post-body h3.fasal .ar,.post-body h3.fasal .tr{text-align:center!important;text-align-last:center!important}
 .post-body p.cat{font-style:normal!important;font-family:var(--sans)!important}
 .post-body p.cat i{font-style:italic}
+/* revisi 26: tombol Catatan — catatan kaki tampil hanya bila aktif */
+#kitab:not(.ada-cat) .post-body sup.fn,#kitab:not(.ada-cat) .post-body p.cat,#kitab:not(.ada-cat) .post-body p.cat-judul{display:none!important}
+.mode-ar .rtools .btn-cat{display:none}
+.post-body p.cat.sorot,.post-body sup.fn.sorot{background:rgba(201,162,74,.18);border-radius:6px}
