@@ -1,0 +1,25 @@
+/* Pembaca flipbook Pustaka Digital */
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}
+body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.fb-stage{position:fixed;inset:0;display:flex;overflow:hidden;touch-action:none;cursor:pointer}
+.fb-stage.zoom{overflow:auto;touch-action:pan-x pan-y;cursor:grab}
+.fb-book{position:relative;margin:auto;flex:none;perspective:3000px;--pw:400px;transition:translate .45s ease}
+.fb-hal{position:absolute;top:0;height:100%;background:#fff;overflow:hidden;box-shadow:0 6px 22px rgba(12,58,40,.16)}
+.fb-hal img,.muka img{display:block;width:100%;height:100%;pointer-events:none;-webkit-touch-callout:none}
+.fb-hal.kiri{left:0;width:var(--pw)}.fb-hal.kanan{left:var(--pw);width:var(--pw)}.fb-hal.penuh{left:0;width:100%}
+.fb-lipat{display:none;position:absolute;top:0;bottom:0;left:calc(var(--pw) - 30px);width:60px;pointer-events:none;z-index:2;
+ background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.07) 42%,rgba(0,0,0,.16) 50%,rgba(0,0,0,.07) 58%,rgba(0,0,0,0) 100%)}
+.fb-book.dua .fb-lipat{display:block}
+.fb-daun{display:none;position:absolute;top:0;height:100%;z-index:3;transform-style:preserve-3d;will-change:transform}
+.fb-daun.kiri{left:0;width:var(--pw);transform-origin:100% 50%}
+.fb-daun.kanan{left:var(--pw);width:var(--pw);transform-origin:0 50%}
+.fb-daun.penuh{left:0;width:100%}.fb-daun.poros-kanan{transform-origin:100% 50%}.fb-daun.poros-kiri{transform-origin:0 50%}
+.muka{position:absolute;inset:0;background:#fff;-webkit-backface-visibility:hidden;backface-visibility:hidden;overflow:hidden}
+.muka.belakang{transform:rotateY(180deg)}
+.bayang{position:absolute;inset:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(0,0,0,.05) 55%,rgba(255,255,255,.15))}
+.fb-daun.kanan .depan .bayang,.poros-kiri .depan .bayang,.fb-daun.kiri .belakang .bayang,.poros-kanan .belakang .bayang{background:linear-gradient(270deg,rgba(0,0,0,.35),rgba(0,0,0,.05) 55%,rgba(255,255,255,.15))}
+.fb-bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(12,58,40,.94);color:#fff;transition:transform .25s ease,opacity .25s ease}
+.fb-bar.sembunyi{transform:translateY(-100%);opacity:0;pointer-events:none}
+.fb-bar a,.fb-bar button{color:#fff;background:none;border:0;text-decoration:none;font:400 22px/1 system-ui,sans-serif;padding:4px 10px;cursor:pointer;flex:none}
+.fb-judul{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:italic 400 clamp(15px,4.2vw,19px)/1.3 Lora,Georgia,serif}
+.fb-no{flex:none;font-size:13px;opacity:.8;padding:0 4px}
