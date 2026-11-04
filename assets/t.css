@@ -635,3 +635,11 @@ body.kol:before{transform:translateZ(0)}
 }
 @media (max-width:600px){.rtools:has(.btn-cat){grid-template-columns:repeat(3,1fr)}}
 @media (max-width:600px){.rtools:has(.btn-cat){display:flex!important}.rtools:has(.btn-cat) button{flex:1 1 auto;width:auto;padding:0 10px}}
+/* revisi 25: menu Beranda · Tentang · Koleksi · Donasi — hilang satu per satu ke ☰ */
+#nav a[data-nav],.nav-drop a[data-nav]{display:none}
+#nav a[data-nav]{display:block}
+.burger{display:none}
+@media (max-width:580px){.burger{display:grid}#nav a[data-nav=tentang]{display:none}.nav-drop a[data-nav=tentang]{display:block}}
+@media (max-width:540px){#nav a[data-nav=daftar]{display:none}.nav-drop a[data-nav=daftar]{display:block}}
+@media (max-width:465px){#nav a[data-nav=donasi]{display:none}.nav-drop a[data-nav=donasi]{display:block}}
+@media (max-width:390px){#nav a[data-nav=home]{display:none}.nav-drop a[data-nav=home]{display:block}}

@@ -44,7 +44,7 @@ var y=$('#thn');if(y)y.textContent=new Date().getFullYear();
 var nav=$('#nav'),bm=$('#btnMenu');
 var nd=null;if(bm&&nav){nd=document.createElement('div');nd.className='nav-drop';nd.id='navDrop';nd.innerHTML=nav.innerHTML;bm.parentNode.appendChild(nd);bm.onclick=function(e){e.stopPropagation();nd.classList.toggle('open')};document.addEventListener('click',function(e){if(!nd.contains(e.target))nd.classList.remove('open')})}
 var P=location.pathname.replace(/\.html$/,''),act='';
-if(P==='/'||P==='/index')act='home';else if(P.indexOf('/p/daftar-kitab')===0||P.indexOf('/search')===0||/^\/\d{4}\//.test(P))act='daftar';else if(P.indexOf('/p/penulis')===0)act='penulis';
+if(P==='/'||P==='/index')act='home';else if(P.indexOf('/p/daftar-kitab')===0||P.indexOf('/search')===0||/^\/\d{4}\//.test(P))act='daftar';else if(P.indexOf('/p/penulis')===0)act='penulis';else if(P.indexOf('/p/tentang')===0)act='tentang';else if(P.indexOf('/p/donasi')===0)act='donasi';
 $$('#nav a,#navDrop a').forEach(function(a){if(a.getAttribute('data-nav')===act)a.classList.add('on')});
 
 /* ===== Katalog di beranda ===== */
