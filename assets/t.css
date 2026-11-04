@@ -621,3 +621,16 @@ body.kol:before{transform:translateZ(0)}
 }
 /* revisi 28: baris Kembali + tombol mode tidak dikunci; yang terkunci hanya header situs */
 @media (min-width:1024px){#kitab .k-bacahead{position:static!important}.bab-toc{top:calc(var(--head) + 16px);max-height:calc(100vh - var(--head) - 32px)}}
+/* revisi 29: HP/tablet — Daftar Isi di samping Kembali; Kembali cukup simbol */
+.kb-kembali .kb-s{font-size:18px;line-height:1}
+.kb-kembali .kb-t{margin-left:4px}
+.k-bacahead .btn-toc{display:none}
+@media (max-width:1023px){
+.kb-kembali{width:36px;height:34px;padding:0!important;justify-content:center}
+.kb-kembali .kb-t{display:none}
+.kb-kembali .kb-s{font-size:22px;margin-top:-2px}
+.k-bacahead .btn-toc{display:inline-flex;flex:none;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--head-ink);font-weight:600;font-size:13px;cursor:pointer}
+.k-bacahead .btn-toc svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.k-bacahead .wrap{gap:8px}
+}
+@media (max-width:600px){.rtools:has(.btn-cat){grid-template-columns:repeat(3,1fr)}}
