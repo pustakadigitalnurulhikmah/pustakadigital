@@ -634,3 +634,4 @@ body.kol:before{transform:translateZ(0)}
 .k-bacahead .wrap{gap:8px}
 }
 @media (max-width:600px){.rtools:has(.btn-cat){grid-template-columns:repeat(3,1fr)}}
+@media (max-width:600px){.rtools:has(.btn-cat){display:flex!important}.rtools:has(.btn-cat) button{flex:1 1 auto;width:auto;padding:0 10px}}
