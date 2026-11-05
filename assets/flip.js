@@ -44,18 +44,27 @@ function mulaiLipat(arah,y){var r=rect(),mundurP=arah<0&&!spread;if(arah>0&&idx>
   var L={d:d,mp:mundurP,y0:y0,ky:ky,dk:dk,y:dk?y0:ky};
   var a=titik(d,0,y0);a.x+=d===0?-1:1;pf.startUserTouch(a);var b=titik(d,.02,L.y);pf.userMove(b,true);
   L.set=function(u,fy){if(fy!=null){var t=L.dk?fy:L.ky+(fy-L.y0);L.y=Math.max(r.top-r.height*.15,Math.min(r.top+r.height*1.15,t))}
-    u=Math.max(.02,Math.min(.985,u));L.u=u;pf.userMove(titik(d,L.mp?1-u:u,L.y),true)};L.set(.02);return L}
+    u=Math.max(.02,Math.min(.985,u));L.u=u;if(L.S)gesekGerak(L.S,u);pf.userMove(titik(d,L.mp?1-u:u,L.y),true)};L.set(.02);return L}
 function akhiri(L,jadi){/* jadi=true: halaman berpindah sesuai arah */var u=L.mp?(jadi?0:1):(jadi?1:0);var dari=L.u,t0=performance.now(),dur=Math.max(160,520*Math.abs(u-(L.mp?1-dari:dari)));
-  var a0=L.mp?1-dari:dari;if(jadi)suara();if(anim)cancelAnimationFrame(anim);
-  (function f(now){var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=a0+(u-a0)*e;pf.userMove(titik(L.d,Math.max(.015,Math.min(.985,v)),L.y),true);
-    if(k<1)anim=requestAnimationFrame(f);else{anim=null;pf.userStop(titik(L.d,u>.5?.99:.01,L.y));setTimeout(function(){idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()},900)}})(t0)}
-/* suara kertas saat membalik (rekaman /assets/balik.mp3) */
+  var a0=L.mp?1-dari:dari;if(jadi&&!L.S)suara();if(anim)cancelAnimationFrame(anim);
+  (function f(now){var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=a0+(u-a0)*e;if(L.S)gesekGerak(L.S,L.mp?1-v:v);pf.userMove(titik(L.d,Math.max(.015,Math.min(.985,v)),L.y),true);
+    if(k<1)anim=requestAnimationFrame(f);else{anim=null;if(L.S){gesekAkhir(L.S,jadi);L.S=null}pf.userStop(titik(L.d,u>.5?.99:.01,L.y));setTimeout(function(){idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()},900)}})(t0)}
+/* suara kertas (rekaman /assets/balik.mp3: gemeresik 0,1–0,55 dtk, tepukan 0,62 dtk)
+   ketuk = rekaman utuh; geser = gemeresik mengikuti kecepatan jari, tepukan bila halaman jatuh */
 var ac=null,sb=null,sp=null,sa=null;
 try{sa=fetch('/assets/balik.mp3?v=1').then(function(r){return r.arrayBuffer()})}catch(e){}
-function suara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C||!sa)return;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
-  if(!sp)sp=sa.then(function(x){return new Promise(function(ok,no){ac.decodeAudioData(x.slice(0),ok,no)})}).then(function(b){sb=b});
-  function main(){var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.playbackRate.value=.96+Math.random()*.08;g.gain.value=.9;x.connect(g);g.connect(ac.destination);x.start()}
-  if(sb)main();else sp.then(main)}catch(e){}}
+function siapSuara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C||!sa)return null;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
+  if(!sp)sp=sa.then(function(x){return new Promise(function(ok,no){ac.decodeAudioData(x.slice(0),ok,no)})}).then(function(b){sb=b});return sp}catch(e){return null}}
+function putar(off,dur,vol,rate){var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.playbackRate.value=rate||(.96+Math.random()*.08);g.gain.value=vol;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,off,dur)}
+function suara(){var q=siapSuara();if(!q)return;if(sb)putar(0,undefined,.9);else q.then(function(){putar(0,undefined,.9)})}
+function tahan(p,t){if(p.cancelAndHoldAtTime)p.cancelAndHoldAtTime(t);else{var v=p.value;p.cancelScheduledValues(t);p.setValueAtTime(v,t)}}
+function gesekMulai(){try{siapSuara();if(!sb)return null;var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.loop=true;x.loopStart=.1;x.loopEnd=.55;
+  g.gain.value=0;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,.1+Math.random()*.3);return{x:x,g:g,u:null,t:0}}catch(e){return null}}
+function gesekGerak(S,u){var n=performance.now();if(S.u!=null){var dt=Math.max(8,n-S.t),v=Math.abs(u-S.u)/dt*1000,a=Math.min(1,Math.sqrt(v/2.4)),t=ac.currentTime;
+  tahan(S.g.gain,t);S.g.gain.setTargetAtTime(a*.85,t,.03);S.g.gain.setTargetAtTime(0,t+.07,.07);
+  tahan(S.x.playbackRate,t);S.x.playbackRate.setTargetAtTime(.8+.35*a,t,.05)}S.u=u;S.t=n}
+function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.62,.32,.75)}catch(e){}}
+['pointerdown','touchstart'].forEach(function(k){document.addEventListener(k,function(){siapSuara()},{once:true,passive:true})});
 function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('bottom')}
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
   var L=mulaiLipat(-1);if(!L)return;L.set(.05);akhiri(L,true)}
@@ -69,7 +78,7 @@ st.addEventListener('pointerdown',function(e){if(pinch||e.button>0||!pf)return;i
 st.addEventListener('pointermove',function(e){if(!pt||pt.id!==e.pointerId||pinch)return;var dx=e.clientX-pt.x,dy=e.clientY-pt.y;
   if(!pt.m&&Math.abs(dx)+Math.abs(dy)>8)pt.m=true;if(!pt.m)return;
   if(z>1.001){if(pt.mouse){st.scrollLeft=pt.sl-dx;st.scrollTop=pt.stp-dy}return}
-  if(pt.x0===undefined){if(sibuk){pt.m='x';return}var maj=(dx>0)===rtl;lipat=mulaiLipat(maj?1:-1,kb(e.clientX,e.clientY).y);if(!lipat){pt.m='x';return}pt.maj=maj;pt.x0=pt.x}
+  if(pt.x0===undefined){if(sibuk){pt.m='x';return}var maj=(dx>0)===rtl;lipat=mulaiLipat(maj?1:-1,kb(e.clientX,e.clientY).y);if(!lipat){pt.m='x';return}lipat.S=gesekMulai();pt.maj=maj;pt.x0=pt.x}
   if(!lipat)return;var w=spread?pw:pw*.85,g=(pt.maj===rtl?dx:-dx);lipat.set(g/(w*1.6),kb(e.clientX,e.clientY).y)});
 function lepas(e){if(!pt||pt.id!==e.pointerId)return;var p=pt;pt=null;
   if(lipat){var L=lipat;lipat=null;var cepat=Date.now()-p.t<350,ok=L.u>.3||(cepat&&L.u>.05);bilah(false);akhiri(L,ok);return}
