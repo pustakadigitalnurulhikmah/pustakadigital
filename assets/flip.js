@@ -49,21 +49,21 @@ function akhiri(L,jadi){/* jadi=true: halaman berpindah sesuai arah */var u=L.mp
   var a0=L.mp?1-dari:dari;if(jadi&&!L.S)suara();if(anim)cancelAnimationFrame(anim);
   (function f(now){var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=a0+(u-a0)*e;if(L.S)gesekGerak(L.S,L.mp?1-v:v);pf.userMove(titik(L.d,Math.max(.015,Math.min(.985,v)),L.y),true);
     if(k<1)anim=requestAnimationFrame(f);else{anim=null;if(L.S){gesekAkhir(L.S,jadi);L.S=null}pf.userStop(titik(L.d,u>.5?.99:.01,L.y));setTimeout(function(){idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()},900)}})(t0)}
-/* suara kertas (rekaman /assets/balik.mp3: gemeresik 0,1–0,55 dtk, tepukan 0,62 dtk)
+/* suara kertas (rekaman /assets/balik.mp3: gemeresik 0,08–0,33 dtk, tepukan 0,52 dtk)
    ketuk = rekaman utuh; geser = gemeresik mengikuti kecepatan jari, tepukan bila halaman jatuh */
 var ac=null,sb=null,sp=null,sa=null;
-try{sa=fetch('/assets/balik.mp3?v=1').then(function(r){return r.arrayBuffer()})}catch(e){}
+try{sa=fetch('/assets/balik.mp3?v=2').then(function(r){return r.arrayBuffer()})}catch(e){}
 function siapSuara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C||!sa)return null;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
   if(!sp)sp=sa.then(function(x){return new Promise(function(ok,no){ac.decodeAudioData(x.slice(0),ok,no)})}).then(function(b){sb=b});return sp}catch(e){return null}}
 function putar(off,dur,vol,rate){var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.playbackRate.value=rate||(.96+Math.random()*.08);g.gain.value=vol;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,off,dur)}
 function suara(){var q=siapSuara();if(!q)return;if(sb)putar(0,undefined,.9);else q.then(function(){putar(0,undefined,.9)})}
 function tahan(p,t){if(p.cancelAndHoldAtTime)p.cancelAndHoldAtTime(t);else{var v=p.value;p.cancelScheduledValues(t);p.setValueAtTime(v,t)}}
-function gesekMulai(){try{siapSuara();if(!sb)return null;var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.loop=true;x.loopStart=.1;x.loopEnd=.55;
-  g.gain.value=0;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,.1+Math.random()*.3);return{x:x,g:g,u:null,t:0}}catch(e){return null}}
+function gesekMulai(){try{siapSuara();if(!sb)return null;var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.loop=true;x.loopStart=.08;x.loopEnd=.33;
+  g.gain.value=0;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,.08+Math.random()*.2);return{x:x,g:g,u:null,t:0}}catch(e){return null}}
 function gesekGerak(S,u){var n=performance.now();if(S.u!=null){var dt=Math.max(8,n-S.t),v=Math.abs(u-S.u)/dt*1000,a=Math.min(1,Math.sqrt(v/2.4)),t=ac.currentTime;
   tahan(S.g.gain,t);S.g.gain.setTargetAtTime(a*.85,t,.03);S.g.gain.setTargetAtTime(0,t+.07,.07);
   tahan(S.x.playbackRate,t);S.x.playbackRate.setTargetAtTime(.8+.35*a,t,.05)}S.u=u;S.t=n}
-function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.62,.32,.75)}catch(e){}}
+function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.52,.5,.75)}catch(e){}}
 ['pointerdown','touchstart'].forEach(function(k){document.addEventListener(k,function(){siapSuara()},{once:true,passive:true})});
 function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('bottom')}
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
