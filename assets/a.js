@@ -57,7 +57,6 @@ var dk=$('#daftar-kitab');
 if(dk){
   dk.innerHTML='<div class="tools"><label class="cari"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" aria-label="Saring koleksi" placeholder="Saring judul atau pengarang"></label><div class="chips"></div></div><div class="grid">'+skel(4)+'</div>';
   semua(function(all){
-    all=all.slice().sort(function(a,b){return a.t.localeCompare(b.t,'id')});
     var kat=[];all.forEach(function(p){if(p.kategori&&kat.indexOf(p.kategori)<0)kat.push(p.kategori)});
     var pilih='',inp=$('input',dk),g=$('.grid',dk),ch=$('.chips',dk);
     if(kat.length>1)ch.innerHTML=['Semua'].concat(kat).map(function(k,i){return '<button class="chip'+(i?'':' on')+'" data-k="'+(i?esc(k):'')+'" type="button">'+esc(k)+'</button>'}).join('');else ch.remove();
