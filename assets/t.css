@@ -711,3 +711,7 @@ body.kol:before{transform:translateZ(0)}
 .kr-ket{margin:-4px 0 12px!important;font-size:13.5px!important;color:var(--muted)!important}
 .kr-bab a{color:inherit;text-decoration:none;transition:color .15s}
 .kr-bab a:hover{color:var(--g6)}
+
+/* revisi: mode baca bersih tanpa header & footer situs */
+html.baca{--head:0px}
+html.baca .top,html.baca .foot{display:none!important}

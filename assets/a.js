@@ -210,3 +210,6 @@ var modes=$$('[data-mode]',art); function setMode(m){art.classList.toggle('mode-
 modes.forEach(function(b){b.onclick=function(){setMode(b.getAttribute('data-mode'))}});
 var m0=STORE.get('kb-mode');setMode(m0==='mode-ar'||(m0==='mode-cat'&&$('.btn-cat',rtl))?m0:'');
 })();
+
+/* mode baca: sembunyikan header & footer situs */
+(function(){var a=document.getElementById('kitab');if(!a)return;var f=function(){document.documentElement.classList.toggle('baca',a.classList.contains('buka'))};f();new MutationObserver(f).observe(a,{attributes:true,attributeFilter:['class']})})();
