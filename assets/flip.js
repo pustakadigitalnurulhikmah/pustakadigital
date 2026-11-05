@@ -56,14 +56,14 @@ try{sa=fetch('/assets/balik.mp3?v=2').then(function(r){return r.arrayBuffer()})}
 function siapSuara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C||!sa)return null;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
   if(!sp)sp=sa.then(function(x){return new Promise(function(ok,no){ac.decodeAudioData(x.slice(0),ok,no)})}).then(function(b){sb=b});return sp}catch(e){return null}}
 function putar(off,dur,vol,rate){var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.playbackRate.value=rate||(.96+Math.random()*.08);g.gain.value=vol;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,off,dur)}
-function suara(){var q=siapSuara();if(!q)return;if(sb)putar(0,undefined,.9);else q.then(function(){putar(0,undefined,.9)})}
+function suara(){var q=siapSuara();if(!q)return;if(sb)putar(0,undefined,.5);else q.then(function(){putar(0,undefined,.5)})}
 function tahan(p,t){if(p.cancelAndHoldAtTime)p.cancelAndHoldAtTime(t);else{var v=p.value;p.cancelScheduledValues(t);p.setValueAtTime(v,t)}}
 function gesekMulai(){try{siapSuara();if(!sb)return null;var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.loop=true;x.loopStart=.08;x.loopEnd=.33;
   g.gain.value=0;x.connect(g);g.connect(ac.destination);x.start(ac.currentTime,.08+Math.random()*.2);return{x:x,g:g,u:null,t:0}}catch(e){return null}}
 function gesekGerak(S,u){var n=performance.now();if(S.u!=null){var dt=Math.max(8,n-S.t),v=Math.abs(u-S.u)/dt*1000,a=Math.min(1,Math.sqrt(v/2.4)),t=ac.currentTime;
-  tahan(S.g.gain,t);S.g.gain.setTargetAtTime(a*.85,t,.03);S.g.gain.setTargetAtTime(0,t+.07,.07);
+  tahan(S.g.gain,t);S.g.gain.setTargetAtTime(a*.5,t,.03);S.g.gain.setTargetAtTime(0,t+.07,.07);
   tahan(S.x.playbackRate,t);S.x.playbackRate.setTargetAtTime(.8+.35*a,t,.05)}S.u=u;S.t=n}
-function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.52,.5,.75)}catch(e){}}
+function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.52,.5,.42)}catch(e){}}
 ['pointerdown','touchstart'].forEach(function(k){document.addEventListener(k,function(){siapSuara()},{once:true,passive:true})});
 /* musik latar saat membaca (/assets/latar-baca.mp3), mulai pada sentuhan pertama; tombol ♫ di bilah */
 var mus=null,mg=null,mOn=true,mKey='fb:musik';try{mOn=localStorage.getItem(mKey)!=='0'}catch(e){}
