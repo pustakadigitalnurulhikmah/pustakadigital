@@ -49,26 +49,13 @@ function akhiri(L,jadi){/* jadi=true: halaman berpindah sesuai arah */var u=L.mp
   var a0=L.mp?1-dari:dari;if(jadi)suara();if(anim)cancelAnimationFrame(anim);
   (function f(now){var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=a0+(u-a0)*e;pf.userMove(titik(L.d,Math.max(.015,Math.min(.985,v)),L.y),true);
     if(k<1)anim=requestAnimationFrame(f);else{anim=null;pf.userStop(titik(L.d,u>.5?.99:.01,L.y));setTimeout(function(){idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()},900)}})(t0)}
-/* suara kertas saat membalik: desir + gemeresik + tepukan halaman (disintesis) */
-var ac=null,nb=null,kb=null;
-function suara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
-  var sr=ac.sampleRate,i,d;
-  if(!nb){nb=ac.createBuffer(1,sr,sr);d=nb.getChannelData(0);for(i=0;i<sr;i++)d[i]=Math.random()*2-1;
-    kb=ac.createBuffer(1,Math.floor(sr*.25),sr);d=kb.getChannelData(0);for(i=0;i<d.length;i++){var k=1-i/d.length;d[i]=Math.random()<.004*k?(Math.random()*2-1)*k:0}}
-  var t=ac.currentTime,r=.92+Math.random()*.16,o=ac.createGain();o.gain.value=.9;o.connect(ac.destination);
-  function src(buf,t0,dur){var x=ac.createBufferSource();x.buffer=buf;x.playbackRate.value=r;x.start(t0,Math.random()*.3,dur);return x}
-  /* desir udara */
-  var s1=src(nb,t,.6),f1=ac.createBiquadFilter(),g1=ac.createGain();f1.type='bandpass';f1.Q.value=1.1;
-  f1.frequency.setValueAtTime(650,t);f1.frequency.exponentialRampToValueAtTime(2300,t+.17);f1.frequency.exponentialRampToValueAtTime(800,t+.48);
-  g1.gain.setValueAtTime(.0001,t);g1.gain.exponentialRampToValueAtTime(.42,t+.13);g1.gain.exponentialRampToValueAtTime(.0001,t+.52);
-  s1.connect(f1);f1.connect(g1);g1.connect(o);
-  /* gemeresik kertas di awal */
-  var s2=src(kb,t,.25),f2=ac.createBiquadFilter(),g2=ac.createGain();f2.type='highpass';f2.frequency.value=2200;g2.gain.value=.7;
-  s2.connect(f2);f2.connect(g2);g2.connect(o);
-  /* tepukan halaman jatuh */
-  var t3=t+.4,s3=src(nb,t3,.15),f3=ac.createBiquadFilter(),g3=ac.createGain();f3.type='lowpass';f3.frequency.value=380;
-  g3.gain.setValueAtTime(.0001,t3);g3.gain.exponentialRampToValueAtTime(.6,t3+.01);g3.gain.exponentialRampToValueAtTime(.0001,t3+.12);
-  s3.connect(f3);f3.connect(g3);g3.connect(o)}catch(e){}}
+/* suara kertas saat membalik (rekaman /assets/balik.mp3) */
+var ac=null,sb=null,sp=null,sa=null;
+try{sa=fetch('/assets/balik.mp3?v=1').then(function(r){return r.arrayBuffer()})}catch(e){}
+function suara(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C||!sa)return;if(!ac)ac=new C();if(ac.state==='suspended')ac.resume();
+  if(!sp)sp=sa.then(function(x){return new Promise(function(ok,no){ac.decodeAudioData(x.slice(0),ok,no)})}).then(function(b){sb=b});
+  function main(){var x=ac.createBufferSource(),g=ac.createGain();x.buffer=sb;x.playbackRate.value=.96+Math.random()*.08;g.gain.value=.9;x.connect(g);g.connect(ac.destination);x.start()}
+  if(sb)main();else sp.then(main)}catch(e){}}
 function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('bottom')}
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
   var L=mulaiLipat(-1);if(!L)return;L.set(.05);akhiri(L,true)}
