@@ -28,3 +28,6 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 /* revisi: bayang tengah dua halaman lebih ramping & tipis */
 .dua.ada-kiri .tk{width:3.2%;background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.03) 50%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.15) 100%)}
 .dua.ada-kanan .tn{width:3.2%;background:linear-gradient(270deg,rgba(0,0,0,0) 0,rgba(0,0,0,.025) 50%,rgba(0,0,0,.07) 82%,rgba(0,0,0,.13) 100%)}
+
+/* tombol musik */
+.fb-bar #mu{font-size:19px;opacity:.9}.fb-bar #mu.mati{opacity:.4;text-decoration:line-through}

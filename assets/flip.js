@@ -65,6 +65,20 @@ function gesekGerak(S,u){var n=performance.now();if(S.u!=null){var dt=Math.max(8
   tahan(S.x.playbackRate,t);S.x.playbackRate.setTargetAtTime(.8+.35*a,t,.05)}S.u=u;S.t=n}
 function gesekAkhir(S,jadi){try{var t=ac.currentTime;tahan(S.g.gain,t);S.g.gain.setTargetAtTime(0,t,.04);S.x.stop(t+.3);if(jadi)putar(.52,.5,.75)}catch(e){}}
 ['pointerdown','touchstart'].forEach(function(k){document.addEventListener(k,function(){siapSuara()},{once:true,passive:true})});
+/* musik latar saat membaca (/assets/latar-baca.mp3), mulai pada sentuhan pertama; tombol ♫ di bilah */
+var mus=null,mg=null,mOn=true,mKey='fb:musik';try{mOn=localStorage.getItem(mKey)!=='0'}catch(e){}
+var mb=document.createElement('button');mb.type='button';mb.id='mu';mb.textContent='\u266B';
+function mTampil(){mb.classList.toggle('mati',!mOn);mb.setAttribute('aria-label',mOn?'Matikan musik':'Nyalakan musik')}mTampil();
+var zoB=document.getElementById('zo');if(zoB)bar.insertBefore(mb,zoB);else bar.appendChild(mb);
+function mSiap(){if(mus)return;siapSuara();if(!ac)return;mus=new Audio('/assets/latar-baca.mp3?v=1');mus.loop=true;mus.preload='auto';
+  try{var n=ac.createMediaElementSource(mus);mg=ac.createGain();mg.gain.value=0;n.connect(mg);mg.connect(ac.destination)}catch(e){mg=null;mus.volume=.35}}
+function mMain(){if(!mOn||document.hidden)return;mSiap();if(!mus)return;var p=mus.play();if(p&&p.catch)p.catch(function(){});
+  if(mg){var t=ac.currentTime;tahan(mg.gain,t);mg.gain.setTargetAtTime(.32,t,.8)}}
+function mHenti(cepat){if(!mus)return;if(mg){var t=ac.currentTime;tahan(mg.gain,t);mg.gain.setTargetAtTime(0,t,cepat?.05:.25)}
+  setTimeout(function(){if(!mOn||document.hidden)mus.pause()},cepat?200:900)}
+mb.addEventListener('click',function(e){e.stopPropagation();mOn=!mOn;try{localStorage.setItem(mKey,mOn?'1':'0')}catch(x){}mTampil();if(mOn)mMain();else mHenti()});
+['pointerdown','touchend','keydown'].forEach(function(k){document.addEventListener(k,function f(ev){if(ev.target===mb)return;mMain();document.removeEventListener(k,f,true)},true)});
+document.addEventListener('visibilitychange',function(){if(document.hidden)mHenti(true);else if(mus&&mOn)mMain()});
 function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('bottom')}
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
   var L=mulaiLipat(-1);if(!L)return;L.set(.05);akhiri(L,true)}
