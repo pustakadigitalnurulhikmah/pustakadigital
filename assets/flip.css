@@ -9,11 +9,6 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fb-hal{background:#fff;overflow:hidden}
 .fb-hal img{display:block;width:100%;height:100%;pointer-events:none;-webkit-touch-callout:none}
 .fb-cermin.rtl .fb-hal img{transform:scaleX(-1)}
-.fb-bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(12,58,40,.94);color:#fff;transition:transform .25s ease,opacity .25s ease}
-.fb-bar.sembunyi{transform:translateY(-100%);opacity:0;pointer-events:none}
-.fb-bar a,.fb-bar button{color:#fff;background:none;border:0;text-decoration:none;font:400 22px/1 system-ui,sans-serif;padding:4px 10px;cursor:pointer;flex:none}
-.fb-judul{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:italic 400 clamp(15px,4.2vw,19px)/1.3 Lora,Georgia,serif}
-.fb-no{flex:none;font-size:13px;opacity:.8;padding:0 4px}
 /* tulang (punggung) buku */
 .fb-cermin{position:relative}
 .fb-tulang{position:absolute;inset:0;pointer-events:none;z-index:5;transition:opacity .2s}
@@ -29,5 +24,20 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .dua.ada-kiri .tk{width:3.2%;background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.03) 50%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.15) 100%)}
 .dua.ada-kanan .tn{width:3.2%;background:linear-gradient(270deg,rgba(0,0,0,0) 0,rgba(0,0,0,.025) 50%,rgba(0,0,0,.07) 82%,rgba(0,0,0,.13) 100%)}
 
-/* tombol musik */
-.fb-bar #mu{font-size:19px;opacity:.9}.fb-bar #mu.mati{opacity:.4;text-decoration:line-through}
+/* footer mode baca: muncul saat klik di luar kitab, hilang saat klik di dalam */
+.fb-bar{position:fixed;z-index:10;left:50%;bottom:max(10px,env(safe-area-inset-bottom));width:min(720px,calc(100% - 16px));transform:translateX(-50%);
+ display:flex;align-items:center;gap:4px;padding:6px 6px 6px 16px;border-radius:14px;background:rgba(250,252,250,.88);
+ -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(12,58,40,.12);color:#0c3a28;
+ box-shadow:0 6px 22px rgba(12,58,40,.12);transition:transform .28s ease,opacity .28s ease}
+.fb-bar.sembunyi{transform:translate(-50%,140%);opacity:0;pointer-events:none}
+.fb-judul{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:italic 400 clamp(14px,3.9vw,17px)/1.3 Lora,Georgia,serif}
+.fb-no{flex:none;font-size:13px;color:#5b6c63;padding:0 6px;white-space:nowrap}
+.fb-no input{width:3.6em;font:600 14px/1.2 system-ui,sans-serif;color:#0c3a28;text-align:center;background:transparent;border:0;
+ border-bottom:1.5px solid #bf9a3f;border-radius:0;padding:2px 0;margin:0 2px;outline:0;-webkit-user-select:text;user-select:text}
+.fb-no input:focus{background:rgba(191,154,63,.12)}
+.fb-bar button{flex:none;background:none;border:0;cursor:pointer;padding:0;width:38px;height:38px;display:grid;place-items:center;border-radius:10px;color:#0c3a28}
+.fb-bar button:hover{background:rgba(191,154,63,.12)}
+.fb-bar button svg{width:18px;height:18px;fill:#bf9a3f}
+.fb-bar button:disabled svg{fill:#d9cba4}.fb-bar button:disabled{cursor:default;background:none}
+.fb-bar #mu{font:400 18px/1 system-ui,sans-serif;color:#0c3a28;opacity:.75}.fb-bar #mu.mati{opacity:.35;text-decoration:line-through}
+@media (max-width:420px){.fb-bar{padding-left:12px;gap:0}.fb-no{padding:0 2px;font-size:12px}.fb-bar button{width:34px}}
