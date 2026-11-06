@@ -83,7 +83,7 @@ if(hc){
     if(q&&!lab)ps.textContent=r.length?r.length+' kitab ditemukan.':'';
     $('.grid',hc).innerHTML=r.length?r.map(cardHTML).join(''):kosong('Kitab yang Anda cari belum tersedia. <a href="/p/daftar-kitab" style="color:var(--g6);font-weight:600">Lihat seluruh koleksi</a>.');
     var nm=lab&&lab.indexOf(CFG.prefixPenulis)===0?lab.slice(CFG.prefixPenulis.length).trim():'',bi=nm&&window.ULAMA&&window.ULAMA[nm];
-    if(bi){var d=document.createElement('section');d.className='bio-ulama pg-prose';d.innerHTML='<h2>'+esc(nm)+'</h2><p class="bio-nama">Nama lengkap: <b>'+bi.nama+'</b><br><span>'+bi.hidup+'</span></p>'+bi.isi.map(function(t){return '<p>'+t+'</p>'}).join('');hc.appendChild(d)}
+    if(bi){var d=document.createElement('section');d.className='bio-ulama pg-prose';d.innerHTML='<h2>'+esc(nm)+'</h2><p class="bio-nama">Nama lengkap <b>'+bi.nama+'</b><br><span>'+bi.hidup+'</span></p>'+bi.isi.map(function(t){return '<p>'+t+'</p>'}).join('');hc.appendChild(d)}
   });
 }
 
