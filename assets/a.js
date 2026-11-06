@@ -213,23 +213,53 @@ var m0=STORE.get('kb-mode');setMode(m0==='mode-ar'||(m0==='mode-cat'&&$('.btn-ca
 /* mode baca: sembunyikan header & footer situs */
 (function(){var a=document.getElementById('kitab');if(!a)return;var f=function(){document.documentElement.classList.toggle('baca',a.classList.contains('buka'))};f();new MutationObserver(f).observe(a,{attributes:true,attributeFilter:['class']})})();
 
-/* musik latar situs (/assets/latar-situs.mp3): semua halaman kecuali flipbook; posisi lagu berlanjut antar-halaman; tombol ♫ */
-(function(){if(window.__musSitus)return;window.__musSitus=1;
-var K='situs:musik',P='situs:musik:t',on=true;try{on=localStorage.getItem(K)!=='0'}catch(e){}
+/* musik latar situs (/assets/latar-situs.mp3), tanpa jeda antar-halaman:
+   halaman pertama menjadi "cangkang" yang memegang musik; perpindahan halaman berikutnya dimuat di bingkai (iframe) penuh layar,
+   sehingga musik tidak terputus. Alamat & judul tab disinkronkan. Di flipbook (/baca/) musik situs berhenti, musik flipbook yang main. */
+(function(){
+var top0=null;try{if(window.top!==window&&window.top.__musSitus)top0=window.top}catch(e){}
+if(top0){ /* di dalam bingkai: tautan ke situs lain dibuka di jendela utama */
+  document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href]');if(!l||l.target)return;try{if(new URL(l.href,location.href).origin!==location.origin)l.target='_top'}catch(x){}},true);
+  return}
+if(window.__musSitus)return;window.__musSitus=1;
+var K='situs:musik',P='situs:musik:t',on=true,baca=false;try{on=localStorage.getItem(K)!=='0'}catch(e){}
 var a=new Audio('/assets/latar-situs.mp3?v=1');a.loop=true;a.preload='auto';a.volume=0;var VOL=.4,fd=null;
 try{var t0=parseFloat(sessionStorage.getItem(P));if(t0>0)a.addEventListener('loadedmetadata',function(){try{a.currentTime=t0%(a.duration||1e9)}catch(e){}},{once:true})}catch(e){}
 function fade(to,ms,done){clearInterval(fd);var s=a.volume,n=Math.max(1,Math.round(ms/40)),i=0;fd=setInterval(function(){i++;a.volume=Math.min(1,Math.max(0,s+(to-s)*i/n));if(i>=n){clearInterval(fd);done&&done()}},40)}
 var b=document.createElement('button');b.type='button';b.className='mus-situs';b.textContent='♫';
 function tampil(){b.classList.toggle('mati',!on);b.setAttribute('aria-label',on?'Matikan musik':'Nyalakan musik');b.title=b.getAttribute('aria-label')}tampil();
 document.body.appendChild(b);
-function main(){if(!on||document.hidden)return Promise.resolve(false);var p=a.play();return(p&&p.then?p:Promise.resolve()).then(function(){fade(VOL,1200);return true},function(){return false})}
-function henti(){fade(0,400,function(){a.pause()})}
+function main(){if(!on||baca||document.hidden)return Promise.resolve(false);var p=a.play();return(p&&p.then?p:Promise.resolve()).then(function(){fade(VOL,1200);return true},function(){return false})}
+function henti(ms){fade(0,ms||400,function(){a.pause()})}
 function simpan(){try{if(a.currentTime>0)sessionStorage.setItem(P,a.currentTime)}catch(e){}}
 b.addEventListener('click',function(e){e.stopPropagation();on=!on;try{localStorage.setItem(K,on?'1':'0')}catch(x){}tampil();if(on)main();else henti()});
-var ev=['pointerdown','touchend','keydown','click'];function g(){main().then(function(ok){if(ok)ev.forEach(function(k){document.removeEventListener(k,g,true)})})}
-main().then(function(ok){if(!ok)ev.forEach(function(k){document.addEventListener(k,g,true)})});
+var ev=['pointerdown','touchend','keydown','click'],siap=false;
+function g(){if(siap)return;main().then(function(ok){if(ok){siap=true;ev.forEach(function(k){document.removeEventListener(k,g,true);try{fr&&fr.contentDocument.removeEventListener(k,g,true)}catch(x){}})}})}
+main().then(function(ok){if(ok)siap=true;else ev.forEach(function(k){document.addEventListener(k,g,true)})});
 document.addEventListener('visibilitychange',function(){if(document.hidden){simpan();henti()}else main()});
 window.addEventListener('pagehide',simpan);setInterval(simpan,3000);
-/* masuk flipbook: hentikan dengan halus */
-document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href^="/baca/"]');if(l){simpan();fade(0,250)}},true);
+/* bingkai */
+var fr=null,akhir='';
+function setBaca(v){if(v===baca)return;baca=v;b.style.display=v?'none':'';if(v)henti(250);else main()}
+function sinkron(){if(!fr)return;try{var w=fr.contentWindow,h=w.location.href;if(!h||h==='about:blank')return;
+  if(h!==akhir){akhir=h;history.replaceState(null,'',h)}if(document.title!==fr.contentDocument.title)document.title=fr.contentDocument.title;
+  setBaca(w.location.pathname.indexOf('/baca/')===0)}catch(e){}}
+function kait(){try{var d=fr.contentDocument;if(!siap)ev.forEach(function(k){d.addEventListener(k,g,true)})}catch(e){}}
+function buka(url){
+  if(fr){fr.contentWindow.location.href=url;return}
+  fr=document.createElement('iframe');fr.className='bingkai-situs';fr.title='Pustaka Digital';fr.setAttribute('allow','autoplay; fullscreen');
+  var tahap=0;
+  fr.addEventListener('load',function(){
+    if(tahap===0){tahap=1;fr.contentWindow.location.href=url;return} /* salinan halaman ini dulu, agar tombol Kembali bisa ke sini */
+    if(tahap===1){tahap=2;document.documentElement.classList.add('berbingkai');try{fr.contentWindow.focus()}catch(e){}}
+    kait();sinkron()});
+  fr.src=location.href;document.body.appendChild(fr);setInterval(sinkron,700)}
+function layak(u){if(u.origin!==location.origin)return false;if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
+  return !/\.[a-z0-9]{2,5}$/i.test(u.pathname)||/\.html$/i.test(u.pathname)}
+document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  var l=e.target.closest&&e.target.closest('a[href]');if(!l||(l.target&&l.target!=='_self')||l.hasAttribute('download'))return;
+  var u;try{u=new URL(l.href,location.href)}catch(x){return}if(!layak(u))return;e.preventDefault();buka(u.href)});
+document.addEventListener('submit',function(e){var f=e.target;if(e.defaultPrevented||(f.method||'get').toLowerCase()!=='get'||(f.target&&f.target!=='_self'))return;
+  var u;try{u=new URL(f.action||location.href,location.href)}catch(x){return}if(!layak(u))return;
+  e.preventDefault();u.search=new URLSearchParams(new FormData(f)).toString();buka(u.href)});
 })();

@@ -78,10 +78,10 @@ var mus=null,mg=null,mOn=true,mKey='fb:musik';try{mOn=localStorage.getItem(mKey)
 var mb=document.createElement('button');mb.type='button';mb.id='mu';mb.textContent='\u266B';
 function mTampil(){mb.classList.toggle('mati',!mOn);mb.setAttribute('aria-label',mOn?'Matikan musik':'Nyalakan musik')}mTampil();
 bar.insertBefore(mb,bk);
-function mSiap(){if(mus)return;siapSuara();if(!ac)return;mus=new Audio('/assets/latar-baca.mp3?v=1');mus.loop=true;mus.preload='auto';
-  try{var n=ac.createMediaElementSource(mus);mg=ac.createGain();mg.gain.value=0;n.connect(mg);mg.connect(ac.destination)}catch(e){mg=null;mus.volume=.65}}
+function mSiap(){if(mus)return;siapSuara();if(!ac)return;mus=new Audio('/assets/latar-baca.mp3?v=2');mus.loop=true;mus.preload='auto';
+  try{var n=ac.createMediaElementSource(mus);mg=ac.createGain();mg.gain.value=0;n.connect(mg);mg.connect(ac.destination)}catch(e){mg=null;mus.volume=1}}
 function mMain(){if(!mOn||document.hidden)return;mSiap();if(!mus)return;var p=mus.play();if(p&&p.catch)p.catch(function(){});
-  if(mg){var t=ac.currentTime;tahan(mg.gain,t);mg.gain.setTargetAtTime(.6,t,.8)}}
+  if(mg){var t=ac.currentTime;tahan(mg.gain,t);mg.gain.setTargetAtTime(1,t,.8)}}
 function mHenti(cepat){if(!mus)return;if(mg){var t=ac.currentTime;tahan(mg.gain,t);mg.gain.setTargetAtTime(0,t,cepat?.05:.25)}
   setTimeout(function(){if(!mOn||document.hidden)mus.pause()},cepat?200:900)}
 mb.addEventListener('click',function(e){e.stopPropagation();mOn=!mOn;try{localStorage.setItem(mKey,mOn?'1':'0')}catch(x){}mTampil();if(mOn)mMain();else mHenti()});

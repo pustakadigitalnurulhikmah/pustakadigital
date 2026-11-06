@@ -720,3 +720,8 @@ html.baca .top,html.baca .foot{display:none!important}
 .mus-situs:hover{opacity:1}
 .mus-situs.mati{color:#9aa39a;border-color:rgba(0,0,0,.15)}
 .mus-situs.mati:after{content:"";position:absolute;width:22px;height:1.5px;background:currentColor;transform:rotate(-45deg)}
+/* revisi musik situs 2: bingkai halaman agar musik tidak terputus */
+.bingkai-situs{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:-1;visibility:hidden;pointer-events:none;background:#fff}
+html.berbingkai,html.berbingkai body{overflow:hidden;height:100%}
+html.berbingkai body>*:not(.bingkai-situs):not(.mus-situs){display:none!important}
+html.berbingkai .bingkai-situs{z-index:50;visibility:visible;pointer-events:auto}
