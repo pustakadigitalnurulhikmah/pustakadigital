@@ -82,6 +82,8 @@ if(hc){
     var r=all.filter(function(p){return lab?p.labels.indexOf(lab)>=0:!ql||(p.t+' '+p.penulis+' '+p.kategori+' '+p.labels.join(' ')).toLowerCase().indexOf(ql)>=0});
     if(q&&!lab)ps.textContent=r.length?r.length+' kitab ditemukan.':'';
     $('.grid',hc).innerHTML=r.length?r.map(cardHTML).join(''):kosong('Kitab yang Anda cari belum tersedia. <a href="/p/daftar-kitab" style="color:var(--g6);font-weight:600">Lihat seluruh koleksi</a>.');
+    var nm=lab&&lab.indexOf(CFG.prefixPenulis)===0?lab.slice(CFG.prefixPenulis.length).trim():'',bi=nm&&window.ULAMA&&window.ULAMA[nm];
+    if(bi){var d=document.createElement('section');d.className='bio-ulama pg-prose';d.innerHTML='<h2>Biografi '+esc(nm)+'</h2><p class="bio-nama"><b>'+bi.nama+'</b><br><span>'+bi.hidup+'</span></p>'+bi.isi.map(function(t){return '<p>'+t+'</p>'}).join('');hc.appendChild(d)}
   });
 }
 
@@ -91,7 +93,7 @@ if(dp){
   dp.innerHTML='<div class="plist"><i class="skel" style="aspect-ratio:auto;height:64px"></i></div>';
   semua(function(all){
     var c={};all.forEach(function(p){if(p.penulis)c[p.penulis]=(c[p.penulis]||0)+1});
-    var n=Object.keys(c).sort(function(a,b){return a.localeCompare(b,'id')});
+    var n=Object.keys(c).sort(function(a,b){return c[b]-c[a]||a.localeCompare(b,'id')});
     $('.plist',dp).innerHTML=n.length?n.map(function(x){return '<a class="pitem" href="'+labelUrl(CFG.prefixPenulis+' '+x)+'"><b>'+esc(x)+'</b><span>'+c[x]+' kitab</span></a>'}).join(''):kosong('Data pengarang sedang disiapkan.');
   });
 }

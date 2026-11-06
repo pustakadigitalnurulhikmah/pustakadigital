@@ -735,3 +735,7 @@ html.berbingkai .bingkai-situs{z-index:50;visibility:visible;pointer-events:auto
 @media (max-width:532px){#nav a[data-nav=donasi]{display:none}.nav-drop a[data-nav=donasi]{display:block}}
 @media (max-width:455px){#nav a[data-nav=daftar]{display:none}.nav-drop a[data-nav=daftar]{display:block}}
 @media (max-width:377px){#nav a[data-nav=home]{display:none}.nav-drop a[data-nav=home]{display:block}}
+/* revisi 54: biografi ulama di bawah daftar kitab pengarang */
+.bio-ulama{margin-top:clamp(28px,4vw,44px)}
+.bio-ulama h2{margin-top:0}
+.bio-ulama .bio-nama span{color:var(--muted,#5b6b63);font-size:.94em}
