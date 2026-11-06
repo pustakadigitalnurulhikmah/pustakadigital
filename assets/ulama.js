@@ -35,7 +35,7 @@ window.ULAMA={
     "Karya beliau yang paling masyhur adalah <i>al-Ghayah wa at-Taqrib</i> (Matan Abi Syuja‘), yang disyarah antara lain dalam <i>Fath al-Qarib</i>, <i>Kifayah al-Akhyar</i>, dan <i>al-Iqna‘</i>."
   ]},
 "al-Khudhari Bek":{
-  nama:"Syekh Muhammad bin ‘Afifi al-Bajuri, masyhur dengan al-Khudhari Bek",
+  nama:"Syekh Muhammad bin ‘Afifi al-Bajuri",
   hidup:"Lahir di Kairo (kini Mesir) tahun 1289 H (1872 M); wafat di Kairo tahun 1345 H (1927 M).",
   isi:[
     "Beliau ulama dan sejarawan Mesir, lulusan Dar al-‘Ulum Kairo.",
