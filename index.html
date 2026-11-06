@@ -53,7 +53,7 @@
 <div class="wrap"><ul>
 <li><b id="nKitab">3</b><span>Kitab Tersedia</span></li>
 <li><b id="nBidang">3</b><span>Bidang Ilmu</span></li>
-<li><b>Lengkap</b><span>Harakat Nahwu–Sharaf</span></li>
+<li><b id="nUlama">5</b><span>Ulama Pengarang</span></li>
 <li><b>Indonesia</b><span>Terjemah per Paragraf</span></li>
 </ul></div>
 </section>
@@ -111,7 +111,7 @@
 </footer>
 <script>
 window.__beranda=function(o){try{var e=o.feed.entry||[],m={};e.forEach(function(x){(x.category||[]).forEach(function(c){var t=c.term;if(/^Ilmu /.test(t))m[t]=(m[t]||0)+1})});var k=Object.keys(m).sort();
-document.getElementById('nKitab').textContent=e.length;document.getElementById('nBidang').textContent=k.length;
+document.getElementById('nKitab').textContent=e.length;document.getElementById('nBidang').textContent=k.length;var u={};e.forEach(function(x){(x.category||[]).forEach(function(c){if(/^Penulis: /.test(c.term))u[c.term]=1})});document.getElementById('nUlama').textContent=Object.keys(u).length;
 document.getElementById('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encodeURIComponent(t)+'"><b>'+t+'</b><span>'+m[t]+' kitab</span></a>'}).join('')}catch(_){}};
 (function(){var s=document.createElement('script');s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&callback=__beranda';document.body.appendChild(s)})();
 </script>
