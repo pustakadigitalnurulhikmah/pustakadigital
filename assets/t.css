@@ -739,3 +739,5 @@ html.berbingkai .bingkai-situs{z-index:50;visibility:visible;pointer-events:auto
 .bio-ulama{margin-top:clamp(28px,4vw,44px)}
 .bio-ulama h2{margin-top:0}
 .bio-ulama .bio-nama span{color:var(--muted,#5b6b63);font-size:.94em}
+/* revisi 55: kotak biografi ulama selebar layar, garis emas */
+.bio-ulama{max-width:none;border:1px solid #c9a24a}
