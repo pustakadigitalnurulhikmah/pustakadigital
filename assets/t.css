@@ -715,3 +715,8 @@ body.kol:before{transform:translateZ(0)}
 /* revisi: mode baca bersih tanpa header & footer situs */
 html.baca{--head:0px}
 html.baca .top,html.baca .foot{display:none!important}
+/* revisi musik situs: tombol ♫ kecil melayang */
+.mus-situs{position:fixed;right:14px;bottom:14px;z-index:60;width:34px;height:34px;border-radius:50%;border:1px solid rgba(201,162,39,.55);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#b08a1e;font-size:16px;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;opacity:.8;transition:opacity .2s}
+.mus-situs:hover{opacity:1}
+.mus-situs.mati{color:#9aa39a;border-color:rgba(0,0,0,.15)}
+.mus-situs.mati:after{content:"";position:absolute;width:22px;height:1.5px;background:currentColor;transform:rotate(-45deg)}
