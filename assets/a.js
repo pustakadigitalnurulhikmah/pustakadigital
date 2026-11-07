@@ -215,9 +215,9 @@ var m0=STORE.get('kb-mode');setMode(m0==='mode-ar'||(m0==='mode-cat'&&$('.btn-ca
 /* mode baca: sembunyikan header & footer situs */
 (function(){var a=document.getElementById('kitab');if(!a)return;var f=function(){document.documentElement.classList.toggle('baca',a.classList.contains('buka'))};f();new MutationObserver(f).observe(a,{attributes:true,attributeFilter:['class']})})();
 
-/* musik latar situs (/assets/latar-situs.mp3), tanpa jeda antar-halaman:
+/* musik latar situs (/assets/latar.mp3, Al-I'tiraf), tanpa jeda antar-halaman:
    halaman pertama menjadi "cangkang" yang memegang musik; perpindahan halaman berikutnya dimuat di bingkai (iframe) penuh layar,
-   sehingga musik tidak terputus. Alamat & judul tab disinkronkan. Di flipbook (/baca/) musik situs berhenti, musik flipbook yang main. */
+   sehingga musik tidak terputus. Alamat & judul tab disinkronkan. Musik yang sama berlanjut di flipbook (/baca/); tombol ♫ flipbook memakai window.__musik. */
 (function(){
 var top0=null;try{if(window.top!==window&&window.top.__musSitus)top0=window.top}catch(e){}
 if(top0){ /* di dalam bingkai: tautan ke situs lain dibuka di jendela utama */
@@ -225,16 +225,18 @@ if(top0){ /* di dalam bingkai: tautan ke situs lain dibuka di jendela utama */
   return}
 if(window.__musSitus)return;window.__musSitus=1;
 var K='situs:musik',P='situs:musik:t',on=true,baca=false;try{on=localStorage.getItem(K)!=='0'}catch(e){}
-var a=new Audio('/assets/latar-situs.mp3?v=1');a.loop=true;a.preload='auto';a.volume=0;var VOL=.4,fd=null;
+var a=new Audio('/assets/latar.mp3?v=1');a.loop=true;a.preload='auto';a.volume=0;var VOL=.4,fd=null;
 try{var t0=parseFloat(sessionStorage.getItem(P));if(t0>0)a.addEventListener('loadedmetadata',function(){try{a.currentTime=t0%(a.duration||1e9)}catch(e){}},{once:true})}catch(e){}
 function fade(to,ms,done){clearInterval(fd);var s=a.volume,n=Math.max(1,Math.round(ms/40)),i=0;fd=setInterval(function(){i++;a.volume=Math.min(1,Math.max(0,s+(to-s)*i/n));if(i>=n){clearInterval(fd);done&&done()}},40)}
 var b=document.createElement('button');b.type='button';b.className='mus-situs';b.textContent='♫';
 function tampil(){b.classList.toggle('mati',!on);b.setAttribute('aria-label',on?'Matikan musik':'Nyalakan musik');b.title=b.getAttribute('aria-label')}tampil();
 document.body.appendChild(b);
-function main(){if(!on||baca||document.hidden)return Promise.resolve(false);var p=a.play();return(p&&p.then?p:Promise.resolve()).then(function(){fade(VOL,1200);return true},function(){return false})}
+function main(){if(!on||document.hidden)return Promise.resolve(false);var p=a.play();return(p&&p.then?p:Promise.resolve()).then(function(){fade(VOL,1200);return true},function(){return false})}
 function henti(ms){fade(0,ms||400,function(){a.pause()})}
 function simpan(){try{if(a.currentTime>0)sessionStorage.setItem(P,a.currentTime)}catch(e){}}
-b.addEventListener('click',function(e){e.stopPropagation();on=!on;try{localStorage.setItem(K,on?'1':'0')}catch(x){}tampil();if(on)main();else henti()});
+function alih(){on=!on;try{localStorage.setItem(K,on?'1':'0')}catch(x){}tampil();if(on)main();else henti();return on}
+b.addEventListener('click',function(e){e.stopPropagation();alih()});
+window.__musik={alih:alih,nyala:function(){return on},main:main};
 var ev=['pointerdown','touchend','keydown','click'],siap=false;
 function g(){if(siap)return;main().then(function(ok){if(ok){siap=true;ev.forEach(function(k){document.removeEventListener(k,g,true);try{fr&&fr.contentDocument.removeEventListener(k,g,true)}catch(x){}})}})}
 main().then(function(ok){if(ok)siap=true;else ev.forEach(function(k){document.addEventListener(k,g,true)})});
@@ -242,7 +244,7 @@ document.addEventListener('visibilitychange',function(){if(document.hidden){simp
 window.addEventListener('pagehide',simpan);setInterval(simpan,3000);
 /* bingkai */
 var fr=null,akhir='';
-function setBaca(v){if(v===baca)return;baca=v;b.style.display=v?'none':'';if(v)henti(250);else main()}
+function setBaca(v){if(v===baca)return;baca=v;b.style.display=v?'none':''}
 function sinkron(){if(!fr)return;try{var w=fr.contentWindow,h=w.location.href;if(!h||h==='about:blank')return;
   if(h!==akhir){akhir=h;history.replaceState(null,'',h)}if(document.title!==fr.contentDocument.title)document.title=fr.contentDocument.title;
   setBaca(w.location.pathname.indexOf('/baca/')===0)}catch(e){}}
