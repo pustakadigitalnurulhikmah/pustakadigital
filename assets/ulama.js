@@ -1,5 +1,14 @@
 /* Biografi ulama — kunci = nama pengarang pada label "Penulis: …" */
 window.ULAMA={
+"Imam as-Suyuthi":{
+  nama:"Jalaluddin Abu al-Fadhl ‘Abdurrahman bin Abi Bakr as-Suyuthi",
+  hidup:"Lahir di Kairo, Mesir, bulan Rajab tahun 849 H; wafat di Kairo tahun 911 H.",
+  isi:[
+    "Beliau adalah imam besar mazhab Syafi‘i, ahli hadis, tafsir, fikih, dan bahasa Arab yang digelari al-Hafizh. Keluarganya berasal dari Asyuth di Mesir.",
+    "Ayahnya wafat ketika beliau masih kecil. Beliau hafal Al-Qur’an sebelum berusia delapan tahun, lalu menuntut ilmu kepada banyak ulama, di antaranya Syekh ‘Alamuddin al-Bulqini, Syekh Syarafuddin al-Munawi, dan Syekh Muhyiddin al-Kafiji, hingga diizinkan mengajar dan berfatwa pada usia muda.",
+    "Di akhir hayatnya beliau menjauhi para penguasa dan menolak hadiah mereka, lalu menyendiri untuk beribadah dan menulis.",
+    "Karya beliau mencapai ratusan judul, di antaranya <i>al-Itqan fi ‘Ulum al-Qur’an</i>, <i>ad-Durr al-Mantsur</i>, <i>al-Jami‘ ash-Shaghir</i>, <i>al-Asybah wa an-Nazha’ir</i>, <i>Lubab al-Hadits</i>, dan bagian <i>Tafsir al-Jalalain</i> yang menyempurnakan karya Imam Jalaluddin al-Mahalli."
+  ]},
 "Imam al-Ghazali":{
   nama:"Abu Hamid Muhammad bin Muhammad bin Muhammad al-Ghazali ath-Thusi",
   hidup:"Lahir di Thus, Khurasan (kini Iran), tahun 450 H; wafat di Thus tahun 505 H.",
