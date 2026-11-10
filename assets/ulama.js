@@ -1,5 +1,13 @@
 /* Biografi ulama — kunci = nama pengarang pada label "Penulis: …" */
 window.ULAMA={
+"Ibnu Abi Jamrah":{
+  nama:"Abu Muhammad ‘Abdullah bin Sa‘d bin Abi Jamrah al-Azdi al-Andalusi al-Mursi al-Maliki",
+  hidup:"Berasal dari Murcia, Andalusia (Spanyol); wafat di Kairo, Mesir, tahun 699 H.",
+  isi:[
+    "Beliau adalah imam al-Hafizh bermazhab Maliki, berasal dari keluarga terpandang di Murcia, Andalusia. Setelah menuntut ilmu di negerinya, beliau merantau ke Timur dan menetap di Kairo, tempat beliau memiliki zawiyah untuk beribadah dan mengajar di daerah al-Maqs.",
+    "Beliau ahli hadis, qiraah, dan tafsir, seorang ‘arif billah yang lantang menyuarakan kebenaran serta menyuruh kepada kebaikan dan mencegah kemungkaran. Murid beliau yang paling masyhur adalah Ibnul Hajj al-‘Abdari, penulis <i>al-Madkhal</i>; al-Hafizh Ibnu Hajar al-‘Asqalani banyak menukil perkataan beliau dalam <i>Fath al-Bari</i>.",
+    "Karya beliau antara lain <i>Jam‘ an-Nihayah fi Bad’ al-Khair wa al-Ghayah</i> (ringkasan <i>Shahih al-Bukhari</i>), syarahnya <i>Bahjat an-Nufus</i>, dan <i>al-Mara’i al-Hisan</i> yang menghimpun mimpi-mimpi beliau melihat Rasulullah shallallahu ‘alaihi wa sallam selama menyusun syarah itu. Beliau dimakamkan di pemakaman al-Qarafah, Kairo."
+  ]},
 "Imam as-Suyuthi":{
   nama:"Jalaluddin Abu al-Fadhl ‘Abdurrahman bin Abi Bakr as-Suyuthi",
   hidup:"Lahir di Kairo, Mesir, bulan Rajab tahun 849 H; wafat di Kairo tahun 911 H.",
