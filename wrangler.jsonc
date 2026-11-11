@@ -2,5 +2,9 @@
   // Situs Pustaka Digital Nurul Hikmah: aset statis di Worker (akun Cloudflare pustakadigitalnurulhikmah).
   "name": "pustakadigital",
   "compatibility_date": "2026-10-01",
-  "assets": { "directory": ".", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash" }
+  "assets": { "directory": ".", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash" },
+  "routes": [
+    { "pattern": "pustakadigital.com", "custom_domain": true },
+    { "pattern": "www.pustakadigital.com", "custom_domain": true }
+  ]
 }
