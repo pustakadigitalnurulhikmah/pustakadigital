@@ -15,8 +15,8 @@ var tl=document.createElement('div');tl.className='fb-tulang';tl.innerHTML='<i c
 function url(p){return dir+(p<10?'0':'')+p+'.svg'}
 var cache={};function gbr(i){if(i<0||i>=N)return null;var g=cache[i];if(!g){g=new Image();g.alt='';g.draggable=false;g.src=url(i+1);cache[i]=g;if(g.decode)g.decode().catch(function(){})}return g}
 function muat(i){for(var j=i-3;j<=i+4;j++)gbr(j)}
-function simpan(){try{var v=parseInt(localStorage.getItem(KEY),10);if(v>=1&&v<=N)return v-1}catch(e){}return 0}
-var pf=null,blk=null,divs=[],spread=false,pw=0,ph=0,z=1,idx=simpan(),anim=null,sibuk=false;
+function simpan(){var h=/hal-(\d+)/.exec(location.hash);if(h&&+h[1]>=1&&+h[1]<=N)return +h[1]-1;try{var v=parseInt(localStorage.getItem(KEY),10);if(v>=1&&v<=N)return v-1}catch(e){}return 0}
+var cur=[1],pf=null,blk=null,divs=[],spread=false,pw=0,ph=0,z=1,idx=simpan(),anim=null,sibuk=false;
 function buat(){if(pf){idx=pf.getCurrentPageIndex();try{pf.destroy()}catch(e){}}
   blk=document.createElement('div');blk.className='fb-blok';cm.appendChild(blk);
   var w=Math.round(pw*z),h=Math.round(ph*z);blk.style.width=(spread?2*w:w)+'px';blk.style.height=h+'px';
@@ -35,7 +35,7 @@ function punggung(){var a=-1,b=-1;if(spread){if(idx===0)b=0;else{a=idx%2?idx:idx
 function tulis(){punggung();var i=idx,ix=[i];if(spread&&i>0)ix=i%2?[i,i+1]:[i-1,i];
   var p=ix.filter(function(x){return x<N}).map(function(x){return x+1});if(document.activeElement!==no)no.value=p.length>1?p[0]+'–'+p[1]:p[0];
   bk.disabled=rtl?i>=N-1:i<=0;bn.disabled=rtl?i<=0:i>=N-1;
-  try{localStorage.setItem(KEY,i+1)}catch(e){}}
+  try{localStorage.setItem(KEY,i+1)}catch(e){}cur=p;try{history.replaceState(null,'','#hal-'+p[0])}catch(e){}if(window.fbTulis)fbTulis()}
 function ukur(){var W=st.clientWidth,H=st.clientHeight,pad=W<600?6:22;spread=W>=800&&W/H>1.15;
   var cols=spread?2:1;ph=Math.floor(Math.min(H-2*pad,(W-2*pad)/(cols*R)));pw=Math.floor(ph*R);buat()}
 /* koordinat layar -> koordinat blok (memperhitungkan cermin RTL) */
@@ -141,6 +141,53 @@ document.addEventListener('keydown',function(e){if(e.target===no)return;if(e.key
 document.addEventListener('contextmenu',function(e){e.preventDefault()});
 document.addEventListener('dragstart',function(e){e.preventDefault()});
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){var W=st.clientWidth,H=st.clientHeight,sp=W>=800&&W/H>1.15;if(z===1||sp!==spread){z=1;ukur()}},150)});
+/* daftar isi, penanda, tautan per halaman */
+(function(){var T=[];try{T=JSON.parse(document.getElementById('toc').textContent)}catch(e){}
+var PK='fbp:'+dir,pen=[];try{pen=JSON.parse(localStorage.getItem(PK))||[]}catch(e){}
+function sv(){try{localStorage.setItem(PK,JSON.stringify(pen))}catch(e){}}
+var bt=document.createElement('button'),bp=document.createElement('button');bt.type=bp.type='button';bt.id='dt';bp.id='pn';
+bt.innerHTML='<svg viewBox="0 0 20 20"><path d="M3 4h2.2v2.2H3zm4.2.1h10v2H7.2zM3 8.9h2.2v2.2H3zm4.2.1h10v2H7.2zM3 13.8h2.2V16H3zm4.2.1h10v2H7.2z"/></svg>';
+bp.innerHTML='<svg viewBox="0 0 20 20"><path d="M5.5 2.5h9v15L10 13.8l-4.5 3.7z"/></svg>';
+bt.setAttribute('aria-label','Daftar isi');bp.setAttribute('aria-label','Tandai halaman ini');
+bar.insertBefore(bt,ns);bar.insertBefore(bp,ns.nextSibling);
+var P=document.createElement('div');P.className='fb-panel'+(rtl?' rtl':'');
+P.innerHTML='<div class="fp-tab"><button type="button" data-t="isi">Daftar Isi</button><button type="button" data-t="pen">Penanda</button></div>'+
+ '<input class="fp-cari" type="search" placeholder="Cari judul…" aria-label="Cari judul"><div class="fp-isi"></div>'+
+ '<button type="button" class="fp-salin">Salin tautan halaman ini</button>';
+document.body.appendChild(P);
+var tab='isi',ci=P.querySelector('.fp-cari'),box=P.querySelector('.fp-isi'),sl=P.querySelector('.fp-salin');
+if(!T.length){tab='pen';P.querySelector('[data-t=isi]').style.display='none';bt.setAttribute('aria-label','Penanda')}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return'&#'+c.charCodeAt(0)+';'})}
+function norm(t){return String(t).toLowerCase().replace(/[ً-ٰٟۖ-ۭـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[‘’'`]/g,'')}
+function bab(n){var b=null;for(var i=0;i<T.length;i++){if(T[i][1]<=n)b=T[i];else break}return b}
+function isi(){P.querySelectorAll('.fp-tab button').forEach(function(b){b.classList.toggle('on',b.dataset.t===tab)});
+ ci.style.display=tab==='isi'&&T.length>25?'':'none';var h='';
+ if(tab==='isi'){var q=norm(ci.value.trim()),k=bab(cur[cur.length-1]);
+  T.forEach(function(x){if(q&&norm(x[0]).indexOf(q)<0)return;h+='<a href="#hal-'+x[1]+'" data-p="'+x[1]+'" class="l'+(x[2]||0)+(x===k&&!q?' kini':'')+'"><span>'+esc(x[0])+'</span><b>'+x[1]+'</b></a>'});
+  if(!h)h='<p class="fp-kosong">'+(T.length?'Judul tidak ditemukan.':'Daftar isi belum tersedia.')+'</p>'}
+ else{pen.slice().sort(function(a,b){return a-b}).forEach(function(n){var b=bab(n);
+  h+='<a href="#hal-'+n+'" data-p="'+n+'" class="l0"><span>Halaman '+n+(b?' <i>'+esc(b[0])+'</i>':'')+'</span><button type="button" data-h="'+n+'" aria-label="Hapus penanda">×</button></a>'});
+  if(!h)h='<p class="fp-kosong">Belum ada penanda. Ketuk ikon pita di bawah untuk menandai halaman yang sedang dibaca.</p>'}
+ box.innerHTML=h;var k=box.querySelector('.kini');if(k)k.scrollIntoView({block:'center'})}
+function buka(t){tab=t||tab;P.classList.add('buka');tahanBar=true;bilah(true);isi()}
+function tutup(){P.classList.remove('buka');tahanBar=false;ci.blur()}
+bt.addEventListener('click',function(e){e.stopPropagation();P.classList.contains('buka')&&tab==='isi'?tutup():buka('isi')});
+bp.addEventListener('click',function(e){e.stopPropagation();var n=cur[0],i=-1;cur.forEach(function(x){if(i<0)i=pen.indexOf(x)});
+ if(i>=0)pen.splice(i,1);else pen.push(n);sv();fbTulis();if(P.classList.contains('buka'))isi()});
+P.querySelectorAll('.fp-tab button').forEach(function(b){b.onclick=function(){tab=b.dataset.t;isi()}});
+ci.addEventListener('input',isi);ci.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Escape')tutup()});
+box.addEventListener('click',function(e){e.preventDefault();var d=e.target.closest('[data-h]');
+ if(d){pen.splice(pen.indexOf(+d.dataset.h),1);sv();fbTulis();isi();return}
+ var a=e.target.closest('a[data-p]');if(a){tutup();keHal(+a.dataset.p)}});
+sl.onclick=function(){var u=location.href.split('#')[0]+'#hal-'+cur[0];
+ var ok=function(){sl.textContent='Tautan tersalin ✓';setTimeout(function(){sl.textContent='Salin tautan halaman ini'},1800)};
+ try{navigator.clipboard.writeText(u).then(ok,function(){prompt('Salin tautan:',u)})}catch(x){prompt('Salin tautan:',u)}};
+document.addEventListener('pointerdown',function(e){if(!P.classList.contains('buka'))return;
+ if(e.target.closest('.fb-panel')||e.target.closest('.fb-bar'))return;tutup();e.stopPropagation()},true);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&P.classList.contains('buka'))tutup()});
+window.addEventListener('hashchange',function(){var h=/hal-(\d+)/.exec(location.hash);if(h&&+h[1]!==cur[0]&&cur.indexOf(+h[1])<0)keHal(+h[1])});
+window.fbTulis=function(){var m=cur.some(function(x){return pen.indexOf(x)>=0});bp.classList.toggle('on',m);bp.setAttribute('aria-label',m?'Hapus penanda halaman ini':'Tandai halaman ini')};
+})();
 ukur();
 var awal=setTimeout(function(){bilah(false)},3500);bar.addEventListener('pointerdown',function(){clearTimeout(awal)});
 })();

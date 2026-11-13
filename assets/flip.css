@@ -54,3 +54,36 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fb-no input{field-sizing:content;min-width:2.4em;width:2.6em;max-width:4.5em;padding:5px 7px;margin:0 4px;border:1.5px solid #bf9a3f;border-radius:7px;background:#fff;font-size:15px}
 @supports (field-sizing:content){.fb-no input{width:auto}}
 .fb-no input:focus{background:#fff;box-shadow:0 0 0 3px rgba(191,154,63,.2)}
+
+/* revisi: daftar isi & penanda */
+@font-face{font-family:"ArabKitab";src:url(/assets/f1.woff2)format("woff2");font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200F,U+25CC}
+.fb-bar #pn svg{fill:none;stroke:#bf9a3f;stroke-width:1.6;stroke-linejoin:round}
+.fb-bar #pn.on svg{fill:#bf9a3f}
+.fb-panel{position:fixed;z-index:11;left:50%;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 62px);width:min(440px,calc(100% - 16px));
+ max-height:min(62vh,560px);transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .22s ease;
+ display:flex;flex-direction:column;background:rgba(250,252,250,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+ border:1px solid rgba(12,58,40,.12);border-radius:14px;box-shadow:0 10px 30px rgba(12,58,40,.16);color:#0c3a28;font:14px/1.4 system-ui,sans-serif;overflow:hidden}
+.fb-panel.buka{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.fp-tab{display:flex;gap:4px;padding:8px 8px 0}
+.fp-tab button{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:8px 4px;font:600 14px/1.2 system-ui,sans-serif;color:#7a8a81;cursor:pointer}
+.fp-tab button.on{color:#0c3a28;border-bottom-color:#bf9a3f}
+.fp-cari{margin:8px 10px 4px;padding:8px 12px;border:1px solid rgba(12,58,40,.18);border-radius:9px;background:#fff;font:14px system-ui,sans-serif;color:#0c3a28;outline:none}
+.fp-cari:focus{border-color:#bf9a3f;box-shadow:0 0 0 3px rgba(191,154,63,.18)}
+.fp-isi{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:4px 6px 6px}
+.fp-isi a{display:flex;align-items:baseline;gap:10px;padding:7px 10px;border-radius:8px;color:#0c3a28;text-decoration:none;cursor:pointer}
+.fp-isi a:hover{background:rgba(191,154,63,.1)}
+.fp-isi a.kini{background:rgba(12,58,40,.07)}
+.fp-isi a>span{flex:1;min-width:0}
+.fp-isi a>span:before{content:"◆";color:#bf9a3f;font-size:.62em;margin-inline-end:8px;vertical-align:.15em}
+.fp-isi a.l1{padding-inline-start:26px}.fp-isi a.l1>span:before{content:"◇"}
+.fp-isi a.l2{padding-inline-start:42px;font-size:.94em}.fp-isi a.l2>span:before{content:"·";font-size:1em}
+.fp-isi a>b{flex:none;font-weight:600;font-size:13px;color:#bf9a3f;font-family:system-ui,sans-serif}
+.fp-isi a i{display:block;font-style:normal;font-size:.86em;color:#6b7c73;margin-inline-start:18px}
+.fp-isi a>button{flex:none;background:none;border:0;font-size:20px;line-height:1;color:#9aa79f;cursor:pointer;padding:0 4px}
+.fp-isi a>button:hover{color:#a33}
+.fb-panel.rtl .fp-isi a{direction:rtl;font:400 20px/1.6 ArabKitab,serif}
+.fb-panel.rtl .fp-isi a.l2{font-size:18px}
+.fb-panel.rtl .fp-isi a i{font-family:ArabKitab,serif}
+.fp-kosong{margin:14px 12px;color:#6b7c73;font-size:13px;text-align:center}
+.fp-salin{border:0;border-top:1px solid rgba(12,58,40,.1);background:none;padding:10px;font:600 13px system-ui,sans-serif;color:#bf9a3f;cursor:pointer}
+.fp-salin:hover{background:rgba(191,154,63,.08)}
