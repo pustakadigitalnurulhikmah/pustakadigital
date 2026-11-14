@@ -99,11 +99,9 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fb-judul{display:none!important}
 .fb-bar{width:auto;max-width:calc(100% - 16px);padding:6px 6px 6px 14px;gap:2px}
 /* revisi: efek kaca (liquid glass) footer & daftar isi */
-.fb-bar,.fb-panel{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(7px) saturate(180%) brightness(1.04);backdrop-filter:blur(7px) saturate(180%) brightness(1.04);
+.fb-bar,.fb-panel{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(10px) saturate(180%) brightness(1.04);backdrop-filter:blur(10px) saturate(180%) brightness(1.04);
  border:0;box-shadow:inset 1.5px 1.5px 0 -.5px rgba(255,255,255,.9),inset -1px -1px 0 -.5px rgba(255,255,255,.55),inset 0 0 22px rgba(255,255,255,.28),0 10px 30px rgba(12,58,40,.16),0 2px 6px rgba(12,58,40,.08)}
 .fb-panel{background:rgba(255,255,255,.42)}
-html.kaca-cair .fb-bar{-webkit-backdrop-filter:url(#fb-kaca) blur(1.2px) saturate(190%) brightness(1.05);backdrop-filter:url(#fb-kaca) blur(1.2px) saturate(190%) brightness(1.05)}
-html.kaca-cair .fb-panel{-webkit-backdrop-filter:url(#fb-kaca) blur(3px) saturate(190%) brightness(1.05);backdrop-filter:url(#fb-kaca) blur(3px) saturate(190%) brightness(1.05)}
 .fb-bar:before,.fb-panel:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
  background:linear-gradient(135deg,rgba(255,255,255,.5),rgba(255,255,255,.08) 32%,rgba(255,255,255,0) 55%,rgba(255,255,255,.14) 85%,rgba(255,255,255,.32))}
 .fb-bar>*,.fb-panel>*{position:relative;z-index:1}
