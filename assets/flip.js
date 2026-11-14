@@ -131,7 +131,23 @@ st.addEventListener('touchend',function(e){if(!pinch||e.touches.length>=2)return
   var r1=zm.getBoundingClientRect();st.scrollLeft+=r1.left+fx*r1.width-p.cx;st.scrollTop+=r1.top+fy*r1.height-p.cy});
 st.addEventListener('wheel',function(e){if(e.ctrlKey){e.preventDefault();setZ(z*(e.deltaY<0?1.2:1/1.2),e.clientX,e.clientY)}},{passive:false});
 /* tombol & nomor halaman di footer */
-function keHal(n){if(!pf||sibuk||lipat)return;n=Math.max(1,Math.min(N,n|0));var t=n-1;if(t===idx)return tulis();suara();muat(t);isiDiv(t);pf.turnToPage(t);idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()}
+/* lompat jauh: efek beberapa lembar kertas dibalik sekaligus */
+var kurangGerak=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function riffle(t){sibuk=true;var maju=t>idx,b=blk.getBoundingClientRect(),dist=Math.abs(t-idx);
+  var n=Math.max(3,Math.min(8,Math.round(Math.log(dist)/Math.LN2*1.5))),gap=Math.max(45,Math.min(75,520/n)),dur=430;
+  var kanan=(maju!==rtl),w=spread?b.width/2:b.width,lf=spread?(kanan?b.left+w:b.left):b.left,datang=!spread&&!maju;
+  var ov=document.createElement('div');ov.className='fb-riffle';ov.style.cssText='left:'+lf+'px;top:'+b.top+'px;width:'+w+'px;height:'+b.height+'px';
+  document.body.appendChild(ov);muat(t);isiDiv(t);
+  var a0=0,a1=kanan?-180:180;if(datang){a0=a1;a1=0}
+  var org=kanan?'left center':'right center',last=null;
+  for(var i=0;i<n;i++){var l=document.createElement('div');l.className='fb-lembar '+(kanan?'ka':'ki');l.style.transformOrigin=org;
+    l.style.transform='rotateY('+a0+'deg)';l.style.zIndex=datang?i:n-i;ov.appendChild(l);
+    last=l.animate([{transform:'rotateY('+a0+'deg)',filter:'brightness(1)'},{transform:'rotateY('+(a0+a1)/2+'deg)',filter:'brightness(.82)',offset:.5},{transform:'rotateY('+a1+'deg)',filter:'brightness(.96)'}],
+      {duration:dur,delay:i*gap,easing:'cubic-bezier(.35,.05,.35,1)',fill:'both'});
+    (function(k){setTimeout(function(){try{if(siapSuara()&&sb)putar(.02,.2,.06+Math.random()*.03,1.15+Math.random()*.25)}catch(e){}},k*gap+40)})(i)}
+  setTimeout(function(){pf.turnToPage(t);idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()},datang?0:(n-1)*gap+dur*.35);
+  last.onfinish=function(){ov.style.transition='opacity .18s';ov.style.opacity='0';setTimeout(function(){ov.remove();sibuk=false},190)}}
+function keHal(n){if(!pf||sibuk||lipat)return;n=Math.max(1,Math.min(N,n|0));var t=n-1;if(t===idx)return tulis();if(Math.abs(t-idx)>2&&!kurangGerak&&z===1&&blk&&Element.prototype.animate)return riffle(t);suara();muat(t);isiDiv(t);pf.turnToPage(t);idx=pf.getCurrentPageIndex();isiDiv(idx);tulis()}
 bk.onclick=function(){rtl?maju():mundur()};bn.onclick=function(){rtl?mundur():maju()};
 no.addEventListener('focus',function(){no.value='';tahanBar=true});
 no.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Enter')no.blur();else if(e.key==='Escape'){no.value='';no.blur()}});

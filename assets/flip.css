@@ -87,3 +87,10 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fp-kosong{margin:14px 12px;color:#6b7c73;font-size:13px;text-align:center}
 .fp-salin{border:0;border-top:1px solid rgba(12,58,40,.1);background:none;padding:10px;font:600 13px system-ui,sans-serif;color:#bf9a3f;cursor:pointer}
 .fp-salin:hover{background:rgba(191,154,63,.08)}
+
+/* revisi: efek balik banyak lembar */
+.fb-riffle{position:fixed;z-index:8;perspective:2200px;pointer-events:none}
+.fb-lembar{position:absolute;inset:0;background:#fdfcf9;backface-visibility:visible;will-change:transform,filter;
+ box-shadow:0 0 0 .5px rgba(0,0,0,.06),0 2px 14px rgba(0,0,0,.12)}
+.fb-lembar.ka{background:linear-gradient(90deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
+.fb-lembar.ki{background:linear-gradient(270deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
