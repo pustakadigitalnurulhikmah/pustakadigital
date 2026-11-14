@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.pustakadigital.twa",
+        "sha256_cert_fingerprints": ["E8:A9:A6:DE:CA:12:1A:A8:3C:9F:FE:9C:53:62:18:68:9C:93:C6:35:71:F3:39:81:3C:6B:0E:4F:D9:38:A1:EF"]
+      }
+    }]
