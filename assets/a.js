@@ -192,7 +192,7 @@ var dsk=$('.kh-desk',hero);if(desk)dsk.textContent=desk;else dsk.remove();
 $('.kh-info dl',hero).innerHTML=[['Judul',judul],['Judul Arab',ar,1],['Pengarang',pen],['Penerjemah',trj],['Kategori',L.kategori],['Isi',jb],['Bahasa',bhs],['Format',fmt]].filter(function(r){return r[1]}).map(function(r){return '<dt>'+r[0]+'</dt><dd'+(r[2]?' class="ar" dir="rtl" lang="ar"':'')+'>'+esc(r[1])+'</dd>'}).join('');
 var mi=kd('mutiara')||CFG.mutiara[L.kategori]||'',ms=kd('mutiara-sumber');
 $('.kh-info blockquote',hero).innerHTML=mi?'&#8220;'+esc(mi)+'&#8221;'+(ms?'<cite>'+esc(ms)+'</cite>':''):'';
-var baca=$('.kh-baca',hero),sv=0;
+var baca=$('.kh-aksi .kh-baca',hero),sv=0;
 function lb(){var s=parseInt(STORE.get(KEY),10)||0;sv=(bag.length&&s>0&&s<bag.length)?s:0;
   if(sv){$('b',baca).textContent='Lanjutkan Membaca';$('small',baca).textContent=bag[sv].getAttribute('data-judul')}
   else{$('b',baca).textContent='Mulai Membaca';$('small',baca).textContent=bag.length?'Dari halaman pertama':'Buka isi kitab'}}
