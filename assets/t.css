@@ -946,3 +946,21 @@ body.hal-kitab.over .crumb a,body.hal-kitab.over .crumb i{color:var(--ink2)}
 .kh-bacaan .kh-baca i{width:26px;height:26px;flex:none}
 @media (min-width:761px) and (max-width:1100px){.kh-grid{grid-template-columns:230px minmax(0,1fr)}.kh-cov .k-cov{width:230px}}
 @media (max-width:760px){.kh-bacaan{max-width:340px;margin-top:20px}.kh-bacaan .kh-baca b{font-size:15.5px}.kh-cov{margin-bottom:8px}}
+/* revisi 62: tombol baca tanpa panah; HP: tombol selebar sampul, keterangan rata kiri; kaca tanpa garis putih; Informasi Kitab berefek kaca */
+.kh-bacaan .kh-baca i{display:none}
+.kh-bacaan .kh-baca{justify-content:center;padding:11px 12px}
+.kh-bacaan .kh-baca span{flex:0 1 auto}
+.over .top:after{border-bottom:0!important;box-shadow:0 10px 28px rgba(12,58,40,.1)!important}
+.nav-drop{border:0!important;box-shadow:inset 0 0 26px rgba(255,255,255,.3),0 22px 48px rgba(8,42,29,.24),0 2px 8px rgba(8,42,29,.1)!important}
+.kh-info{background:linear-gradient(150deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.3) 48%,rgba(236,247,240,.26) 62%,rgba(255,255,255,.44) 100%);-webkit-backdrop-filter:blur(22px) saturate(1.8) brightness(1.05);backdrop-filter:blur(22px) saturate(1.8) brightness(1.05);border:0;box-shadow:inset 0 0 30px rgba(255,255,255,.35),0 22px 48px rgba(8,42,29,.14),0 2px 8px rgba(8,42,29,.06)}
+.kh-info dd,.kh-info dt{border-bottom-color:rgba(31,43,37,.1)}
+.kh-info h3,.kh-info blockquote{border-color:rgba(31,43,37,.14)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.kh-info{background:rgba(255,255,255,.94)}}
+@media (max-width:760px){
+.kh-cov .k-cov{width:200px}
+.kh-bacaan{width:200px;max-width:none}
+.kh-bacaan .kh-baca{gap:8px;padding:11px 8px}
+.kh-bacaan .kh-baca b{font-size:14px}
+.kh-bacaan .kh-baca>svg{width:20px;height:20px}
+.kh-desk{text-align:left}
+}
