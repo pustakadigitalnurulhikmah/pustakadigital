@@ -891,3 +891,17 @@ body.home .hero .lead{max-width:660px}
 .h-ulama .u{flex:0 1 calc(25% - 17px);min-width:min(100%,250px)}
 @media (max-width:620px){.h-ulama .u{flex-basis:100%}}
 @media (max-width:520px){.h-fitur li{display:grid;grid-template-columns:46px minmax(0,1fr);column-gap:14px;padding:18px}.h-fitur svg{grid-row:span 2}.h-fitur h3{margin:2px 0 4px}}
+/* revisi 58: kotak nama ulama berwarna */
+.h-ulama .u,.plist .pitem{--uc:#14523d;background:linear-gradient(155deg,color-mix(in srgb,var(--uc) 82%,#fff) 0%,var(--uc) 55%,color-mix(in srgb,var(--uc) 78%,#000) 100%);border:1px solid color-mix(in srgb,var(--uc) 70%,#000);box-shadow:0 14px 30px color-mix(in srgb,var(--uc) 28%,transparent)}
+.h-ulama .u:nth-child(7n+2),.plist .pitem:nth-child(7n+2){--uc:#1d3a5f}
+.h-ulama .u:nth-child(7n+3),.plist .pitem:nth-child(7n+3){--uc:#6a2a36}
+.h-ulama .u:nth-child(7n+4),.plist .pitem:nth-child(7n+4){--uc:#1a5157}
+.h-ulama .u:nth-child(7n+5),.plist .pitem:nth-child(7n+5){--uc:#5e3d24}
+.h-ulama .u:nth-child(7n+6),.plist .pitem:nth-child(7n+6){--uc:#3d4f25}
+.h-ulama .u:nth-child(7n+7),.plist .pitem:nth-child(7n+7){--uc:#3b2f5c}
+.h-ulama .u:before{background:linear-gradient(90deg,#ecd28e,rgba(236,210,142,0))}
+.h-ulama .u-n,.h-ulama .u-n:hover,.plist .pitem b{color:#fff}
+.h-ulama .u>span,.plist .pitem span{color:#ecd28e!important;background:0 0!important;border:0!important}
+.h-ulama p a{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.92)}
+.h-ulama p a:hover{background:rgba(255,255,255,.22);border-color:#ecd28e;color:#fff}
+.plist .pitem:hover,.plist .pitem.on{filter:brightness(1.12);border-color:#ecd28e}
