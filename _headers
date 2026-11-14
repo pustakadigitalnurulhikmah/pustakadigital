@@ -7,3 +7,14 @@
 /flipbook/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex
+
+/sw.js
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+  Content-Type: application/manifest+json
+
+/.well-known/*
+  Cache-Control: no-cache
+  Content-Type: application/json
