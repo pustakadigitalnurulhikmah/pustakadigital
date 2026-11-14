@@ -18,9 +18,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600&amp;family=Lora:ital,wght@1,400;1,600&amp;display=swap">
-<link rel="stylesheet" href="/assets/t.css?v=55">
+<link rel="stylesheet" href="/assets/t.css?v=56">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pustakadigital.com/#org","name":"Pustaka Digital Nurul Hikmah","url":"https://pustakadigital.com/","logo":"https://pustakadigital.com/assets/logo.png"},{"@type":"WebSite","@id":"https://pustakadigital.com/#web","name":"Pustaka Digital","alternateName":["Pustaka Digital Nurul Hikmah","pustakadigital.com"],"description":"Kumpulan kitab Arab klasik populer berharakat lengkap, bertanda baca tepat, dan diterjemahkan dengan baik ke bahasa Indonesia, tersusun per paragraf.","url":"https://pustakadigital.com/","inLanguage":"id","publisher":{"@id":"https://pustakadigital.com/#org"},"potentialAction":{"@type":"SearchAction","target":"https://pustakadigital.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
-<link rel="preload" as="image" href="/assets/latar-utama.webp">
+<link rel="preload" as="image" href="/assets/hero-masjid.webp" media="(min-width:761px)"><link rel="preload" as="image" href="/assets/hero-masjid-1000.webp" media="(max-width:760px)">
 <meta name="google-adsense-account" content="ca-pub-8245580144119805">
 </head>
 <body class="home over">
@@ -38,46 +38,58 @@
 <button aria-label="Buka menu" class="burger" id="btnMenu" type="button"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div>
 </header>
-<main class="hero">
+<main class="hero" id="beranda">
 <div class="wrap">
 <div class="hero-in">
 <p class="eyebrow">Perpustakaan Kitab Digital</p>
-<h1>Warisan Ilmu Islam, <em>dalam Genggaman</em></h1>
-<p class="lead">Akses kitab klasik dengan harakat lengkap dan terjemahan yang baik.<br>Baca dengan nyaman, kapan saja, di mana saja.</p>
-<div class="hero-btn"><a class="hb hb-2" href="/p/tentang">Tentang Kami</a><a class="hb hb-1" href="#koleksi">Mulai Baca</a></div>
+<h1><span>Warisan Ulama Islam</span> <span>dalam Genggaman</span></h1>
+<p class="lead">Akses kitab klasik dengan harakat lengkap dan terjemahan yang baik. <br>Baca dengan nyaman, kapan saja, di mana saja.</p>
+<div class="hero-btn"><a class="hb hb-1" href="#koleksi">Mulai Membaca</a><a class="hb hb-2" href="#tentang">Tentang Pustaka</a></div>
 </div>
 </div>
 </main>
 <section class="b-angka" aria-label="Ringkasan">
 <div class="wrap"><ul>
-<li><b id="nKitab">3</b><span>Kitab Tersedia</span></li>
-<li><b id="nBidang">3</b><span>Bidang Ilmu</span></li>
-<li><b id="nUlama">5</b><span>Ulama Pengarang</span></li>
-<li><b>Bahasa Arab</b><span>&amp; Indonesia</span></li>
+<li><b id="nKitab">8</b><span>Kitab Tersedia</span></li>
+<li><b id="nBidang">4</b><span>Bidang Ilmu</span></li>
+<li><b id="nUlama">7</b><span>Ulama Pengarang</span></li>
+<li><b>Arab &amp; Indonesia</b><span>Teks dan Terjemah</span></li>
 </ul></div>
 </section>
-<section class="home-sec" id="koleksi">
-<div class="pg-hero" aria-hidden="true"></div>
+<section class="h-sec" id="koleksi">
 <div class="wrap">
-<div class="pg-head"><small>Koleksi</small><h2 class="h1">Koleksi Kitab</h2><p>Berikut kitab-kitab yang sudah diselesaikan.</p></div>
-<div class="pg-body"><div id="daftar-kitab"></div><div class="b-more"><a class="hb hb-o" href="/p/daftar-kitab">Lihat Semua Koleksi</a></div></div>
+<div class="h-head"><h2>Koleksi Kitab</h2><p>Semua kitab yang sudah diselesaikan, lengkap dengan harakat dan terjemahnya.</p></div>
+<div id="daftar-kitab"></div>
+<div class="h-more"><a class="hb hb-o" href="/p/daftar-kitab">Buka Halaman Koleksi</a></div>
 </div>
 </section>
-<section class="b-sec" id="bidang">
+<section class="h-sec h-soft" id="bidang">
 <div class="wrap">
-<div class="b-head"><small>Bidang Ilmu</small><h2>Telusuri Menurut Bidang</h2><p>Pilih bidang ilmu untuk melihat kitab di dalamnya.</p></div>
+<div class="h-head"><h2>Telusuri Menurut Bidang</h2><p>Pilih bidang ilmu untuk melihat kitab di dalamnya.</p></div>
 <div class="b-bidang" id="bBidang"></div>
 </div>
 </section>
-<section class="b-sec b-alt">
+<section class="h-sec" id="ulama">
 <div class="wrap">
-<div class="b-head"><small>Keunggulan</small><h2>Membaca Kitab dengan Nyaman</h2><p>Disusun agar teks kitab benar dan mudah dipelajari.</p></div>
-<div class="b-fitur">
-<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2Z"/><path d="M8 8h6M8 12h6"/></svg><h3>Harakat Lengkap</h3><p>Teks Arab diberi harakat sesuai kaidah nahwu dan sharaf, tanpa tatweel, dengan huruf yang jelas.</p></div>
-<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M4 12h16M4 18h12"/></svg><h3>Terjemah per Paragraf</h3><p>Terjemah bahasa Indonesia tepat di bawah setiap paragraf Arab, sehingga mudah dicocokkan.</p></div>
-<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg><h3>Mode Baca Fleksibel</h3><p>Pilih Arab + Terjemahan, Arab Saja, atau Catatan; sebagian kitab juga tersedia dalam bentuk flipbook.</p></div>
-<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><h3>Nyaman di Semua Layar</h3><p>Tampilan menyesuaikan HP, tablet, dan komputer; posisi terakhir dibaca tersimpan otomatis.</p></div>
+<div class="h-head"><h2>Ulama Pengarang</h2><p>Para ulama yang karyanya tersedia di pustaka ini.</p></div>
+<div class="h-ulama" id="bUlama"></div>
+<div class="h-more"><a class="hb hb-o" href="/p/penulis">Buka Halaman Ulama</a></div>
 </div>
+</section>
+<section class="h-sec h-soft" id="tentang">
+<div class="wrap h-duo">
+<div class="h-teks">
+<h2>Tentang Pustaka</h2>
+<p>Ilmu yang diwariskan para ulama terdahulu sangatlah luas, dan karya-karya mereka sungguh luar biasa. Namun, sayangnya hanya sedikit dari kita hari ini yang dapat menikmatinya, karena terbatasnya kemampuan memahami bahasa Arab, sementara mempelajarinya membutuhkan waktu yang tidak sebentar.</p>
+<p>Karena itulah Pustaka Digital Nurul Hikmah hadir, berusaha memudahkan semua kalangan agar dapat menikmati karya-karya mereka, sehingga umat memperoleh tuntunan yang jelas dan ilmu para ulama semakin luas manfaatnya.</p>
+<a class="hb hb-o" href="/p/tentang">Selengkapnya</a>
+</div>
+<ul class="h-fitur">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2Z"/><path d="M8 8h6M8 12h6"/></svg><div><h3>Harakat Lengkap</h3><p>Teks Arab diberi harakat sesuai kaidah nahwu dan sharaf, dengan huruf yang jelas.</p></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M4 12h16M4 18h12"/></svg><div><h3>Terjemah per Paragraf</h3><p>Terjemah Indonesia tepat di bawah setiap paragraf Arab, sehingga mudah dicocokkan.</p></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg><div><h3>Flipbook seperti Kitab Asli</h3><p>Balik halaman dengan efek kertas, pilih edisi Arab dan Indonesia atau Arab saja.</p></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><div><h3>Nyaman di Semua Layar</h3><p>Tampilan menyesuaikan HP, tablet, dan komputer; posisi terakhir dibaca tersimpan.</p></div></li>
+</ul>
 </div>
 </section>
 <section class="b-mutiara">
@@ -87,31 +99,44 @@
 <p class="b-src">QS. Al-Mujādalah [58]: 11</p>
 </div>
 </section>
-<section class="b-sec">
-<div class="wrap b-duo">
-<div class="b-card">
-<small>Tentang Kami</small><h2>Tentang Pustaka</h2>
-<p>Ilmu yang diwariskan para ulama terdahulu sangatlah luas, dan karya-karya mereka sungguh luar biasa. Namun, sayangnya hanya sedikit dari kita hari ini yang dapat menikmatinya, karena terbatasnya kemampuan memahami bahasa Arab, sementara mempelajarinya membutuhkan waktu yang tidak sebentar. Karena itulah Pustaka Digital Nurul Hikmah hadir, berusaha memudahkan semua kalangan agar dapat menikmati karya-karya mereka, sehingga umat memperoleh tuntunan yang jelas dan ilmu para ulama semakin luas manfaatnya.</p>
-<a class="hb hb-o" href="/p/tentang">Selengkapnya</a>
+<section class="h-sec" id="donasi">
+<div class="wrap h-duo h-don">
+<div class="h-teks">
+<h2>Dukung Pustaka</h2>
+<p>Setiap dukungan membantu menambah koleksi kitab, menyempurnakan harakat dan terjemah, serta merawat situs agar tetap gratis dan mudah diakses oleh seluruh penuntut ilmu.</p>
+<p>Situs ini sengaja tidak menampilkan iklan agar pembaca dapat belajar dengan nyaman, tenang, dan fokus tanpa gangguan. Semoga setiap donasi menjadi amal jariyah yang pahalanya terus mengalir selama ilmu ini dibaca dan diamalkan.</p>
+<div class="hero-btn"><a class="hb hb-1" href="/p/donasi">Cara Berdonasi</a></div>
 </div>
-<div class="b-card b-don">
-<small>Dukung Pustaka</small><h2>Donasi Pengembangan</h2>
-<p>Setiap dukungan membantu menambah koleksi kitab, menyempurnakan harakat dan terjemah, serta merawat situs agar tetap gratis dan mudah diakses oleh seluruh penuntut ilmu. Situs ini sengaja tidak menampilkan iklan agar pembaca dapat belajar dengan nyaman, tenang, dan fokus tanpa gangguan. Semoga setiap donasi menjadi amal jariyah yang pahalanya terus mengalir selama ilmu ini dibaca dan diamalkan.</p>
-<a class="hb hb-1" href="/p/donasi">Donasi</a>
+<figure class="h-qris"><img src="/assets/qris-donasi.webp" alt="QRIS donasi Pustaka Digital Nurul Hikmah" width="720" height="1014" loading="lazy"><figcaption>Pindai dengan aplikasi bank atau dompet digital yang mendukung QRIS.</figcaption></figure>
+</div>
+</section>
+<section class="h-sec h-soft" id="kontak">
+<div class="wrap">
+<div class="h-head"><h2>Hubungi Pengelola</h2><p>Koreksi harakat atau terjemah, pertanyaan, dan saran dapat dikirim kapan saja.</p></div>
+<div class="h-kontak">
+<a href="https://wa.me/6282311784231" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1Z"/><path d="M9 9.5c.3 2 2.2 4.2 5 5l1.2-1.2-1.8-1-1 .8c-.9-.4-1.6-1.1-2-2l.8-1-1-1.8Z"/></svg><span><b>WhatsApp</b>0823-1178-4231</span></a>
+<a href="mailto:pustakadigitalnurulhikmah@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><b>Email</b>pustakadigitalnurulhikmah<wbr>@gmail.com</span></a>
 </div>
 </div>
 </section>
 <footer class="foot">
 <div class="wrap">
-<a class="fb" href="/"><img src="/assets/logo-terang.png" alt="" width="104" height="96" loading="lazy"><b>Pustaka Digital Nurul Hikmah</b></a>
-<nav aria-label="Tautan kaki"><a href="/">Beranda</a><a href="/p/daftar-kitab">Koleksi</a><a href="/p/penulis">Ulama</a><a href="/p/tentang">Tentang</a><a href="/p/kebijakan-privasi">Kebijakan Privasi</a><a href="/p/kontak">Kontak</a><a href="/p/donasi">Donasi</a></nav>
+<div class="f-top">
+<div class="f-brand"><a class="fb" href="/"><img src="/assets/logo-terang.png" alt="" width="104" height="96" loading="lazy"><b>Pustaka Digital Nurul Hikmah</b></a><p>Kitab Arab klasik berharakat lengkap dengan terjemah bahasa Indonesia, terbuka untuk semua penuntut ilmu.</p></div>
+<div class="f-col"><h4>Jelajahi</h4><nav aria-label="Tautan kaki"><a href="/">Beranda</a><a href="/p/daftar-kitab">Koleksi</a><a href="/p/penulis">Ulama</a><a href="/p/tentang">Tentang</a></nav></div>
+<div class="f-col"><h4>Dukungan</h4><nav aria-label="Tautan dukungan"><a href="/p/donasi">Donasi</a><a href="/p/kontak">Kontak</a><a href="/p/kebijakan-privasi">Kebijakan Privasi</a></nav></div>
+<div class="f-col"><h4>Hubungi</h4><nav aria-label="Kontak"><a href="https://wa.me/6282311784231" rel="noopener" target="_blank">WhatsApp 0823-1178-4231</a><a href="mailto:pustakadigitalnurulhikmah@gmail.com">Email Pengelola</a></nav></div>
+</div>
 <div class="copy">© <span id="thn">2026</span> Pustaka Digital Nurul Hikmah. Hak cipta dilindungi.</div>
 </div>
 </footer>
 <script>
-window.__beranda=function(o){try{var e=o.feed.entry||[],m={};e.forEach(function(x){(x.category||[]).forEach(function(c){var t=c.term;if(/^Ilmu /.test(t))m[t]=(m[t]||0)+1})});var k=Object.keys(m).sort();
-document.getElementById('nKitab').textContent=e.length;document.getElementById('nBidang').textContent=k.length;var u={};e.forEach(function(x){(x.category||[]).forEach(function(c){if(/^Penulis: /.test(c.term))u[c.term]=1})});document.getElementById('nUlama').textContent=Object.keys(u).length;
-document.getElementById('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encodeURIComponent(t)+'"><b>'+t+'</b><span>'+m[t]+' kitab</span></a>'}).join('')}catch(_){}};
+window.__beranda=function(o){try{var e=o.feed.entry||[],m={},u={},by=function(id){return document.getElementById(id)},es=function(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+e.forEach(function(x){var t=x.title.$t,l=(x.link||[]).filter(function(k){return k.rel==='alternate'})[0];(x.category||[]).forEach(function(c){var n=c.term;if(/^Ilmu /.test(n))m[n]=(m[n]||0)+1;if(/^Penulis: /.test(n)){n=n.slice(9);(u[n]=u[n]||[]).push({t:t,h:l?l.href:'#'})}})});
+var k=Object.keys(m).sort(),un=Object.keys(u).sort(function(a,b){return u[b].length-u[a].length||a.localeCompare(b)});
+by('nKitab').textContent=e.length;by('nBidang').textContent=k.length;by('nUlama').textContent=un.length;
+by('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encodeURIComponent(t)+'"><b>'+es(t)+'</b><span>'+m[t]+' kitab</span></a>'}).join('');
+by('bUlama').innerHTML=un.map(function(n){return '<div class="u"><a class="u-n" href="/search/label/'+encodeURIComponent('Penulis: '+n)+'">'+es(n)+'</a><span>'+u[n].length+' kitab</span><p>'+u[n].map(function(x){return '<a href="'+es(x.h)+'">'+es(x.t)+'</a>'}).join('')+'</p></div>'}).join('')}catch(_){}};
 (function(){var s=document.createElement('script');s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&callback=__beranda';document.body.appendChild(s)})();
 </script>
 <script src="/assets/a.js?v=30"></script>

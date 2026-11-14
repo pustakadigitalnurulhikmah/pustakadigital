@@ -741,3 +741,116 @@ html.berbingkai .bingkai-situs{z-index:50;visibility:visible;pointer-events:auto
 .bio-ulama .bio-nama span{color:var(--muted,#5b6b63);font-size:.94em}
 /* revisi 55: kotak biografi ulama selebar layar, garis emas */
 .bio-ulama{max-width:none;border:1px solid #c9a24a}
+/* revisi 56 (14 Nov 2026): gambar hero baru (masjid & mushaf), tanpa gambar latar lain; beranda panjang berisi semua menu; menu ☰ glossy; footer baru */
+:root{--band:#f2f4ef;--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23b8913e' stroke-width='1.3'%3E%3Crect x='5.5' y='5.5' width='13' height='13'/%3E%3Crect x='5.5' y='5.5' width='13' height='13' transform='rotate(45 12 12)'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%23b8913e' stroke='none'/%3E%3C/g%3E%3C/svg%3E");--pola:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23b8913e' stroke-opacity='.16' stroke-width='1'%3E%3Crect x='18' y='18' width='20' height='20'/%3E%3Crect x='18' y='18' width='20' height='20' transform='rotate(45 28 28)'/%3E%3Cpath d='M0 28h4M52 28h4M28 0v4M28 52v4'/%3E%3C/g%3E%3C/svg%3E")}
+/* hero */
+body.home .hero{background:#1b241e url(/assets/hero-masjid.webp) 64% center/cover no-repeat}
+body.home .hero:before{display:block;content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,17,13,.74) 0%,rgba(12,17,13,.5) 32%,rgba(12,17,13,.1) 62%,rgba(12,17,13,0) 80%),linear-gradient(180deg,rgba(12,17,13,.5) 0,rgba(12,17,13,0) 20%,rgba(12,17,13,0) 48%,rgba(12,17,13,.62) 100%)}
+body.home .hero .wrap{justify-content:flex-end;padding-top:calc(var(--head) + 32px);padding-bottom:clamp(64px,13vh,150px)}
+body.home .hero-in{display:block;max-width:660px;margin:0}
+body.home .hero-in:before{display:none}
+body.home .hero .eyebrow{color:#ecd28e;text-shadow:none}
+body.home .hero h1{margin:14px 0 0;font:600 clamp(40px,6vw,78px)/1.03 var(--serif);letter-spacing:-.5px;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+body.home .hero h1 span{display:block}
+body.home .hero .lead{margin:clamp(16px,2vw,24px) 0 0;padding:0;max-width:540px;font:italic 500 clamp(18px,1.7vw,22px)/1.55 var(--serif);color:rgba(255,255,255,.9);text-shadow:none}
+body.home .hero-btn{margin-top:clamp(22px,2.6vw,32px)}
+body.home .hero .hb-2{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+body.home .hero .hb-2:hover{background:rgba(255,255,255,.24)}
+@media (max-width:760px){body.home .hero{background-image:url(/assets/hero-masjid-1000.webp);background-position:62% center}body.home .hero .lead br{display:none}}
+/* kepala di atas hero: tulisan terang */
+body.home .top:not(.gulir){background:linear-gradient(180deg,rgba(10,14,11,.5),rgba(10,14,11,0))}
+body.home .top:not(.gulir) .lg-g{display:none}
+body.home .top:not(.gulir) .lg-t{display:block}
+body.home .top:not(.gulir) .brand b{color:#fff}
+body.home .top:not(.gulir) .brand small{color:rgba(255,255,255,.78)}
+body.home .top:not(.gulir) .nav a{color:rgba(255,255,255,.9);text-shadow:none}
+body.home .top:not(.gulir) .nav a:hover{color:#fff;background:rgba(255,255,255,.14)}
+body.home .top:not(.gulir) .nav a.on{color:#ecd28e}
+body.home .top:not(.gulir) .burger{color:#fff;background:0 0}
+/* kepala halaman tanpa gambar: pita pola bintang */
+.pg-hero{background:var(--band) var(--pola) center/56px repeat!important;height:calc(var(--head) + clamp(130px,14vw,190px))!important;border-bottom:1px solid #e7e9e3}
+.pg-hero:after{display:none!important}
+.pg-head{margin-top:calc(clamp(130px,14vw,190px) * -1 + 28px)!important;padding-top:0!important}
+.pg-head p,.pg-head small{text-shadow:none!important}
+.pg-head p{color:var(--muted)}
+body.kol:before{background:none!important;display:none}
+body.kol .pg-hero{height:calc(var(--head) + clamp(130px,14vw,190px))!important}
+.pg-body{margin-top:clamp(28px,3.5vw,44px)}
+.k-hero{background:var(--band) var(--pola) center/56px repeat!important}
+.k-hero:before{background:linear-gradient(180deg,rgba(242,244,239,0) 0%,rgba(242,244,239,.6) 45%,var(--bg) 100%)!important}
+/* bagian beranda */
+.h-sec{padding:clamp(60px,7.5vw,104px) 0;background:var(--paper);scroll-margin-top:var(--head)}
+.h-soft{background:var(--band)}
+.h-head{max-width:640px;margin:0 auto clamp(30px,3.6vw,48px);text-align:center}
+.h-head:before,.h-teks h2:before{content:"";display:block;width:30px;height:30px;margin:0 auto 14px;background:var(--star) center/contain no-repeat}
+.h-teks h2:before{margin:0 0 14px}
+.h-head h2,.h-teks h2{margin:0;font:600 clamp(30px,3.4vw,44px)/1.1 var(--serif);letter-spacing:-.3px;color:var(--head-ink)}
+.h-head p{margin:12px 0 0;font-size:16px;line-height:1.6;color:var(--muted)}
+.h-more{margin-top:clamp(30px,3.4vw,44px);text-align:center}
+#koleksi .grid{grid-template-columns:repeat(auto-fill,minmax(clamp(130px,14vw,168px),1fr));gap:clamp(24px,2.8vw,36px) clamp(14px,2vw,28px)}
+.home #daftar-kitab .tools{display:none}
+.b-angka{background:#fff}
+.b-angka li:last-child b{font-size:clamp(18px,1.9vw,24px)}
+.b-bidang a{background:#fff}
+/* ulama */
+.h-ulama{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:clamp(14px,1.8vw,22px)}
+.h-ulama .u{position:relative;padding:22px 22px 20px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.h-ulama .u:before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:2px;background:linear-gradient(90deg,var(--au),rgba(201,162,74,0))}
+.h-ulama .u-n{display:block;font:600 21px/1.25 var(--serif);color:var(--head-ink);text-decoration:none}
+.h-ulama .u-n:hover{color:var(--g6)}
+.h-ulama .u>span{display:block;margin-top:3px;font-size:13px;color:var(--au-d)}
+.h-ulama p{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.h-ulama p a{padding:3px 11px;border:1px solid var(--line);border-radius:999px;background:var(--band);font-size:13px;color:var(--ink2);text-decoration:none}
+.h-ulama p a:hover{border-color:var(--g5);color:var(--g7)}
+/* tentang + donasi */
+.h-duo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.h-teks p{margin:16px 0 0;font-size:16.5px;line-height:1.75;color:var(--ink2);max-width:62ch}
+.h-teks .hb,.h-teks .hero-btn{margin-top:26px}
+.h-fitur{margin:0;padding:0;list-style:none;border-top:1px solid #dfe3dc}
+.h-fitur li{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid #dfe3dc}
+.h-fitur svg{flex:none;width:40px;height:40px;padding:8px;border-radius:50%;background:#fff;border:1px solid #e3d6b4;fill:none;stroke:var(--au-d);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.h-fitur h3{margin:2px 0 4px;font:600 19px/1.25 var(--serif);color:var(--head-ink)}
+.h-fitur p{margin:0;font-size:14.5px;line-height:1.6;color:var(--muted)}
+.h-don{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.h-qris{justify-self:center;margin:0;max-width:280px;padding:14px;background:#fff;border:1px solid #e3d6b4;border-radius:18px;text-align:center}
+.h-qris img{display:block;width:100%;height:auto;border-radius:10px}
+.h-qris figcaption{margin-top:10px;font-size:13px;line-height:1.5;color:var(--muted)}
+/* kontak */
+.h-kontak{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.h-kontak a{flex:0 1 360px;display:flex;align-items:center;gap:14px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink2);min-width:0;transition:border-color .15s}
+.h-kontak a:hover{border-color:var(--g5)}
+.h-kontak svg{flex:none;width:44px;height:44px;padding:10px;border-radius:50%;background:var(--g8);fill:none;stroke:#ecd28e;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.h-kontak span{min-width:0;font-size:14.5px;overflow-wrap:anywhere}
+.h-kontak b{display:block;font:600 18px/1.2 var(--serif);color:var(--head-ink)}
+/* ayat */
+.b-mutiara{background:#fff var(--pola) center/56px repeat;border-top:1px solid #e7e9e3;border-bottom:1px solid #e7e9e3;padding:clamp(56px,7vw,96px) 0}
+@media (max-width:860px){.h-duo,.h-don{grid-template-columns:minmax(0,1fr)}.h-qris{max-width:240px}}
+/* footer */
+.foot{background:var(--g9)}
+.foot .wrap{display:block;padding-top:clamp(44px,5vw,64px);padding-bottom:22px}
+.foot .f-top{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:32px clamp(24px,4vw,56px);width:100%;padding-bottom:clamp(28px,3.5vw,40px)}
+.foot .f-brand p{margin:14px 0 0;max-width:34ch;font-size:14px;line-height:1.65;color:rgba(255,255,255,.62)}
+.foot h4{margin:4px 0 14px;font:600 16px var(--serif);letter-spacing:.2px;color:#ecd28e}
+.foot .f-col nav{display:flex;flex-direction:column;gap:10px}
+.foot .f-col a{font-size:14px;color:rgba(255,255,255,.76);overflow-wrap:anywhere}
+.foot .f-col a:hover{color:#fff}
+.foot .copy{padding-top:18px}
+@media (max-width:860px){.foot .f-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot .f-brand{grid-column:1/-1}}
+
+/* menu ☰ glossy */
+.nav-drop{min-width:190px;padding:6px;border-radius:16px;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.55) 46%,rgba(229,243,234,.45) 54%,rgba(255,255,255,.66) 100%);-webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(23,100,68,.07),0 20px 44px rgba(8,42,29,.22),0 2px 6px rgba(8,42,29,.08)}
+.nav-drop:before{content:"";position:absolute;left:-25%;right:-25%;top:-58%;height:92%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,0));pointer-events:none}
+.nav-drop a{position:relative;z-index:1;padding:10px 14px;border-radius:11px;font-size:15px;color:var(--head-ink)}
+.nav-drop a:hover{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(226,241,231,.75));box-shadow:inset 0 1px 0 #fff,0 1px 3px rgba(8,42,29,.12)}
+.nav-drop a.on{color:var(--au-d);font-weight:600;background:linear-gradient(180deg,rgba(255,251,240,.98),rgba(244,229,190,.62));box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(201,162,74,.32)}
+@media (prefers-reduced-motion:reduce){.nav-drop,.hb{transition:none}}
+body.home .hero-in{max-width:780px}
+body.home .hero h1{font-size:clamp(34px,calc(5.6vw + 12px),74px)}
+#koleksi .grid{display:flex;flex-wrap:wrap;justify-content:center}
+#koleksi .grid>*{flex:0 0 clamp(136px,13.6vw,168px)}
+.h-kontak a{flex-basis:400px}
+:root{--pola:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23b8913e' stroke-opacity='.11' stroke-width='1'%3E%3Crect x='26' y='26' width='20' height='20'/%3E%3Crect x='26' y='26' width='20' height='20' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E")}
+.pg-hero,.k-hero,.b-mutiara{background-size:72px!important}
+@media (max-width:760px){body.home .hero:before{background:linear-gradient(180deg,rgba(12,17,13,.5) 0,rgba(12,17,13,0) 18%,rgba(12,17,13,.1) 38%,rgba(12,17,13,.72) 62%,rgba(12,17,13,.86) 100%)}#koleksi .grid>*{flex-basis:calc(50% - 8px)}}
+@media (max-width:420px){.foot .f-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot .f-col:last-child{grid-column:1/-1}}
+body.home .hero .lead{max-width:600px}
