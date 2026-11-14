@@ -94,3 +94,16 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
  box-shadow:0 0 0 .5px rgba(0,0,0,.06),0 2px 14px rgba(0,0,0,.12)}
 .fb-lembar.ka{background:linear-gradient(90deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
 .fb-lembar.ki{background:linear-gradient(270deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
+
+/* revisi: footer & daftar isi kaca bening, tanpa judul kitab */
+.fb-judul{display:none!important}
+.fb-bar{width:auto;max-width:calc(100% - 16px);padding:6px 6px 6px 14px;gap:2px}
+.fb-bar,.fb-panel{background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+ border:1px solid rgba(255,255,255,.55);box-shadow:0 10px 34px rgba(12,58,40,.14),inset 0 1px 0 rgba(255,255,255,.65)}
+.fp-cari{background:rgba(255,255,255,.55);border-color:rgba(12,58,40,.12)}
+.fp-isi a:hover{background:rgba(255,255,255,.45)}
+.fp-isi a.kini{background:rgba(191,154,63,.14)}
+.fp-tab button{color:#5d6f65}
+.fp-salin{border-top-color:rgba(12,58,40,.08)}
+.fp-salin:hover{background:rgba(255,255,255,.35)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar,.fb-panel{background:rgba(250,252,250,.95)}}
