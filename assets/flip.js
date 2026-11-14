@@ -206,6 +206,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&P.classList
 window.addEventListener('hashchange',function(){var h=/hal-(\d+)/.exec(location.hash);if(h&&+h[1]!==cur[0]&&cur.indexOf(+h[1])<0)keHal(+h[1])});
 window.fbTulis=function(){var m=cur.some(function(x){return pen.indexOf(x)>=0});bp.classList.toggle('on',m);bp.setAttribute('aria-label',m?'Hapus penanda halaman ini':'Tandai halaman ini')};
 })();
+/* filter pembias kaca (Chromium) */
+(function(){try{if(!CSS.supports('backdrop-filter','url(#a)'))return;var d=document.createElement('div');d.style.cssText='position:absolute;width:0;height:0;overflow:hidden';
+d.innerHTML='<svg width="0" height="0" aria-hidden="true"><filter id="fb-kaca" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="2" seed="5" result="n"/><feGaussianBlur in="n" stdDeviation="2.5" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="34" xChannelSelector="R" yChannelSelector="G"/></filter></svg>';
+document.body.appendChild(d);document.documentElement.classList.add('kaca-cair')}catch(e){}})();
 ukur();
 var awal=setTimeout(function(){bilah(false)},3500);bar.addEventListener('pointerdown',function(){clearTimeout(awal)});
 })();
