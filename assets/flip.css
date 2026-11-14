@@ -111,3 +111,10 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fp-salin{border-top-color:rgba(12,58,40,.08)}
 .fp-salin:hover{background:rgba(255,255,255,.35)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar,.fb-panel{background:rgba(250,252,250,.95)}}
+/* revisi 59 (15 Nov 2026): kaca lebih bening & berkilau */
+.fb-bar,.fb-panel{background:linear-gradient(150deg,rgba(255,255,255,.3),rgba(255,255,255,.1) 50%,rgba(255,255,255,.2));-webkit-backdrop-filter:blur(16px) saturate(2) brightness(1.06);backdrop-filter:blur(16px) saturate(2) brightness(1.06);border:1px solid rgba(255,255,255,.5);
+ box-shadow:inset 1.5px 1.5px 0 -.5px rgba(255,255,255,.98),inset -1px -1px 0 -.5px rgba(255,255,255,.65),inset 0 0 26px rgba(255,255,255,.32),0 14px 36px rgba(12,58,40,.18),0 2px 8px rgba(12,58,40,.08)}
+.fb-panel{background:linear-gradient(150deg,rgba(255,255,255,.68),rgba(255,255,255,.46) 50%,rgba(255,255,255,.58))}
+.fb-bar:before,.fb-panel:before{background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.1) 30%,rgba(255,255,255,0) 55%,rgba(255,255,255,.16) 85%,rgba(255,255,255,.4))}
+.fp-cari{background:rgba(255,255,255,.42);border-color:rgba(255,255,255,.65)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar,.fb-panel{background:rgba(250,252,250,.95)}}

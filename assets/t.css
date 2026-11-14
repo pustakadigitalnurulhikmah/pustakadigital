@@ -922,3 +922,17 @@ html.app [data-pasang],html.app .pa-pill{display:none!important}
 .pa-box h3{margin:10px 0 8px;font:600 22px var(--serif);color:var(--g9)}
 .pa-box p{margin:0 0 18px;font-size:15px;line-height:1.55;color:var(--ink2)}
 .pa-ok{padding:10px 28px;border:0;border-radius:999px;background:var(--au);color:#fff;font:600 15px var(--sans);cursor:pointer}
+
+/* revisi 59 (15 Nov 2026): header bergulir & menu ☰ berefek kaca (liquid glass); halaman kitab: gambar penuh sampai atas di balik header transparan */
+.over .top:after{background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.38))!important;-webkit-backdrop-filter:blur(22px) saturate(1.9) brightness(1.06);backdrop-filter:blur(22px) saturate(1.9) brightness(1.06);border-bottom:1px solid rgba(255,255,255,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.4),0 1px 0 rgba(12,58,40,.06),0 10px 28px rgba(12,58,40,.1)!important}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.over .top:after{background:rgba(251,251,249,.97)!important}}
+.nav-drop{background:linear-gradient(150deg,rgba(255,255,255,.58) 0%,rgba(255,255,255,.22) 48%,rgba(236,247,240,.18) 62%,rgba(255,255,255,.36) 100%);-webkit-backdrop-filter:blur(24px) saturate(2) brightness(1.06);backdrop-filter:blur(24px) saturate(2) brightness(1.06);border:1px solid rgba(255,255,255,.6);box-shadow:inset 1.5px 1.5px 0 -.5px rgba(255,255,255,.95),inset -1px -1px 0 -.5px rgba(255,255,255,.6),inset 0 0 26px rgba(255,255,255,.3),0 22px 48px rgba(8,42,29,.24),0 2px 8px rgba(8,42,29,.1)}
+.nav-drop:before{background:linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,0))}
+.nav-drop a:hover{background:rgba(255,255,255,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 1px 3px rgba(8,42,29,.1)}
+.nav-drop a.on{background:linear-gradient(180deg,rgba(255,251,240,.75),rgba(244,229,190,.4))}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.nav-drop{background:rgba(245,250,246,.97)}}
+body.hal-kitab.over .k-hero .kh-in{padding-top:calc(var(--head) + 22px)}
+body.hal-kitab.over .k-hero:before{background:linear-gradient(180deg,rgba(10,14,11,.42) 0,rgba(10,14,11,.12) calc(var(--head) + 10px),rgba(251,251,249,.5) calc(var(--head) + 90px),rgba(251,251,249,.84) 42%,rgba(251,251,249,.95) 68%,var(--bg) 100%)!important}
+body.hal-kitab.over .crumb a,body.hal-kitab.over .crumb i{color:var(--ink2)}
+@media (max-width:760px){body.hal-kitab.over .k-hero .kh-in{padding-top:calc(var(--head) + 16px)}}
+@media (max-width:760px){body.hal-kitab.over .k-hero:before{background:linear-gradient(180deg,rgba(10,14,11,.42) 0,rgba(10,14,11,.12) calc(var(--head) + 10px),rgba(251,251,249,.45) calc(var(--head) + 90px),rgba(251,251,249,.8) 300px,var(--bg) 515px)!important}}
