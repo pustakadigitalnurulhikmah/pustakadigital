@@ -267,3 +267,27 @@ document.addEventListener('submit',function(e){var f=e.target;if(e.defaultPreven
   var u;try{u=new URL(f.action||location.href,location.href)}catch(x){return}if(!layak(u))return;
   e.preventDefault();u.search=new URLSearchParams(new FormData(f)).toString();buka(u.href)});
 })();
+
+/* revisi 58: tombol Pasang Aplikasi (PWA) */
+(function(){
+var d=document,st=window.matchMedia&&matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+if(st){d.documentElement.classList.add('app');return}
+var ev=null,ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function tutup(){var m=d.querySelector('.pa-modal');if(m)m.remove()}
+function petunjuk(){tutup();var m=d.createElement('div');m.className='pa-modal';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
+m.innerHTML='<div class="pa-box"><img src="/assets/ikon-192.png" alt="" width="64" height="64"><h3>Pasang Aplikasi</h3>'+
+(ios?'<p>Di Safari, ketuk tombol <b>Bagikan</b> <span class="pa-i">⬆︎</span> di bawah layar, lalu pilih <b>Tambahkan ke Layar Utama</b>.</p>'
+:'<p>Buka menu browser <b>⋮</b>, lalu pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</p>')+
+'<button type="button" class="pa-ok">Mengerti</button></div>';
+m.addEventListener('click',function(e){if(e.target===m||e.target.className==='pa-ok')tutup()});d.body.appendChild(m)}
+function pasang(){if(ev){ev.prompt();ev.userChoice.then(function(r){if(r.outcome==='accepted')sembunyi();ev=null})}else petunjuk()}
+function sembunyi(){d.documentElement.classList.add('app');var p=d.querySelector('.pa-pill');if(p)p.remove()}
+d.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-pasang]');if(b){e.preventDefault();pasang()}});
+var KEY='pa-tutup';function boleh(){try{return Date.now()-(+localStorage.getItem(KEY)||0)>12096e5}catch(_){return true}}
+function pil(){if(d.querySelector('.pa-pill')||d.documentElement.classList.contains('baca')||!boleh())return;
+var p=d.createElement('div');p.className='pa-pill';p.innerHTML='<button type="button" data-pasang><img src="/assets/ikon-192.png" alt="" width="28" height="28"><span>Pasang Aplikasi</span></button><button type="button" class="pa-x" aria-label="Tutup">×</button>';
+p.querySelector('.pa-x').onclick=function(){try{localStorage.setItem(KEY,Date.now())}catch(_){}p.remove()};d.body.appendChild(p)}
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;pil()});
+addEventListener('appinstalled',sembunyi);
+if(ios)addEventListener('load',function(){setTimeout(pil,1500)});
+})();

@@ -905,3 +905,20 @@ body.home .hero .lead{max-width:660px}
 .h-ulama p a{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.92)}
 .h-ulama p a:hover{background:rgba(255,255,255,.22);border-color:#ecd28e;color:#fff}
 .plist .pitem:hover,.plist .pitem.on{filter:brightness(1.12);border-color:#ecd28e}
+
+/* revisi 58 (15 Nov 2026): tombol Pasang Aplikasi */
+.foot .pasang{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:9px 18px;border:1px solid var(--au);border-radius:999px;background:transparent;color:var(--au-l);font:600 14px var(--sans);cursor:pointer}
+.foot .pasang:hover{background:var(--au);color:#fff}
+.foot .pasang svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html.app [data-pasang],html.app .pa-pill{display:none!important}
+.pa-pill{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:900;display:flex;align-items:center;gap:2px;padding:5px 6px 5px 6px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(201,162,74,.55);box-shadow:0 6px 22px rgba(12,58,40,.18);animation:pa-in .4s ease}
+.pa-pill [data-pasang]{display:flex;align-items:center;gap:9px;padding:4px 14px 4px 4px;border:0;background:none;color:var(--g9);font:600 14.5px var(--sans);cursor:pointer;white-space:nowrap}
+.pa-pill img{border-radius:50%;background:#fff}
+.pa-pill .pa-x{width:30px;height:30px;border:0;border-radius:50%;background:rgba(12,58,40,.07);color:var(--g9);font-size:18px;line-height:1;cursor:pointer}
+@keyframes pa-in{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+.pa-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,30,20,.45)}
+.pa-box{max-width:340px;width:100%;padding:26px 24px 22px;border-radius:18px;background:#fff;text-align:center;color:var(--ink)}
+.pa-box img{border-radius:14px}
+.pa-box h3{margin:10px 0 8px;font:600 22px var(--serif);color:var(--g9)}
+.pa-box p{margin:0 0 18px;font-size:15px;line-height:1.55;color:var(--ink2)}
+.pa-ok{padding:10px 28px;border:0;border-radius:999px;background:var(--au);color:#fff;font:600 15px var(--sans);cursor:pointer}
