@@ -1,5 +1,13 @@
 /* Biografi ulama — kunci = nama pengarang pada label "Penulis: …" */
 window.ULAMA={
+"Syaikh al-Fudhali":{
+  nama:"Muhammad bin asy-Syafi‘i al-Fudhali asy-Syafi‘i",
+  hidup:"Ulama Mesir; wafat tahun 1236 H.",
+  isi:[
+    "Beliau adalah ulama Mesir yang bermazhab Syafi‘i dalam fikih dan mengikuti mazhab Asy‘ari dalam akidah. Nama beliau disebutkan sendiri dalam mukadimah kitab <i>Kifayatul ‘Awam</i>.",
+    "Beliau termasuk guru Syaikh Ibrahim al-Bajuri, yang kemudian menjadi Syaikhul Azhar. Syaikh al-Bajuri mensyarah kitab gurunya ini dalam <i>Tahqiq al-Maqam ‘ala Kifayatil ‘Awam</i>, dan syarah itulah yang banyak dibaca bersama matannya hingga sekarang.",
+    "Beliau menulis <i>Kifayatul ‘Awam fima Yajibu ‘alaihim min ‘Ilmil Kalam</i> atas permintaan sebagian saudaranya, mengikuti jalan Syaikh as-Sanusi dalam menguraikan dalil, tetapi menyebut dalil setiap akidah langsung di sampingnya agar mudah dipahami penuntut ilmu pemula."
+  ]},
 "Ibnu Abi Jamrah":{
   nama:"Abu Muhammad ‘Abdullah bin Sa‘d bin Abi Jamrah al-Azdi al-Andalusi al-Mursi al-Maliki",
   hidup:"Berasal dari Murcia, Andalusia (Spanyol); wafat di Kairo, Mesir, tahun 699 H.",
