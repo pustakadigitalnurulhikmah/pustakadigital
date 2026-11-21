@@ -6,7 +6,7 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fb-book{position:relative;margin:auto;flex:none;transform-origin:0 0}
 .fb-cermin{width:100%;height:100%}.fb-cermin.rtl{transform:scaleX(-1)}
 .fb-blok{position:relative}
-.fb-hal{background:#fff;overflow:hidden}
+.fb-hal{background:#F6EED9;overflow:hidden}
 .fb-hal img{display:block;width:100%;height:100%;pointer-events:none;-webkit-touch-callout:none}
 .fb-cermin.rtl .fb-hal img{transform:scaleX(-1)}
 /* tulang (punggung) buku */
@@ -90,10 +90,10 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 
 /* revisi: efek balik banyak lembar */
 .fb-riffle{position:fixed;z-index:8;perspective:2200px;pointer-events:none}
-.fb-lembar{position:absolute;inset:0;background:#fdfcf9;backface-visibility:visible;will-change:transform,filter;
+.fb-lembar{position:absolute;inset:0;background:#F6EED9;backface-visibility:visible;will-change:transform,filter;
  box-shadow:0 0 0 .5px rgba(0,0,0,.06),0 2px 14px rgba(0,0,0,.12)}
-.fb-lembar.ka{background:linear-gradient(90deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
-.fb-lembar.ki{background:linear-gradient(270deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#fdfcf9}
+.fb-lembar.ka{background:linear-gradient(90deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#F6EED9}
+.fb-lembar.ki{background:linear-gradient(270deg,rgba(0,0,0,.1),rgba(0,0,0,.02) 7%,transparent 18%,transparent 94%,rgba(0,0,0,.035)),#F6EED9}
 
 /* revisi: footer tanpa judul kitab */
 .fb-judul{display:none!important}
