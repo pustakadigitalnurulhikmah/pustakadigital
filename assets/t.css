@@ -964,3 +964,12 @@ body.hal-kitab.over .crumb a,body.hal-kitab.over .crumb i{color:var(--ink2)}
 .kh-bacaan .kh-baca>svg{width:20px;height:20px}
 .kh-desk{text-align:left}
 }
+/* revisi 63: angka & keunggulan tanpa ikon; QRIS tampil setelah tombol Donasi */
+.h-bar b{margin-top:0}
+.h-fitur h3{margin-top:0}
+@media (max-width:520px){.h-fitur li{display:block}}
+button.hb{border:0;cursor:pointer}
+.h-don:not(.buka){grid-template-columns:minmax(0,1fr)}
+.h-don:not(.buka) .h-qris{display:none}
+.h-don.buka .h-qris{animation:qrisMuncul .35s ease}
+@keyframes qrisMuncul{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
