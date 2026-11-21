@@ -1,5 +1,13 @@
 /* Biografi ulama — kunci = nama pengarang pada label "Penulis: …" */
 window.ULAMA={
+"Imam az-Zarnuji":{
+  nama:"Burhanul Islam az-Zarnuji al-Hanafi",
+  hidup:"Ulama Asia Tengah (negeri Ma Wara’an Nahr) abad ke-6 Hijriah.",
+  isi:[
+    "Beliau dikenal dengan gelar Burhanul Islam az-Zarnuji. Nisbahnya merujuk kepada Zarnuj, sebuah negeri di kawasan Ma Wara’an Nahr (Asia Tengah), wilayah yang pada masanya menjadi pusat ilmu mazhab Hanafi dengan kota-kota seperti Bukhara dan Samarkand.",
+    "Beliau seorang faqih bermazhab Hanafi. Dalam kitabnya beliau banyak menyebut guru-gurunya, di antaranya Syaikhul Islam Burhanuddin ‘Ali bin Abi Bakr al-Marghinani, penyusun <i>al-Hidayah</i>, yang paling sering beliau kutip; al-Qadhi Fakhruddin yang dikenal dengan Qadhi Khan; Ruknuddin al-Adib al-Mukhtar; dan Qawamuddin Hammad bin Ibrahim ash-Shaffar.",
+    "Karyanya yang dikenal adalah <i>Ta‘limul Muta‘allim Thariqat Ta‘allum</i>. Beliau menyusunnya ketika melihat banyak penuntut ilmu bersungguh-sungguh tetapi tidak sampai kepada tujuan karena salah menempuh jalannya. Kitab ini diterima luas oleh para ulama, disyarah oleh Ibrahim bin Isma‘il, dan terus diajarkan di madrasah, pesantren, dan dayah hingga hari ini."
+  ]},
 "Syaikh al-Fudhali":{
   nama:"Muhammad bin asy-Syafi‘i al-Fudhali asy-Syafi‘i",
   hidup:"Ulama Mesir; wafat tahun 1236 H.",
