@@ -55,7 +55,7 @@ if(bk){bk.innerHTML='<div class="grid">'+skel(6)+'</div>';
 /* ===== Koleksi kitab ===== */
 var dk=$('#daftar-kitab');
 if(dk){
-  dk.innerHTML='<div class="tools"><label class="cari"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" aria-label="Saring koleksi" placeholder="Saring judul atau pengarang"></label><div class="chips"></div></div><div class="grid">'+skel(4)+'</div>';
+  dk.innerHTML='<div class="tools"><label class="cari"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" aria-label="Saring koleksi" placeholder="Saring judul atau pengarang"></label><div class="chips"></div></div><div class="grid">'+(dk.querySelector('.grid')?dk.querySelector('.grid').innerHTML:skel(4))+'</div>';
   semua(function(all){
     var kat=[];all.forEach(function(p){if(p.kategori&&kat.indexOf(p.kategori)<0)kat.push(p.kategori)});
     var pilih='',inp=$('input',dk),g=$('.grid',dk),ch=$('.chips',dk);
