@@ -120,7 +120,7 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar,.fb-panel{background:rgba(250,252,250,.95)}}
 
 /* revisi: latar flipbook = meja baca hangat */
-body{background:#d9c3a0 url(/assets/latar-flip2.webp) center/cover no-repeat fixed}
+body{background:#d9c3a0 url(/assets/latar-flip3.webp) center/cover no-repeat fixed}
 @media (max-width:760px){body{background-attachment:scroll;background-position:left center}}
 /* revisi: bilah pindah ke samping kiri, tegak; tampil sebentar saat dibuka */
 .fb-bar,.fb-bar.sembunyi{left:max(10px,env(safe-area-inset-left));right:auto;top:50%;bottom:auto;width:auto;max-width:none;
