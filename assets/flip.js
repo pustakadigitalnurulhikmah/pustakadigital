@@ -212,3 +212,23 @@ window.fbTulis=function(){var m=cur.some(function(x){return pen.indexOf(x)>=0});
 ukur();
 var awal=setTimeout(function(){bilah(false)},3500);bar.addEventListener('pointerdown',function(){clearTimeout(awal)});
 })();
+
+/* jam dinding di gambar latar: jarum mengikuti waktu sebenarnya */
+(function(){var NS='http://www.w3.org/2000/svg',X=1565,Y=584;
+var sv=document.createElementNS(NS,'svg');sv.setAttribute('class','fb-jam');sv.setAttribute('viewBox','0 0 1672 941');sv.setAttribute('aria-hidden','true');
+function jarum(d,f){var e=document.createElementNS(NS,'path');e.setAttribute('d',d);e.setAttribute('fill',f);return e}
+var H='M'+(X-2)+' '+(Y+7)+'L'+(X-1.1)+' '+(Y-36)+'L'+(X+1.1)+' '+(Y-36)+'L'+(X+2)+' '+(Y+7)+'Z',
+    M='M'+(X-1.6)+' '+(Y+8)+'L'+(X-.8)+' '+(Y-52)+'L'+(X+.8)+' '+(Y-52)+'L'+(X+1.6)+' '+(Y+8)+'Z',
+    S='M'+(X-.55)+' '+(Y+11)+'L'+(X-.35)+' '+(Y-46)+'L'+(X+.35)+' '+(Y-46)+'L'+(X+.55)+' '+(Y+11)+'Z';
+function grup(c1,c2,c3){var g=document.createElementNS(NS,'g'),a=jarum(H,c1),b=jarum(M,c1),c=jarum(S,c2),o=document.createElementNS(NS,'circle');
+ o.setAttribute('cx',X);o.setAttribute('cy',Y);o.setAttribute('r',3.6);o.setAttribute('fill',c1);g.appendChild(a);g.appendChild(b);g.appendChild(c);g.appendChild(o);
+ if(c3){var t=document.createElementNS(NS,'circle');t.setAttribute('cx',X);t.setAttribute('cy',Y);t.setAttribute('r',1.4);t.setAttribute('fill',c3);g.appendChild(t)}return[g,a,b,c]}
+var bay=grup('rgba(60,35,10,.22)','rgba(60,35,10,.16)'),utm=grup('#1b1b1b','#9a7a3a','#c9a75a');
+bay[0].setAttribute('transform','translate(1.6 2.2)');sv.appendChild(bay[0]);sv.appendChild(utm[0]);document.body.insertBefore(sv,document.body.firstChild);
+var hp=window.matchMedia('(max-width:760px)');function pas(){sv.setAttribute('preserveAspectRatio',(hp.matches?'xMin':'xMid')+'YMid slice')}pas();
+if(hp.addEventListener)hp.addEventListener('change',pas);
+function putar(e,d){e.setAttribute('transform','rotate('+d.toFixed(2)+' '+X+' '+Y+')')}
+function detik(){var n=new Date(),s=n.getSeconds()+n.getMilliseconds()/1000,m=n.getMinutes()+s/60,h=(n.getHours()%12)+m/60;
+ [bay,utm].forEach(function(g){putar(g[1],h*30);putar(g[2],m*6);putar(g[3],Math.floor(s)*6)})}
+detik();setInterval(function(){if(!document.hidden)detik()},1000);
+document.addEventListener('visibilitychange',detik)})();
