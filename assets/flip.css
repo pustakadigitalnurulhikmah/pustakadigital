@@ -118,3 +118,7 @@ body{background:#e9eee9;color:#1f2b25;font:15px/1.4 system-ui,-apple-system,"Seg
 .fb-bar:before,.fb-panel:before{background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.1) 30%,rgba(255,255,255,0) 55%,rgba(255,255,255,.16) 85%,rgba(255,255,255,.4))}
 .fp-cari{background:rgba(255,255,255,.42);border-color:rgba(255,255,255,.65)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar,.fb-panel{background:rgba(250,252,250,.95)}}
+
+/* revisi: latar flipbook = meja baca hangat */
+body{background:#d9c3a0 url(/assets/latar-flip.webp) center/cover no-repeat fixed}
+@media (max-width:760px){body{background-attachment:scroll}}
