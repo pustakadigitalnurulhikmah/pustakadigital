@@ -135,3 +135,12 @@ body{background:#d9c3a0 url(/assets/latar-flip.webp) center/cover no-repeat fixe
 .fb-panel{left:calc(max(10px,env(safe-area-inset-left)) + 62px);top:50%;bottom:auto;width:min(400px,calc(100% - 84px));
  max-height:min(78vh,620px);transform:translate(-8px,-50%)}
 .fb-panel.buka{transform:translate(0,-50%)}
+/* revisi: bilah kiri dua kolom — [daftar isi | penanda] [◀ | ▶] [halaman] [♫ | waktu] */
+.fb-bar,.fb-bar.sembunyi{display:grid;grid-template-columns:repeat(2,36px);justify-items:center;align-items:center;gap:2px;padding:8px 6px}
+.fb-bar button{width:36px;height:36px}
+.fb-bar #dt{order:1}.fb-bar #pn{order:2}.fb-bar:after{order:3;grid-column:1/-1;margin:2px 0}
+.fb-bar #kb{order:4}.fb-bar #kn{order:5}.fb-bar .fb-no{order:6;grid-column:1/-1}.fb-bar #mu{order:7;margin-top:0}.fb-bar .fb-waktu{order:8}
+.fb-bar .fb-no{font-size:10px;gap:2px;padding:2px 0 4px}
+.fb-bar .fb-no input{min-width:2.2em;width:2.4em;padding:3px 3px;font-size:12px;border-width:1.2px;border-radius:6px}
+.fb-waktu{position:relative;z-index:1;font:600 11px/1 system-ui,sans-serif;color:#0c3a28;opacity:.75;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.fb-panel{left:calc(max(10px,env(safe-area-inset-left)) + 98px);width:min(400px,calc(100% - 118px))}

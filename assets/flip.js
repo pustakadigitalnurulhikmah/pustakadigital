@@ -88,6 +88,9 @@ if(!M){ /* flipbook dibuka langsung: putar musik situs di sini */
 var mb=document.createElement('button');mb.type='button';mb.id='mu';mb.textContent='\u266B';
 function mTampil(){var o=M.nyala();mb.classList.toggle('mati',!o);mb.setAttribute('aria-label',o?'Matikan musik':'Nyalakan musik')}mTampil();
 bar.insertBefore(mb,bk);
+/* waktu belajar berjalan (mm:ss), hanya saat halaman terlihat */
+var wk=document.createElement('span');wk.className='fb-waktu';wk.id='wk';wk.textContent='00:00';wk.setAttribute('aria-label','Waktu belajar');bar.appendChild(wk);
+var wd=0;setInterval(function(){if(document.hidden)return;wd++;var m=Math.floor(wd/60),d=wd%60;wk.textContent=(m<10?'0':'')+m+':'+(d<10?'0':'')+d},1000);
 mb.addEventListener('click',function(e){e.stopPropagation();M.alih();mTampil()});
 function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('bottom')}
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
