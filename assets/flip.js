@@ -7,7 +7,7 @@ var N=+zm.dataset.n,rtl=zm.dataset.arah==='rtl',dir=zm.dataset.dir,R=+(zm.datase
 var TRI='<svg viewBox="0 0 20 20"><path d="M15 3v14L4 10z"/></svg>',TRK='<svg viewBox="0 0 20 20"><path d="M5 3v14l11-7z"/></svg>';
 var ns=document.createElement('span');ns.className='fb-no';ns.innerHTML='Halaman <input id="no" type="text" inputmode="numeric" enterkeyhint="go" aria-label="Nomor halaman" autocomplete="off"> dari '+N;bar.appendChild(ns);
 var no=document.getElementById('no');
-var bk=document.createElement('button'),bn=document.createElement('button');bk.type=bn.type='button';bk.innerHTML=TRI;bn.innerHTML=TRK;
+var bk=document.createElement('button'),bn=document.createElement('button');bk.type=bn.type='button';bk.innerHTML=TRI;bn.innerHTML=TRK;bk.id='kb';bn.id='kn';
 bk.setAttribute('aria-label',rtl?'Halaman berikutnya':'Halaman sebelumnya');bn.setAttribute('aria-label',rtl?'Halaman sebelumnya':'Halaman berikutnya');
 bar.appendChild(bk);bar.appendChild(bn);
 var cm=document.createElement('div');cm.className='fb-cermin'+(rtl?' rtl':'');zm.appendChild(cm);
