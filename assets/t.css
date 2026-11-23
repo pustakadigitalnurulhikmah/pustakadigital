@@ -1033,3 +1033,12 @@ body.home .hero,body.home .hero:nth-child(n){background-image:url(/assets/hero-b
 @media (max-width:760px){body.home .hero{background-image:url(/assets/hero-baitul.webp);background-position:50% center}}
 body.home .hero:before{background:linear-gradient(90deg,rgba(12,17,13,.46) 0%,rgba(12,17,13,.26) 36%,rgba(12,17,13,0) 60%),linear-gradient(180deg,rgba(12,17,13,.2) 0,rgba(12,17,13,0) 16%)}
 @media (max-width:760px){body.home .hero:before{background:linear-gradient(180deg,rgba(12,17,13,.2) 0,rgba(12,17,13,0) 16%,rgba(12,17,13,0) 36%,rgba(12,17,13,.42) 58%,rgba(12,17,13,.52) 100%)}}
+/* revisi 68: gambar HD apa adanya, tanpa efek cerah/gelap */
+body.home .hero,body.home .hero:nth-child(n){background-image:url(/assets/hero-baitul-hd.webp)}
+@media (max-width:760px){body.home .hero{background-image:url(/assets/hero-baitul-hd.webp)}}
+body.home .hero:after{display:none}
+body.home .hero:before{background:none}
+@media (max-width:760px){body.home .hero:before{background:none}}
+body.home .hero h1{text-shadow:0 2px 6px rgba(28,16,6,.55),0 0 28px rgba(28,16,6,.6)}
+body.home .hero .lead{text-shadow:0 1px 3px rgba(28,16,6,.75),0 0 18px rgba(28,16,6,.8)}
+body.home .hero .eyebrow{color:#f3dc9c;text-shadow:0 1px 3px rgba(28,16,6,.8),0 0 14px rgba(28,16,6,.75)}
