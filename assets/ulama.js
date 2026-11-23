@@ -1,5 +1,13 @@
 /* Biografi ulama — kunci = nama pengarang pada label "Penulis: …" */
 window.ULAMA={
+"Zainuddin al-Malibari":{
+  nama:"Zainuddin bin Abdul Aziz al-Ma‘bari al-Malibari al-Fannani asy-Syafi‘i",
+  hidup:"Ulama Malabar (kini Kerala, India); abad ke-10 H.",
+  isi:[
+    "Beliau adalah ulama fikih mazhab Syafi‘i dari keluarga ilmu dan peradilan yang asal-usulnya dari Yaman, lalu menetap di Malabar, pesisir barat India. Beliau cucu Syekh Zainuddin bin Ali al-Ma‘bari (al-Makhdum al-Kabir), karena itu dikenal dengan sebutan Zainuddin ats-Tsani dan al-Makhdum ash-Shaghir.",
+    "Setelah belajar kepada keluarganya di Ponnani, beliau bermukim di Makkah sekitar sepuluh tahun. Guru beliau yang paling agung ialah Syaikhul Islam Ibnu Hajar al-Haitami, yang beliau sebut \u201cguru kami\u201d dalam <i>Fathul Mu‘in</i>. Sepulangnya, beliau mengajar, berfatwa, dan memutus perkara di Masjid Jami‘ Besar Ponnani, serta berperan dalam jihad melawan Portugis.",
+    "Karya beliau antara lain <i>Qurratul ‘Ain bi Muhimmatid Din</i>, syarahnya <i>Fathul Mu‘in</i> (selesai ditulis 24 Ramadhan 982 H), <i>Irsyadul ‘Ibad</i>, <i>Ihkamu Ahkamin Nikah</i>, dan <i>Tuhfatul Mujahidin</i>."
+  ]},
 "Imam az-Zarnuji":{
   nama:"Burhanul Islam az-Zarnuji al-Hanafi",
   hidup:"Ulama Asia Tengah (negeri Ma Wara’an Nahr) abad ke-6 Hijriah.",
