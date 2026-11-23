@@ -1107,3 +1107,21 @@ body.home .hero-in>:nth-child(4){animation-delay:.4s}
 .h-kolase:hover img,.h-foto:hover{transform:scale(1.03)}
 }
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.h-im{transition:none;transform:none}body.home .hero-in>*{animation:none}.h-dots button.on:after{animation:none;transform:none}}
+
+/* revisi 74: masukan Stitch — judul dua warna, saring bidang, lencana jumlah, kutipan Arab */
+body.home .hero h1 span+span{color:#f2cf73;font-style:italic}
+#daftar-kitab .tools,.home #daftar-kitab .tools{display:flex;margin:0 0 28px}
+#daftar-kitab .tools .cari{display:none}
+#daftar-kitab .chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px 0 16px;border-radius:99px;border:1px solid rgba(31,43,37,.12);background:rgba(255,255,255,.75);color:var(--ink2);transition:background .3s,color .3s,border-color .3s,transform .3s}
+#daftar-kitab .chip i{font-style:normal;font-size:11.5px;font-weight:600;min-width:22px;height:20px;padding:0 6px;border-radius:99px;display:inline-grid;place-items:center;background:rgba(31,43,37,.07);color:var(--ink2)}
+#daftar-kitab .chip.on{background:linear-gradient(135deg,#d9b45a,#b8902f);border-color:transparent;color:#fff}
+#daftar-kitab .chip.on i{background:rgba(255,255,255,.25);color:#fff}
+@media (hover:hover){#daftar-kitab .chip:not(.on):hover{border-color:#d9b45a;color:var(--g8);transform:translateY(-1px)}}
+@media (max-width:760px){#daftar-kitab .tools{flex-wrap:nowrap}#daftar-kitab .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}#daftar-kitab .chips::-webkit-scrollbar{display:none}#daftar-kitab .chip{flex:0 0 auto}}
+.b-bidang a{position:relative;padding-right:84px!important}
+.b-bidang a small{display:block;margin-top:3px;font-size:13px;color:var(--ink2);line-height:1.4}
+.b-bidang a span,.h-ulama .u>span{position:absolute;top:16px;right:16px;margin:0!important;padding:3px 10px;border-radius:99px;background:rgba(217,180,90,.16);border:1px solid rgba(201,162,74,.35);font-size:11.5px!important;font-weight:600;letter-spacing:.02em}
+.h-ulama .u{position:relative}
+.h-ulama .u-n{display:block;padding-right:70px}
+.h-kolase .q-ar{display:block;font-family:ArabKitab,serif;font-style:normal;font-size:20px;line-height:1.9;color:#f2cf73;margin-bottom:10px;text-align:right}
+@media (max-width:760px){.b-bidang a{padding-right:14px!important}.b-bidang a span{position:static;display:inline-block;margin-top:8px!important}}

@@ -59,7 +59,7 @@ if(dk){
   semua(function(all){
     var kat=[];all.forEach(function(p){if(p.kategori&&kat.indexOf(p.kategori)<0)kat.push(p.kategori)});
     var pilih='',inp=$('input',dk),g=$('.grid',dk),ch=$('.chips',dk);
-    if(kat.length>1)ch.innerHTML=['Semua'].concat(kat).map(function(k,i){return '<button class="chip'+(i?'':' on')+'" data-k="'+(i?esc(k):'')+'" type="button">'+esc(k)+'</button>'}).join('');else ch.remove();
+    if(kat.length>1){var nk={};all.forEach(function(p){nk[p.kategori]=(nk[p.kategori]||0)+1});ch.innerHTML=['Semua'].concat(kat).map(function(k,i){return '<button class="chip'+(i?'':' on')+'" data-k="'+(i?esc(k):'')+'" type="button">'+esc(i?k.replace(/^Ilmu /,''):k)+'<i>'+(i?nk[k]:all.length)+'</i></button>'}).join('')}else ch.remove();
     var q0=new URLSearchParams(location.search).get('q');if(q0)inp.value=q0;
     function tampil(){var q=inp.value.toLowerCase().trim();
       var r=all.filter(function(p){return(!pilih||p.kategori===pilih)&&(!q||(p.t+' '+p.penulis+' '+p.kategori).toLowerCase().indexOf(q)>=0)});

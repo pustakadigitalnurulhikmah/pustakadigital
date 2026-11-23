@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600&amp;family=Lora:ital,wght@1,400;1,600&amp;display=swap">
-<link rel="stylesheet" href="/assets/t.css?v=74">
+<link rel="stylesheet" href="/assets/t.css?v=75">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pustakadigital.com/#org","name":"Pustaka Digital Nurul Hikmah","url":"https://pustakadigital.com/","logo":"https://pustakadigital.com/assets/logo.png"},{"@type":"WebSite","@id":"https://pustakadigital.com/#web","name":"Pustaka Kitab Digital","alternateName":["Pustaka Digital Nurul Hikmah","Pustaka Digital","pustakadigital.com"],"description":"Kumpulan kitab Arab klasik populer berharakat lengkap, bertanda baca tepat, dan diterjemahkan dengan baik ke bahasa Indonesia, tersusun per paragraf.","url":"https://pustakadigital.com/","inLanguage":"id","publisher":{"@id":"https://pustakadigital.com/#org"},"potentialAction":{"@type":"SearchAction","target":"https://pustakadigital.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
 <link rel="preload" as="image" href="/assets/hero-baitul-hd.webp">
 <meta name="google-adsense-account" content="ca-pub-8245580144119805">
@@ -72,7 +72,7 @@
 </div>
 <div class="h-kolase">
 <img src="/assets/foto-masjid.webp" alt="Masjid berkubah hijau dilihat dari serambi" width="610" height="650" loading="lazy">
-<blockquote>“Barang siapa menempuh jalan untuk mencari ilmu, Allah mudahkan baginya jalan menuju surga.”<cite>HR. Muslim</cite></blockquote>
+<blockquote><span class="q-ar" lang="ar" dir="rtl">مَنْ سَلَكَ طَرِيْقًا يَلْتَمِسُ فِيْهِ عِلْمًا سَهَّلَ اللّٰهُ لَهُ بِهِ طَرِيْقًا إِلَى الْجَنَّةِ</span>“Barang siapa menempuh jalan untuk mencari ilmu, Allah mudahkan baginya jalan menuju surga.”<cite>HR. Muslim</cite></blockquote>
 </div>
 </div>
 </section>
@@ -157,7 +157,7 @@ window.__beranda=function(o){try{var e=o.feed.entry||[],m={},u={},by=function(id
 e.forEach(function(x){var t=x.title.$t,l=(x.link||[]).filter(function(k){return k.rel==='alternate'})[0];(x.category||[]).forEach(function(c){var n=c.term;if(/^Ilmu /.test(n))m[n]=(m[n]||0)+1;if(/^Penulis: /.test(n)){n=n.slice(9);(u[n]=u[n]||[]).push({t:t,h:l?l.href:'#'})}})});
 var k=Object.keys(m).sort(),un=Object.keys(u).sort(function(a,b){return u[b].length-u[a].length||a.localeCompare(b)});
 by('nKitab').textContent=e.length;by('nBidang').textContent=k.length;by('nUlama').textContent=un.length;
-by('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encodeURIComponent(t)+'"><b>'+es(t)+'</b><span>'+m[t]+' kitab</span></a>'}).join('');
+var KB={'Ilmu Fikih':'Ibadah, muamalah, dan hukum','Ilmu Hadis':'Sabda Nabi dan penjelasannya','Ilmu Nahwu':'Tata bahasa Arab','Ilmu Tasawuf':'Penyucian jiwa dan akhlak','Ilmu Tauhid':'Akidah Ahlussunnah wal Jama‘ah'};by('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encodeURIComponent(t)+'"><b>'+es(t)+'</b>'+(KB[t]?'<small>'+KB[t]+'</small>':'')+'<span>'+m[t]+' kitab</span></a>'}).join('');
 by('bUlama').innerHTML=un.map(function(n){return '<div class="u"><a class="u-n" href="/search/label/'+encodeURIComponent('Penulis: '+n)+'">'+es(n)+'</a><span>'+u[n].length+' kitab</span><p>'+u[n].map(function(x){return '<a href="'+es(x.h)+'">'+es(x.t)+'</a>'}).join('')+'</p></div>'}).join('')}catch(_){}};
 (function(){var s=document.createElement('script');s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&callback=__beranda';document.body.appendChild(s)})();
 </script>
@@ -172,5 +172,5 @@ h.addEventListener("touchstart",function(e){if(e.target.closest("a,button"))retu
 h.addEventListener("touchmove",function(e){if(x0==null)return;dx=e.touches[0].clientX-x0;if(!geser){if(Math.abs(dx)<8)return;if(Math.abs(e.touches[0].clientY-y0)>Math.abs(dx)){x0=null;run();return}geser=1}t.style.transition="none";t.style.transform="translateX(calc("+(-100*i)+"% + "+dx+"px))"},{passive:true});
 h.addEventListener("touchend",function(){if(x0==null)return;x0=null;if(!geser){run();return}go(Math.abs(dx)>w*.15?(dx<0?i+1:i-1):i)});
 addEventListener("load",function(){h.querySelector(".h-sl").classList.add("siap")});tanda();run()})()</script>
-<script src="/assets/a.js?v=36"></script>
+<script src="/assets/a.js?v=37"></script>
 </body></html>
