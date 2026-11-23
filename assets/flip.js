@@ -2,7 +2,7 @@
    balik dua arah dengan efek kertas, ketuk/geser, cubit-zoom, tampilan bersih */
 (function(){
 var st=document.getElementById('stage'),zm=document.getElementById('book'),bar=document.getElementById('bar');
-var N=+zm.dataset.n,rtl=zm.dataset.arah==='rtl',dir=zm.dataset.dir,R=+(zm.dataset.rasio||0.7048),KEY='fb:'+dir;
+var N=+zm.dataset.n,rtl=zm.dataset.arah==='rtl',dir=zm.dataset.dir,R=+(zm.dataset.rasio||0.7048),KEY='fb:'+dir;try{localStorage.setItem('fbb:'+location.pathname.replace(/\.html$/,'').replace(/\/$/,''),'1')}catch(e){}
 /* footer: judul · Halaman [n] dari N · ♫ · ◀ ▶ */
 var TRI='<svg viewBox="0 0 20 20"><path d="M15 3v14L4 10z"/></svg>',TRK='<svg viewBox="0 0 20 20"><path d="M5 3v14l11-7z"/></svg>';
 var ns=document.createElement('span');ns.className='fb-no';ns.innerHTML='Halaman <input id="no" type="text" inputmode="numeric" enterkeyhint="go" aria-label="Nomor halaman" autocomplete="off"> dari '+N;bar.appendChild(ns);

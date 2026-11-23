@@ -47,7 +47,7 @@
 <p class="eyebrow">Perpustakaan Kitab Digital</p>
 <h1><span>Warisan Ulama Islam</span> <span>Untuk Masa Depan</span></h1>
 <p class="lead">Akses kitab klasik dengan harakat lengkap dan terjemahan yang baik. <br>Baca dengan nyaman, kapan saja, di mana saja.</p>
-<div class="hero-btn"><a class="hb hb-1" href="#koleksi">Mulai Membaca</a><a class="hb hb-2" href="#tentang">Tentang Pustaka</a></div>
+<div class="hero-btn"><a class="hb hb-2" href="#tentang">Tentang Pustaka</a><a class="hb hb-1" href="#koleksi">Mulai Baca</a></div>
 </div>
 </div>
 </main>
@@ -56,7 +56,7 @@
 <li><b id="nKitab">8</b><span>Kitab Tersedia</span></li>
 <li><b id="nBidang">4</b><span>Bidang Ilmu</span></li>
 <li><b id="nUlama">7</b><span>Ulama Pengarang</span></li>
-<li><b>Arab &amp; Indonesia</b><span>Teks dan Terjemah</span></li>
+<li><b>Baca</b><span>Seperti Buku Asli</span></li>
 </ul></div>
 </section>
 <section class="h-sec" id="tentang">
@@ -159,5 +159,5 @@ by('bBidang').innerHTML=k.map(function(t){return '<a href="/search/label/'+encod
 by('bUlama').innerHTML=un.map(function(n){return '<div class="u"><a class="u-n" href="/search/label/'+encodeURIComponent('Penulis: '+n)+'">'+es(n)+'</a><span>'+u[n].length+' kitab</span><p>'+u[n].map(function(x){return '<a href="'+es(x.h)+'">'+es(x.t)+'</a>'}).join('')+'</p></div>'}).join('')}catch(_){}};
 (function(){var s=document.createElement('script');s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&callback=__beranda';document.body.appendChild(s)})();
 </script>
-<script src="/assets/a.js?v=34"></script>
+<script src="/assets/a.js?v=35"></script>
 </body></html>

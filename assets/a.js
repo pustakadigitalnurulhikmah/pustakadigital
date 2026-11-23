@@ -291,3 +291,6 @@ addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;pil()
 addEventListener('appinstalled',sembunyi);
 if(ios)addEventListener('load',function(){setTimeout(pil,1500)});
 })();
+
+/* revisi: tombol Mulai Baca → Lanjut Baca bila flipbook pernah dibuka */
+(function(){var a=document.querySelectorAll('.kh-bacaan a.kh-baca');for(var i=0;i<a.length;i++){var h=(a[i].getAttribute('href')||'').replace(/\.html$/,''),b=a[i].querySelector('b');try{if(b&&localStorage.getItem('fbb:'+h))b.textContent='Lanjut Baca'}catch(e){}}})();
