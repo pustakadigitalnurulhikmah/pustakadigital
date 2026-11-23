@@ -1007,3 +1007,10 @@ body.home .hero .lead{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .h-bar b{color:var(--g8)}
 .h-bar span{color:var(--ink2)}
 @media (max-width:620px){.h-bar li:nth-child(n+3){border-top-color:var(--line)}}
+/* revisi 65: gambar utama lebih terang */
+body.home .hero:after{content:"";position:absolute;inset:0;z-index:-2;background:rgba(255,248,232,.2);mix-blend-mode:screen;pointer-events:none}
+body.home .hero:before{background:linear-gradient(90deg,rgba(12,17,13,.36) 0%,rgba(12,17,13,.18) 34%,rgba(12,17,13,0) 58%),linear-gradient(180deg,rgba(12,17,13,.18) 0,rgba(12,17,13,0) 16%)}
+body.home .hero h1{text-shadow:0 2px 22px rgba(0,0,0,.42),0 1px 3px rgba(0,0,0,.25)}
+body.home .hero .lead{text-shadow:0 1px 14px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3)}
+body.home .hero .eyebrow{text-shadow:0 1px 8px rgba(0,0,0,.45)}
+@media (max-width:760px){body.home .hero:before{background:linear-gradient(180deg,rgba(12,17,13,.18) 0,rgba(12,17,13,0) 16%,rgba(12,17,13,0) 38%,rgba(12,17,13,.36) 62%,rgba(12,17,13,.46) 100%)}}
