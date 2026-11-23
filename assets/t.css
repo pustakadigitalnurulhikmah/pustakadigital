@@ -1135,3 +1135,20 @@ body.home .hero h1 span+span{color:#f2cf73;font-style:italic}
 @media (max-width:760px){.h-don{background:linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.9) 70%,rgba(255,255,255,.55) 100%),url(/assets/foto-donasi-hd.webp) 70% center/cover no-repeat}}
 .foot{background:linear-gradient(180deg,#2c2118 0%,#1f1712 100%);border-top:1px solid rgba(201,162,74,.35)}
 @media (prefers-reduced-motion:reduce){.h-fade .h-s{transition:none;filter:none}}
+/* revisi 76: blur lebih pelan, posisi HP gambar 2, footer navy, efek putih dikurangi, daftar kitab ulama berbintang, keunggulan kaca */
+.h-fade .h-s{transition:opacity 3.2s ease,filter 3.2s ease}
+@media (max-width:760px){.h-s2 .h-im{background-position:41% center}}
+.foot{background:linear-gradient(180deg,#14223d 0%,#0b1529 100%);border-top:1px solid rgba(201,162,74,.4)}
+.h-ayat-in{background:linear-gradient(90deg,rgba(255,255,255,.74),rgba(251,250,245,.52)),url(/assets/foto-ayat-hd.webp) center 60%/cover no-repeat}
+.h-don{background:linear-gradient(90deg,rgba(255,255,255,.88) 0%,rgba(255,255,255,.7) 45%,rgba(255,255,255,0) 100%),url(/assets/foto-donasi-hd.webp) right center/cover no-repeat}
+@media (max-width:760px){.h-don{background:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.72) 70%,rgba(255,255,255,.35) 100%),url(/assets/foto-donasi-hd.webp) 70% center/cover no-repeat}}
+.h-ulama p{display:block!important}
+.h-ulama p a,.h-ulama p a:hover{display:block;margin:0;padding:3px 0 3px 20px;border:0!important;border-radius:0;background:none!important;position:relative;font-size:14px;line-height:1.5;color:var(--ink2)}
+.h-ulama p a:before{content:"✦";position:absolute;left:0;top:3px;color:#c9a24a;font-size:12px}
+.h-ulama p a:hover{color:var(--g7)}
+#keunggulan{position:relative;overflow:hidden;isolation:isolate}
+#keunggulan:before,#keunggulan:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(60px);pointer-events:none}
+#keunggulan:before{width:46vw;height:46vw;max-width:620px;max-height:620px;left:-8vw;top:10%;background:radial-gradient(circle,rgba(31,110,74,.32),rgba(31,110,74,0) 70%)}
+#keunggulan:after{width:40vw;height:40vw;max-width:560px;max-height:560px;right:-6vw;bottom:-10%;background:radial-gradient(circle,rgba(217,180,90,.42),rgba(217,180,90,0) 70%)}
+.h-fitur li{background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.38));-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 30px -14px rgba(20,50,35,.28),inset 0 1px 0 rgba(255,255,255,.9)}
+.h-ayat-in .b-ayat,.h-ayat-in .b-arti{text-shadow:0 0 14px rgba(255,255,255,.95),0 0 4px rgba(255,255,255,.8)}
