@@ -1014,3 +1014,17 @@ body.home .hero h1{text-shadow:0 2px 22px rgba(0,0,0,.42),0 1px 3px rgba(0,0,0,.
 body.home .hero .lead{text-shadow:0 1px 14px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3)}
 body.home .hero .eyebrow{text-shadow:0 1px 8px rgba(0,0,0,.45)}
 @media (max-width:760px){body.home .hero:before{background:linear-gradient(180deg,rgba(12,17,13,.18) 0,rgba(12,17,13,0) 16%,rgba(12,17,13,0) 38%,rgba(12,17,13,.36) 62%,rgba(12,17,13,.46) 100%)}}
+/* revisi 66: tombol hero sebaris di HP, h-bar & kartu ulama kaca cerah, gambar HP lebih tajam */
+@media (max-width:760px){body.home .hero{background-image:url(/assets/hero-masjid.webp)}}
+@media (max-width:620px){body.home .hero-btn{flex-wrap:nowrap;gap:10px}body.home .hero-btn .hb{flex:1 1 0;min-width:0;padding:0 clamp(10px,3vw,20px);font-size:clamp(13px,3.6vw,14.5px);white-space:nowrap}}
+.h-bar ul{background:linear-gradient(135deg,rgba(255,255,255,.62) 0%,rgba(236,247,240,.48) 55%,rgba(253,246,226,.5) 100%);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 18px 40px rgba(12,58,40,.12)}
+.h-bar li{border-left-color:rgba(255,255,255,.75)}
+.h-bar b{color:var(--g7)}
+.h-bar span{color:var(--ink2)}
+@media (max-width:620px){.h-bar li:nth-child(n+3){border-top-color:rgba(255,255,255,.75)}}
+.h-ulama .u,.h-ulama .u:nth-child(n){--uc:var(--g7);background:linear-gradient(150deg,rgba(255,255,255,.95) 0%,rgba(240,248,243,.75) 60%,rgba(252,247,233,.8) 100%);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(12,58,40,.06),0 12px 28px rgba(12,58,40,.08)}
+.h-ulama .u:before{background:linear-gradient(90deg,var(--au),rgba(201,162,74,0))}
+.h-ulama .u-n,.h-ulama .u-n:hover{color:var(--g8)}
+.h-ulama p a{background:rgba(255,255,255,.7);border-color:var(--g2);color:var(--ink2)}
+.h-ulama p a:hover{background:#fff;border-color:var(--au);color:var(--g7)}
+.h-bar ul{background:linear-gradient(135deg,rgba(255,255,255,.82) 0%,rgba(238,248,242,.74) 55%,rgba(255,249,232,.78) 100%);-webkit-backdrop-filter:blur(20px) saturate(1.8) brightness(1.1);backdrop-filter:blur(20px) saturate(1.8) brightness(1.1)}
