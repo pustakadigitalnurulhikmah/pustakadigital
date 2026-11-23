@@ -294,3 +294,16 @@ if(ios)addEventListener('load',function(){setTimeout(pil,1500)});
 
 /* revisi: tombol Mulai Baca → Lanjut Baca bila flipbook pernah dibuka */
 (function(){var a=document.querySelectorAll('.kh-bacaan a.kh-baca');for(var i=0;i<a.length;i++){var h=(a[i].getAttribute('href')||'').replace(/\.html$/,''),b=a[i].querySelector('b');try{if(b&&localStorage.getItem('fbb:'+h))b.textContent='Lanjut Baca'}catch(e){}}})();
+
+/* revisi 36: muncul saat digulir, garis kemajuan, hitung angka */
+(function(){if(!("IntersectionObserver"in window))return;var R=matchMedia("(prefers-reduced-motion:reduce)").matches;
+var pb=document.createElement("div");pb.id="gProg";document.body.appendChild(pb);var tk=0;
+function up(){tk=0;var m=document.documentElement.scrollHeight-innerHeight;pb.style.transform="scaleX("+(m>0?scrollY/m:0)+")"}
+addEventListener("scroll",function(){if(!tk){tk=1;requestAnimationFrame(up)}},{passive:true});up();
+if(R)return;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+var Q=".h-sec .h-head,.h-sec .h-teks,.h-kolase,.h-foto,.h-fitur>li,.grid>.card,.h-ulama>*,.b-bidang>*,.h-ayat-in,.h-kontak>a,.h-more,.foot .wrap>*";
+function pasang(){var L=document.querySelectorAll(Q);for(var k=0;k<L.length;k++){var el=L[k];if(el.classList.contains("rv"))continue;var r=el.getBoundingClientRect();if(r.top<innerHeight*.92&&r.bottom>0)continue;var p=el.parentNode,ix=Array.prototype.indexOf.call(p.children,el)%6;el.style.setProperty("--rd",(ix*.08)+"s");el.classList.add("rv");io.observe(el)}}
+pasang();setTimeout(pasang,900);setTimeout(pasang,2500);
+var hb=document.querySelector(".h-bar");if(hb){var io2=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io2.disconnect();hb.querySelectorAll("b").forEach(function(b){var v=parseInt(b.textContent,10);if(!(v>0)||String(v)!=b.textContent.trim())return;var t0=performance.now();(function f(t){var q=Math.min(1,(t-t0)/1400);b.textContent=Math.round(v*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)})(t0)})},{threshold:.4});setTimeout(function(){io2.observe(hb)},600)}
+})();
