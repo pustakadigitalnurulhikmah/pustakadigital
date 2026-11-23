@@ -1125,3 +1125,13 @@ body.home .hero h1 span+span{color:#f2cf73;font-style:italic}
 .h-ulama .u-n{display:block;padding-right:70px}
 .h-kolase .q-ar{display:block;font-family:ArabKitab,serif;font-style:normal;font-size:20px;line-height:1.9;color:#f2cf73;margin-bottom:10px;text-align:right}
 @media (max-width:760px){.b-bidang a{padding-right:14px!important}.b-bidang a span{position:static;display:inline-block;margin-top:8px!important}}
+
+/* revisi 75: hero berganti dengan blur perlahan; gambar ayat & donasi HD; footer coklat kayu */
+.h-tr.h-fade{display:block;position:relative;height:100%;transform:none!important;transition:none}
+.h-fade .h-s{position:absolute;inset:0;opacity:0;filter:blur(18px);transition:opacity 1.8s ease,filter 1.8s ease;will-change:opacity,filter}
+.h-fade .h-s.akt{opacity:1;filter:blur(0);z-index:1}
+.h-ayat-in{background:linear-gradient(90deg,rgba(255,255,255,.9),rgba(251,250,245,.76)),url(/assets/foto-ayat-hd.webp) center 60%/cover no-repeat}
+.h-don{background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 45%,rgba(255,255,255,.2) 100%),url(/assets/foto-donasi-hd.webp) right center/cover no-repeat}
+@media (max-width:760px){.h-don{background:linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.9) 70%,rgba(255,255,255,.55) 100%),url(/assets/foto-donasi-hd.webp) 70% center/cover no-repeat}}
+.foot{background:linear-gradient(180deg,#2c2118 0%,#1f1712 100%);border-top:1px solid rgba(201,162,74,.35)}
+@media (prefers-reduced-motion:reduce){.h-fade .h-s{transition:none;filter:none}}

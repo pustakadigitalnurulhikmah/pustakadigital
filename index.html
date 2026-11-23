@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600&amp;family=Lora:ital,wght@1,400;1,600&amp;display=swap">
-<link rel="stylesheet" href="/assets/t.css?v=75">
+<link rel="stylesheet" href="/assets/t.css?v=76">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pustakadigital.com/#org","name":"Pustaka Digital Nurul Hikmah","url":"https://pustakadigital.com/","logo":"https://pustakadigital.com/assets/logo.png"},{"@type":"WebSite","@id":"https://pustakadigital.com/#web","name":"Pustaka Kitab Digital","alternateName":["Pustaka Digital Nurul Hikmah","Pustaka Digital","pustakadigital.com"],"description":"Kumpulan kitab Arab klasik populer berharakat lengkap, bertanda baca tepat, dan diterjemahkan dengan baik ke bahasa Indonesia, tersusun per paragraf.","url":"https://pustakadigital.com/","inLanguage":"id","publisher":{"@id":"https://pustakadigital.com/#org"},"potentialAction":{"@type":"SearchAction","target":"https://pustakadigital.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
 <link rel="preload" as="image" href="/assets/hero-baitul-hd.webp">
 <meta name="google-adsense-account" content="ca-pub-8245580144119805">
@@ -42,7 +42,7 @@
 </div>
 </header>
 <main class="hero" id="beranda">
-<div class="h-sl" aria-hidden="true"><div class="h-tr"><div class="h-s h-s1 akt"><div class="h-im"></div></div><div class="h-s h-s2"><div class="h-im"></div></div><div class="h-s h-s1"><div class="h-im"></div></div></div></div>
+<div class="h-sl" aria-hidden="true"><div class="h-tr h-fade"><div class="h-s h-s1 akt"><div class="h-im"></div></div><div class="h-s h-s2"><div class="h-im"></div></div></div></div>
 <div class="h-dots" role="tablist" aria-label="Gambar beranda"><button type="button" class="on" aria-label="Gambar 1"></button><button type="button" aria-label="Gambar 2"></button></div>
 <div class="wrap">
 <div class="hero-in">
@@ -161,16 +161,12 @@ var KB={'Ilmu Fikih':'Ibadah, muamalah, dan hukum','Ilmu Hadis':'Sabda Nabi dan 
 by('bUlama').innerHTML=un.map(function(n){return '<div class="u"><a class="u-n" href="/search/label/'+encodeURIComponent('Penulis: '+n)+'">'+es(n)+'</a><span>'+u[n].length+' kitab</span><p>'+u[n].map(function(x){return '<a href="'+es(x.h)+'">'+es(x.t)+'</a>'}).join('')+'</p></div>'}).join('')}catch(_){}};
 (function(){var s=document.createElement('script');s.src='/feed.js?v='+Math.floor(Date.now()/6e5)+'&callback=__beranda';document.body.appendChild(s)})();
 </script>
-<script>(function(){var h=document.getElementById("beranda"),t=h&&h.querySelector(".h-tr");if(!t)return;var sl=t.children,d=h.querySelectorAll(".h-dots button"),n=d.length,i=0,tm,x0=null,y0=0,dx=0,w=1,geser=0;
-function pos(a){t.style.transition=a?"":"none";t.style.transform="translateX("+(-100*i)+"%)";if(!a)t.offsetWidth}
-function tanda(){var k=i%n;for(var j=0;j<sl.length;j++)sl[j].classList.toggle("akt",j==i);for(j=0;j<n;j++){d[j].classList.remove("on");if(j==k){d[j].offsetWidth;d[j].classList.add("on")}}h.setAttribute("data-s",k)}
-function go(k){if(k<0){i=n;pos(0);k=n-1}i=k;pos(1);tanda();run()}
-t.addEventListener("transitionend",function(e){if(e.target==t&&i==n){i=0;pos(0);tanda()}});
+<script>(function(){var h=document.getElementById("beranda"),t=h&&h.querySelector(".h-tr");if(!t)return;var sl=t.children,d=h.querySelectorAll(".h-dots button"),n=sl.length,i=0,tm,x0=null,y0=0;
+function go(k){i=(k+n)%n;for(var j=0;j<n;j++){sl[j].classList.toggle("akt",j==i);d[j].classList.remove("on");if(j==i){d[j].offsetWidth;d[j].classList.add("on")}}h.setAttribute("data-s",i);run()}
 function run(){clearTimeout(tm);tm=setTimeout(function(){if(document.hidden)run();else go(i+1)},7000)}
-for(var j=0;j<n;j++)(function(j){d[j].onclick=function(){if(i==n){i=0;pos(0)}go(j)}})(j);
-h.addEventListener("touchstart",function(e){if(e.target.closest("a,button"))return;if(i==n){i=0;pos(0)}x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;geser=0;w=h.offsetWidth;clearTimeout(tm)},{passive:true});
-h.addEventListener("touchmove",function(e){if(x0==null)return;dx=e.touches[0].clientX-x0;if(!geser){if(Math.abs(dx)<8)return;if(Math.abs(e.touches[0].clientY-y0)>Math.abs(dx)){x0=null;run();return}geser=1}t.style.transition="none";t.style.transform="translateX(calc("+(-100*i)+"% + "+dx+"px))"},{passive:true});
-h.addEventListener("touchend",function(){if(x0==null)return;x0=null;if(!geser){run();return}go(Math.abs(dx)>w*.15?(dx<0?i+1:i-1):i)});
-addEventListener("load",function(){h.querySelector(".h-sl").classList.add("siap")});tanda();run()})()</script>
+for(var j=0;j<n;j++)(function(j){d[j].onclick=function(){if(j!=i)go(j)}})(j);
+h.addEventListener("touchstart",function(e){if(e.target.closest("a,button"))return;x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+h.addEventListener("touchend",function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1)});
+addEventListener("load",function(){h.querySelector(".h-sl").classList.add("siap")});go(0)})()</script>
 <script src="/assets/a.js?v=37"></script>
 </body></html>
