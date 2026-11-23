@@ -973,3 +973,37 @@ button.hb{border:0;cursor:pointer}
 .h-don:not(.buka) .h-qris{display:none}
 .h-don.buka .h-qris{animation:qrisMuncul .35s ease}
 @keyframes qrisMuncul{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* revisi 64: beranda lebih cerah & bersih */
+body.home .hero:before{background:linear-gradient(90deg,rgba(12,17,13,.5) 0%,rgba(12,17,13,.3) 32%,rgba(12,17,13,.04) 60%,rgba(12,17,13,0) 80%),linear-gradient(180deg,rgba(12,17,13,.28) 0,rgba(12,17,13,0) 18%,rgba(12,17,13,0) 55%,rgba(12,17,13,.3) 100%)}
+body.home .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.3)}
+body.home .hero .lead{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+@media (max-width:760px){body.home .hero:before{background:linear-gradient(180deg,rgba(12,17,13,.3) 0,rgba(12,17,13,0) 18%,rgba(12,17,13,.04) 34%,rgba(12,17,13,.48) 62%,rgba(12,17,13,.62) 100%)}}
+.h-gelap{background:linear-gradient(180deg,#fff 0%,var(--g0) 100%);color:var(--ink)}
+.h-gelap .h-pil{background:var(--krem);border-color:var(--krem2);color:var(--au-d)}
+.h-gelap .h-teks h2{color:var(--head-ink)}
+.h-gelap .h-teks p{color:var(--ink2)}
+.h-gelap .b-bidang a{background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px rgba(12,58,40,.05)}
+.h-gelap .b-bidang a:hover{background:#fff;border-color:var(--au)}
+.h-gelap .b-bidang b{color:var(--g8)}
+.h-gelap .b-bidang span{color:var(--au-d)}
+.h-gelap .hb-o{background:#fff;color:var(--g7);border:1px solid var(--g2)}
+.h-gelap .hb-o:hover{background:var(--g0)}
+.h-ulama .u{background:linear-gradient(160deg,#fff 0%,color-mix(in srgb,var(--uc) 6%,#fff) 100%);border:1px solid color-mix(in srgb,var(--uc) 16%,#fff);box-shadow:0 8px 22px color-mix(in srgb,var(--uc) 8%,transparent)}
+.h-ulama .u:before{background:linear-gradient(90deg,var(--uc),rgba(255,255,255,0))}
+.h-ulama .u-n,.h-ulama .u-n:hover{color:var(--uc)}
+.h-ulama .u>span{color:var(--au-d)!important}
+.h-ulama p a{background:#fff;border-color:color-mix(in srgb,var(--uc) 20%,#fff);color:var(--ink2)}
+.h-ulama p a:hover{background:color-mix(in srgb,var(--uc) 6%,#fff);border-color:var(--au);color:var(--uc)}
+.h-ayat-in{background:linear-gradient(90deg,rgba(255,255,255,.93),rgba(251,250,245,.8)),url(/assets/foto-mushaf.webp) center 40%/cover no-repeat;border:1px solid var(--krem2);box-shadow:0 14px 34px rgba(12,58,40,.07)}
+.h-ayat .b-ayat{color:var(--g8)}
+.h-ayat .b-arti{color:var(--ink2)}
+.h-ayat .b-src{color:var(--au-d)}
+.h-don{background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 50%,rgba(255,255,255,.35) 100%),url(/assets/foto-gerbang.webp) right center/cover no-repeat;border:1px solid var(--krem2);box-shadow:0 14px 34px rgba(12,58,40,.07)}
+.h-don .h-pil{background:var(--krem);border-color:var(--krem2);color:var(--au-d)}
+.h-don .h-teks h2{color:var(--head-ink)}
+.h-don .h-teks p{color:var(--ink2)}
+.h-bar ul{background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.7);box-shadow:0 18px 40px rgba(12,58,40,.12)}
+.h-bar li{border-left-color:var(--line)}
+.h-bar b{color:var(--g8)}
+.h-bar span{color:var(--ink2)}
+@media (max-width:620px){.h-bar li:nth-child(n+3){border-top-color:var(--line)}}
