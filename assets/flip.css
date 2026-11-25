@@ -166,3 +166,6 @@ body{background:#d9c3a0 url(/assets/latar-flip3.webp) center/cover no-repeat fix
 .fb-panel.lepas{bottom:auto;transform:translateY(-8px)}.fb-panel.lepas.buka{transform:none}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fb-bar.lepas button,.fb-bar.lepas .fb-waktu,.fb-bar.lepas .fb-no{background:rgba(250,252,250,.92)}}
 .fb-bar.lepas button svg{fill:#a47c22}.fb-bar.lepas #pn svg{fill:none;stroke:#a47c22;stroke-width:1.8}.fb-bar.lepas #pn.on svg{fill:#a47c22}
+/* revisi 71: tombol di pinggir buku; ◀ ▶ hilang bila halaman habis; waktu muat dalam tombol bulat */
+.fb-bar.lepas button:disabled{visibility:hidden}
+.fb-bar.lepas .fb-waktu{padding:0;font-size:calc(var(--s,40px)*.3);letter-spacing:0}
