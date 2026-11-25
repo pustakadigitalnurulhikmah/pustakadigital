@@ -16,7 +16,7 @@ function url(p){return dir+(p<10?'0':'')+p+'.svg'}
 var cache={};function gbr(i){if(i<0||i>=N)return null;var g=cache[i];if(!g){g=new Image();g.alt='';g.draggable=false;g.src=url(i+1);cache[i]=g;if(g.decode)g.decode().catch(function(){})}return g}
 function muat(i){for(var j=i-3;j<=i+4;j++)gbr(j)}
 function simpan(){var h=/hal-(\d+)/.exec(location.hash);if(h&&+h[1]>=1&&+h[1]<=N)return +h[1]-1;try{var v=parseInt(localStorage.getItem(KEY),10);if(v>=1&&v<=N)return v-1}catch(e){}return 0}
-var cur=[1],pf=null,blk=null,divs=[],spread=false,pw=0,ph=0,z=1,idx=simpan(),anim=null,sibuk=false;
+var vis=[true,true],cur=[1],pf=null,blk=null,divs=[],spread=false,pw=0,ph=0,z=1,idx=simpan(),anim=null,sibuk=false;
 function buat(){if(pf){idx=pf.getCurrentPageIndex();try{pf.destroy()}catch(e){}}
   blk=document.createElement('div');blk.className='fb-blok';cm.appendChild(blk);
   var w=Math.round(pw*z),h=Math.round(ph*z);blk.style.width=(spread?2*w:w)+'px';blk.style.height=h+'px';
@@ -31,13 +31,28 @@ function buat(){if(pf){idx=pf.getCurrentPageIndex();try{pf.destroy()}catch(e){}}
   tulis();st.classList.toggle('zoom',z>1.001)}
 function isiDiv(i){for(var j=i-3;j<=i+4;j++){var d=divs[j];if(d&&!d.firstChild){var g=gbr(j);if(g)d.appendChild(g)}}}
 function punggung(){var a=-1,b=-1;if(spread){if(idx===0)b=0;else{a=idx%2?idx:idx-1;b=a+1<N?a+1:-1}}else b=idx;
+  var ki=spread&&a>=0,ka=b>=0;vis=spread?(rtl?[ka,ki]:[ki,ka]):[true,true];
   cm.classList.toggle('ada-kiri',spread&&a>=0);cm.classList.toggle('ada-kanan',b>=0);cm.classList.toggle('dua',spread)}
 function tulis(){punggung();var i=idx,ix=[i];if(spread&&i>0)ix=i%2?[i,i+1]:[i-1,i];
   var p=ix.filter(function(x){return x<N}).map(function(x){return x+1});if(document.activeElement!==no)no.value=p.length>1?p[0]+'–'+p[1]:p[0];
   bk.disabled=rtl?i>=N-1:i<=0;bn.disabled=rtl?i<=0:i>=N-1;
-  try{localStorage.setItem(KEY,i+1)}catch(e){}cur=p;try{history.replaceState(null,'','#hal-'+p[0])}catch(e){}if(window.fbTulis)fbTulis()}
-function ukur(){var W=st.clientWidth,H=st.clientHeight,pad=W<600?6:22;spread=W>=800&&W/H>1.15;
-  var cols=spread?2:1;ph=Math.floor(Math.min(H-2*pad,(W-2*pad)/(cols*R)));pw=Math.floor(ph*R);buat()}
+  try{localStorage.setItem(KEY,i+1)}catch(e){}cur=p;try{history.replaceState(null,'','#hal-'+p[0])}catch(e){}if(window.fbTulis)fbTulis();if(bar.classList.contains('lepas'))tata()}
+/* ruang tombol di luar buku (ukuran mengalir halus menurut lebar layar) */
+function cadang(W){var s=Math.round(Math.max(32,Math.min(42,W*.09))),aw=Math.round(Math.max(24,Math.min(42,W*.065))),g=Math.round(Math.max(4,Math.min(12,W*.012))),e=Math.round(Math.max(3,Math.min(14,W*.012)));return{s:s,aw:aw,g:g,h:aw+g+e,v:s+g+e}}
+function ukur(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W);spread=W>=800&&W/H>1.15;
+  var cols=spread?2:1;ph=Math.floor(Math.min(H-2*c.v,(W-2*c.h)/(cols*R)));pw=Math.floor(ph*R);buat();tata()}
+/* tata letak tombol: daftar isi kiri atas, penanda kanan atas, ◀ ▶ di sisi, waktu kiri bawah, musik kanan bawah, halaman di bawah tengah */
+function tata(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W),bw=pw*(spread?2:1),L=Math.round((W-bw)/2),T=Math.round((H-ph)/2),s=c.s,ah=Math.round(s*1.6);
+  if(spread&&!(vis[0]&&vis[1])){if(!vis[0])L+=pw;bw=pw}
+  bar.classList.add('lepas');
+  function at(id,x,y,w,h){var el=typeof id==='string'?document.getElementById(id):id;if(!el)return;var t=el.style;t.left=x+'px';t.top=y+'px';if(w)t.width=w+'px';t.height=h+'px'}
+  var atas=T-c.g-s,bawah=T+ph+c.g;
+  at('dt',L,atas,s,s);at('pn',L+bw-s,atas,s,s);
+  at('kb',L-c.g-c.aw,T+ph/2-ah/2,c.aw,ah);at('kn',L+bw+c.g,T+ph/2-ah/2,c.aw,ah);
+  var cx=L+bw/2;at(ns,cx,bawah,0,s);ns.style.translate='-50% 0';var nw=ns.offsetWidth,wkE=document.getElementById('wk'),ww=wkE?wkE.offsetWidth:60;
+  at('wk',Math.min(L,Math.round(cx-nw/2-6-ww)),bawah,0,s);at('mu',Math.max(L+bw-s,Math.round(cx+nw/2+6)),bawah,s,s);
+  var P=document.querySelector('.fb-panel');if(P){P.classList.add('lepas');var pw2=Math.min(400,W-16),px=Math.max(8,Math.min(L,W-8-pw2));
+   P.style.left=px+'px';P.style.top=(atas+s+6)+'px';P.style.width=pw2+'px';P.style.maxHeight=Math.max(160,Math.min(620,H-(atas+s+6)-10))+'px'}}
 /* koordinat layar -> koordinat blok (memperhitungkan cermin RTL) */
 function kb(cx,cy){var r=blk.getBoundingClientRect();return {x:rtl?r.right-cx:cx-r.left,y:cy-r.top}}
 function rect(){return pf.getRender().getRect()}
@@ -96,7 +111,7 @@ function maju(){if(sibuk||lipat)return;if(idx>=N-1)return;suara();pf.flipNext('b
 function mundur(){if(sibuk||lipat||idx<=0)return;if(spread){suara();pf.flipPrev('bottom');return}
   var L=mulaiLipat(-1);if(!L)return;L.set(.05);akhiri(L,true)}
 /* bilah judul */
-var tahanBar=false;function bilah(v){if(!v&&tahanBar)return;bar.classList.toggle('sembunyi',!v)}
+var tahanBar=false;function bilah(v){if(v===undefined)v=bar.classList.contains('sembunyi');if(!v&&tahanBar)return;bar.classList.toggle('sembunyi',!v)}
 /* gestur */
 var pt=null,pinch=null,ketukAkhir=0;
 st.addEventListener('pointerdown',function(e){if(pinch||e.button>0||!pf)return;if(e.target.closest&&e.target.closest('.fb-bar'))return;
@@ -108,13 +123,12 @@ st.addEventListener('pointermove',function(e){if(!pt||pt.id!==e.pointerId||pinch
   if(pt.x0===undefined){if(sibuk){pt.m='x';return}var maj=(dx>0)===rtl;lipat=mulaiLipat(maj?1:-1,kb(e.clientX,e.clientY).y);if(!lipat){pt.m='x';return}lipat.S=gesekMulai();pt.maj=maj;pt.x0=pt.x}
   if(!lipat)return;var w=spread?pw:pw*.85,g=(pt.maj===rtl?dx:-dx);lipat.set(g/(w*1.6),kb(e.clientX,e.clientY).y)});
 function lepas(e){if(!pt||pt.id!==e.pointerId)return;var p=pt;pt=null;
-  if(lipat){var L=lipat;lipat=null;var cepat=Date.now()-p.t<350,ok=L.u>.3||(cepat&&L.u>.05);bilah(false);akhiri(L,ok);return}
+  if(lipat){var L=lipat;lipat=null;var cepat=Date.now()-p.t<350,ok=L.u>.3||(cepat&&L.u>.05);akhiri(L,ok);return}
   if(p.m||e.type==='pointercancel')return;
   var r=zm.getBoundingClientRect(),dalam=e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom,now=Date.now();
   var kiri=e.clientX<r.left+r.width/2,keMaju=(kiri===rtl);
   if(dalam&&spread&&((idx===0&&!keMaju)||(idx>=N-1&&keMaju)))dalam=false;
-  if(!dalam){bilah(true);return}
-  bilah(false);
+  if(!dalam){bilah();return}
   if(z>1.001){if(now-ketukAkhir<320)setZ(1);ketukAkhir=now;return}
   if(keMaju)maju();else mundur()}
 st.addEventListener('pointerup',lepas);st.addEventListener('pointercancel',lepas);
@@ -158,7 +172,7 @@ no.addEventListener('focus',function(){no.value='';tahanBar=true});
 no.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Enter')no.blur();else if(e.key==='Escape'){no.value='';no.blur()}});
 no.addEventListener('blur',function(){tahanBar=false;var v=parseInt(no.value,10);no.value='';if(v)keHal(v);else tulis()});
 document.addEventListener('keydown',function(e){if(e.target===no)return;if(e.key==='ArrowLeft')rtl?maju():mundur();else if(e.key==='ArrowRight')rtl?mundur():maju();
-  else if(e.key==='+'||e.key==='=')setZ(z*1.4);else if(e.key==='-')setZ(z/1.4);else if(e.key==='Escape')bilah(true)});
+  else if(e.key==='+'||e.key==='=')setZ(z*1.4);else if(e.key==='-')setZ(z/1.4);else if(e.key==='Escape')bilah()});
 document.addEventListener('contextmenu',function(e){e.preventDefault()});
 document.addEventListener('dragstart',function(e){e.preventDefault()});
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){var W=st.clientWidth,H=st.clientHeight,sp=W>=800&&W/H>1.15;if(z===1||sp!==spread){z=1;ukur()}},150)});
@@ -188,7 +202,7 @@ function isi(){P.querySelectorAll('.fp-tab button').forEach(function(b){b.classL
   if(!h)h='<p class="fp-kosong">'+(T.length?'Judul tidak ditemukan.':'Daftar isi belum tersedia.')+'</p>'}
  else{pen.slice().sort(function(a,b){return a-b}).forEach(function(n){var b=bab(n);
   h+='<a href="#hal-'+n+'" data-p="'+n+'" class="l0"><span>Halaman '+n+(b?' <i>'+esc(b[0])+'</i>':'')+'</span><button type="button" data-h="'+n+'" aria-label="Hapus penanda">×</button></a>'});
-  if(!h)h='<p class="fp-kosong">Belum ada penanda. Ketuk ikon pita di bawah untuk menandai halaman yang sedang dibaca.</p>'}
+  if(!h)h='<p class="fp-kosong">Belum ada penanda. Ketuk ikon pita di kanan atas buku untuk menandai halaman yang sedang dibaca.</p>'}
  box.innerHTML=h;var k=box.querySelector('.kini');if(k)k.scrollIntoView({block:'center'})}
 function buka(t){tab=t||tab;P.classList.add('buka');tahanBar=true;bilah(true);isi()}
 function tutup(){P.classList.remove('buka');tahanBar=false;ci.blur()}
@@ -210,7 +224,6 @@ window.addEventListener('hashchange',function(){var h=/hal-(\d+)/.exec(location.
 window.fbTulis=function(){var m=cur.some(function(x){return pen.indexOf(x)>=0});bp.classList.toggle('on',m);bp.setAttribute('aria-label',m?'Hapus penanda halaman ini':'Tandai halaman ini')};
 })();
 ukur();
-var awal=setTimeout(function(){bilah(false)},3500);bar.addEventListener('pointerdown',function(){clearTimeout(awal)});
 })();
 
 /* jam dinding di gambar latar: jarum mengikuti waktu sebenarnya */
