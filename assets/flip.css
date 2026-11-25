@@ -169,3 +169,9 @@ body{background:#d9c3a0 url(/assets/latar-flip3.webp) center/cover no-repeat fix
 /* revisi 71: tombol di pinggir buku; ◀ ▶ hilang bila halaman habis; waktu muat dalam tombol bulat */
 .fb-bar.lepas button:disabled{visibility:hidden}
 .fb-bar.lepas .fb-waktu{padding:0;font-size:calc(var(--s,40px)*.3);letter-spacing:0}
+/* revisi 72: ◀ ▶ tanpa kotak kaca; semua tombol (termasuk musik & waktu) ikut hilang */
+.fb-bar.lepas.sembunyi>*{opacity:0!important;pointer-events:none!important}
+.fb-bar.lepas #kb,.fb-bar.lepas #kn{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.fb-bar.lepas #kb svg,.fb-bar.lepas #kn svg{width:100%;height:auto;fill:#d4ad52;filter:drop-shadow(0 1px 1.5px rgba(40,22,5,.55)) drop-shadow(0 0 6px rgba(40,22,5,.25))}
+.fb-bar.lepas #kb:hover svg,.fb-bar.lepas #kn:hover svg{fill:#e6c26a}
+.fb-bar.lepas #kb:hover,.fb-bar.lepas #kn:hover{background:none!important}

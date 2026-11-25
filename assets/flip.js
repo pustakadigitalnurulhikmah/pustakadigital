@@ -38,19 +38,21 @@ function tulis(){punggung();var i=idx,ix=[i];if(spread&&i>0)ix=i%2?[i,i+1]:[i-1,
   bk.disabled=rtl?i>=N-1:i<=0;bn.disabled=rtl?i<=0:i>=N-1;
   try{localStorage.setItem(KEY,i+1)}catch(e){}cur=p;try{history.replaceState(null,'','#hal-'+p[0])}catch(e){}if(window.fbTulis)fbTulis();if(bar.classList.contains('lepas'))tata()}
 /* ruang tombol di luar buku (ukuran mengalir halus menurut lebar layar) */
+/* mode penuh: layar penuh (F11/fullscreen) di PC, atau layar miring pendek (HP dimiringkan) → baris halaman tak memakan ruang */
+function penuh(W,H){return !!document.fullscreenElement||(innerHeight>=screen.height-2&&innerWidth>=screen.width-2&&W>H)||(W>H&&H<520)}
 function cadang(W){var s=Math.round(Math.max(30,Math.min(42,W*.08))),g=Math.round(Math.max(4,Math.min(12,W*.012))),e=Math.round(Math.max(3,Math.min(14,W*.012)));return{s:s,g:g,h:s+g+e,v:s+g}}
-function ukur(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W);spread=W>=800&&W/H>1.15;st.style.paddingBottom=c.v+'px';
+function ukur(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W);spread=W>=800&&W/H>1.15;if(penuh(W,H))c.v=0;st.style.paddingBottom=c.v+'px';
   var cols=spread?2:1;ph=Math.floor(Math.min(H-c.v-2*c.g,(W-2*c.h)/(cols*R)));pw=Math.floor(ph*R);buat();tata()}
 /* tata letak tombol di pinggir buku: kiri = daftar isi (atas), ◀ (tengah), waktu (bawah); kanan = penanda, ▶, musik; halaman di bawah tengah */
-function tata(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W),bw=pw*(spread?2:1),L=Math.round((W-bw)/2),T=Math.round((H-c.v-ph)/2),s=c.s,ah=Math.round(s*1.6);
+function tata(){var W=st.clientWidth,H=st.clientHeight,c=cadang(W),pn0=penuh(W,H);if(pn0)c.v=0;var bw=pw*(spread?2:1),L=Math.round((W-bw)/2),T=Math.round((H-c.v-ph)/2),s=c.s,ah=Math.round(s*1.6);
   if(spread&&!(vis[0]&&vis[1])){if(!vis[0])L+=pw;bw=pw}
   bar.classList.add('lepas');bar.style.setProperty('--s',s+'px');
   function at(id,x,y,w,h){var el=typeof id==='string'?document.getElementById(id):id;if(!el)return;var t=el.style;t.left=x+'px';t.top=y+'px';if(w)t.width=w+'px';t.height=h+'px'}
   var ki=L-c.g-s,ka=L+bw+c.g,bw2=T+ph-s;
   at('dt',ki,T,s,s);at('pn',ka,T,s,s);
   at('kb',ki,T+ph/2-ah/2,s,ah);at('kn',ka,T+ph/2-ah/2,s,ah);
-  at('wk',ki,bw2,s,s);at('mu',ka,bw2,s,s);
-  at(ns,L+bw/2,T+ph+c.g,0,s);ns.style.translate='-50% 0';
+  at('mu',ki,bw2,s,s);at('wk',ka,bw2,s,s);
+  at(ns,L+bw/2,pn0?T+ph-s-c.g:T+ph+c.g,0,s);bar.classList.toggle('penuh',pn0);ns.style.translate='-50% 0';
   var P=document.querySelector('.fb-panel');if(P){P.classList.add('lepas');var pw2=Math.min(400,W-16),px=Math.max(8,Math.min(ki+s+6,W-8-pw2));
    P.style.left=px+'px';P.style.top=T+'px';P.style.width=pw2+'px';P.style.maxHeight=Math.max(160,Math.min(620,H-T-10))+'px'}}
 /* koordinat layar -> koordinat blok (memperhitungkan cermin RTL) */
