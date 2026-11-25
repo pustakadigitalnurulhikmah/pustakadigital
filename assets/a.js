@@ -1,4 +1,10 @@
 /* Pustaka Digital Nurul Hikmah — skrip tema (rombak 2026-11) */
+/* revisi 78: di dalam bingkai musik, riwayat (pushState/replaceState/back) diteruskan ke jendela utama agar tombol Kembali browser berurutan */
+(function(){var t=null;try{if(window.top!==window&&window.top.__pdNav)t=window.top}catch(e){}if(!t)return;
+var H=history,P=History.prototype;
+H.pushState=function(s,x,u){P.replaceState.call(H,s,x,u);t.__pdNav(0,location.href)};
+H.replaceState=function(s,x,u){P.replaceState.call(H,s,x,u);t.__pdNav(1,location.href)};
+H.back=function(){t.history.back()};H.forward=function(){t.history.forward()};H.go=function(n){t.history.go(n)};})();
 (function(){
 var CFG={
   mutiara:{'Ilmu Nahwu':'Ilmu nahwu adalah ilmu alat; dengannya segala ilmu pengetahuan yang berbahasa Arab dapat dipahami.'},
@@ -165,17 +171,19 @@ if(h2s.length>=2){
     $('.pv',bawah).classList.toggle('hide',i===0);$('.nx',bawah).classList.toggle('hide',i===bag.length-1);
     tocA.forEach(function(a,k){a.classList.toggle('on',k===i)});
     if(ol.clientHeight&&tocA[i]){var ot=tocA[i].offsetTop;if(ot<ol.scrollTop||ot>ol.scrollTop+ol.clientHeight-40)ol.scrollTop=ot-ol.clientHeight/3}
-    if(push||art.classList.contains('buka')){var h='#bagian-'+(i+1);try{if(push)history.pushState(null,'',h);else history.replaceState(null,'',h)}catch(e){}STORE.set(KEY,i)}
+    if(push||art.classList.contains('buka')){var h='#bagian-'+(i+1);try{if(push===2){history.pushState(null,'',h);dariInfo=true}else history.replaceState(null,'',h)}catch(e){}STORE.set(KEY,i)}
     if(push&&ganti)window.scrollTo({top:0,behavior:'smooth'});
   };
+  var dariInfo=false;
   var dariHash=function(){var m=location.hash.match(/^#bagian-(\d+)$/);if(m)return parseInt(m[1],10)-1;
     if(location.hash.length>1){var t=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t){var s=t.closest('.bagian');if(s)return bag.indexOf(s)}}return -1};
   $('.pv',bawah).onclick=function(){go(idx-1,true)};$('.nx',bawah).onclick=function(){go(idx+1,true)};
   $$('a',bawah).forEach(function(a){a.onkeydown=function(e){if(e.key==='Enter')a.click()}});
-  window.addEventListener('popstate',function(){var i=dariHash();art.classList.toggle('buka',i>=0);if(i<0)lb();go(i<0?0:i,false)});
-  $$('.k-ringkas a[href^="#"]').forEach(function(a){a.onclick=function(e){e.preventDefault();try{history.pushState(null,'',a.getAttribute('href'))}catch(x){}var i=dariHash();if(i<0)return;art.classList.add('buka');go(i,false);window.scrollTo({top:0,behavior:'instant'})}});
+  window.addEventListener('popstate',function(){var i=dariHash();dariInfo=i>=0;art.classList.toggle('buka',i>=0);if(i<0)lb();go(i<0?0:i,false)});
+  $$('.k-ringkas a[href^="#"]').forEach(function(a){a.onclick=function(e){e.preventDefault();try{history.pushState(null,'',a.getAttribute('href'));dariInfo=true}catch(x){}var i=dariHash();if(i<0)return;art.classList.add('buka');go(i,false);window.scrollTo({top:0,behavior:'instant'})}});
   document.addEventListener('keydown',function(e){if(!art.classList.contains('buka')||/INPUT|SELECT|TEXTAREA/.test((e.target||{}).tagName||''))return;
     if(e.key==='ArrowRight')go(idx+1,true);else if(e.key==='ArrowLeft')go(idx-1,true)});
+  window.__kbInfo=function(){return dariInfo};
   var mulai=dariHash();if(mulai>=0)art.classList.add('buka');go(mulai>=0?mulai:0,false);
 }else{
   art.insertBefore(rtl,body);
@@ -198,8 +206,8 @@ function lb(){var s=parseInt(STORE.get(KEY),10)||0;sv=(bag.length&&s>0&&s<bag.le
   else{$('b',baca).textContent='Mulai Membaca';$('small',baca).textContent=bag.length?'Dari halaman pertama':'Buka isi kitab'}}
 lb();
 var keAtas=function(){window.scrollTo({top:0,behavior:'instant'})};
-baca.onclick=function(){art.classList.add('buka');if(go)go(sv,true);else{try{history.pushState(null,'','#isi')}catch(e){}}keAtas()};
-$('.kb-kembali',kh).onclick=function(){art.classList.remove('buka');try{history.pushState(null,'',location.pathname+location.search)}catch(e){}lb();keAtas()};
+baca.onclick=function(){art.classList.add('buka');if(go)go(sv,2);else{try{history.pushState(null,'','#isi')}catch(e){}}keAtas()};
+$('.kb-kembali',kh).onclick=function(){if(window.__kbInfo&&window.__kbInfo()){history.back();return}art.classList.remove('buka');try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}lb();keAtas()};
 $('.kh-bagi',hero).onclick=function(){var u=location.href.split('#')[0],s=$('span',this);
   if(navigator.share)navigator.share({title:judul,url:u}).catch(function(){});
   else if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){s.textContent='Tautan disalin';setTimeout(function(){s.textContent='Bagikan'},1800)});
@@ -220,8 +228,24 @@ var m0=STORE.get('kb-mode');setMode(m0==='mode-ar'||(m0==='mode-cat'&&$('.btn-ca
    sehingga musik tidak terputus. Alamat & judul tab disinkronkan. Musik yang sama berlanjut di flipbook (/baca/); tombol ♫ flipbook memakai window.__musik. */
 (function(){
 var top0=null;try{if(window.top!==window&&window.top.__musSitus)top0=window.top}catch(e){}
-if(top0){ /* di dalam bingkai: tautan ke situs lain dibuka di jendela utama */
+function layak(u){if(u.origin!==location.origin)return false;if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
+  return !/\.[a-z0-9]{2,5}$/i.test(u.pathname)||/\.html$/i.test(u.pathname)}
+function tangkap(buka){
+document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  var l=e.target.closest&&e.target.closest('a[href]');if(!l||(l.target&&l.target!=='_self')||l.hasAttribute('download'))return;
+  var u;try{u=new URL(l.href,location.href)}catch(x){return}
+  if(u.origin===location.origin&&u.pathname===location.pathname&&u.search===location.search&&u.hash.length>1){ /* tautan di halaman yang sama: gulir halus, tanpa menambah riwayat */
+    var el=document.getElementById(decodeURIComponent(u.hash.slice(1)));if(!el)return;e.preventDefault();
+    var off=(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--head'),10)||70)+10;
+    if(window.__lenis)window.__lenis.scrollTo(el,{offset:-off,duration:1.2});else window.scrollTo({top:el.getBoundingClientRect().top+pageYOffset-off,behavior:'smooth'});
+    try{history.replaceState(history.state,'',u.hash)}catch(x){}return}
+  if(!layak(u))return;e.preventDefault();buka(u.href)});
+document.addEventListener('submit',function(e){var f=e.target;if(e.defaultPrevented||(f.method||'get').toLowerCase()!=='get'||(f.target&&f.target!=='_self'))return;
+  var u;try{u=new URL(f.action||location.href,location.href)}catch(x){return}if(!layak(u))return;
+  e.preventDefault();u.search=new URLSearchParams(new FormData(f)).toString();buka(u.href)});}
+if(top0){ /* di dalam bingkai: tautan ke situs lain dibuka di jendela utama; tautan internal lewat jendela utama */
   document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[href]');if(!l||l.target)return;try{if(new URL(l.href,location.href).origin!==location.origin)l.target='_top'}catch(x){}},true);
+  tangkap(function(h){top0.__pdBuka(h)});
   return}
 if(window.__musSitus)return;window.__musSitus=1;
 var K='situs:musik',P='situs:musik:t',on=true,baca=false;try{on=localStorage.getItem(K)!=='0'}catch(e){}
@@ -242,30 +266,36 @@ function g(){if(siap)return;main().then(function(ok){if(ok){siap=true;ev.forEach
 main().then(function(ok){if(ok)siap=true;else ev.forEach(function(k){document.addEventListener(k,g,true)})});
 document.addEventListener('visibilitychange',function(){if(document.hidden){simpan();henti()}else main()});
 window.addEventListener('pagehide',simpan);setInterval(simpan,3000);
-/* bingkai */
-var fr=null,akhir='';
+/* bingkai (revisi 78): riwayat dipegang jendela utama — tiap perpindahan = satu pushState; bingkai dimuat dengan location.replace */
+var fr=null,akhir=location.href,muat=false,tampak=false,judul0=document.title,HT=document.documentElement;
+function kunci(u){try{var x=new URL(u,location.href);return (x.pathname.replace(/\.html$/,'').replace(/\/+$/,'')||'/')+x.search}catch(e){return u}}
+var asal=kunci(location.href);
 function setBaca(v){if(v===baca)return;baca=v;b.style.display=v?'none':''}
-function sinkron(){if(!fr)return;try{var w=fr.contentWindow,h=w.location.href;if(!h||h==='about:blank')return;
-  if(h!==akhir){akhir=h;history.replaceState(null,'',h)}if(document.title!==fr.contentDocument.title)document.title=fr.contentDocument.title;
+function tunjuk(v){tampak=v;HT.classList.toggle('berbingkai',v);if(v){try{fr.contentWindow.focus()}catch(e){}}else{document.title=judul0;setBaca(false)}}
+function sinkron(){if(!fr||muat||!tampak)return;try{var w=fr.contentWindow,h=w.location.href;if(!h||h==='about:blank')return;
+  if(h!==akhir&&kunci(h)!==asal){akhir=h;history.replaceState(history.state,'',h)}if(document.title!==fr.contentDocument.title)document.title=fr.contentDocument.title;
   setBaca(w.location.pathname.indexOf('/baca/')===0)}catch(e){}}
 function kait(){try{var d=fr.contentDocument;if(!siap)ev.forEach(function(k){d.addEventListener(k,g,true)})}catch(e){}}
-function buka(url){
-  if(fr){fr.contentWindow.location.href=url;return}
-  fr=document.createElement('iframe');fr.className='bingkai-situs';fr.title='Pustaka Digital';fr.setAttribute('allow','autoplay; fullscreen');
-  var tahap=0;
-  fr.addEventListener('load',function(){
-    if(tahap===0){tahap=1;fr.contentWindow.location.href=url;return} /* salinan halaman ini dulu, agar tombol Kembali bisa ke sini */
-    if(tahap===1){tahap=2;document.documentElement.classList.add('berbingkai');try{fr.contentWindow.focus()}catch(e){}}
-    kait();sinkron()});
-  fr.src=location.href;document.body.appendChild(fr);setInterval(sinkron,700)}
-function layak(u){if(u.origin!==location.origin)return false;if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return false;
-  return !/\.[a-z0-9]{2,5}$/i.test(u.pathname)||/\.html$/i.test(u.pathname)}
-document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-  var l=e.target.closest&&e.target.closest('a[href]');if(!l||(l.target&&l.target!=='_self')||l.hasAttribute('download'))return;
-  var u;try{u=new URL(l.href,location.href)}catch(x){return}if(!layak(u))return;e.preventDefault();buka(u.href)});
-document.addEventListener('submit',function(e){var f=e.target;if(e.defaultPrevented||(f.method||'get').toLowerCase()!=='get'||(f.target&&f.target!=='_self'))return;
-  var u;try{u=new URL(f.action||location.href,location.href)}catch(x){return}if(!layak(u))return;
-  e.preventDefault();u.search=new URLSearchParams(new FormData(f)).toString();buka(u.href)});
+function muatFr(url){muat=true;
+  if(!fr){fr=document.createElement('iframe');fr.className='bingkai-situs';fr.title='Pustaka Digital';fr.setAttribute('allow','autoplay; fullscreen');
+    document.body.appendChild(fr);
+    fr.addEventListener('load',function(){var h='';try{h=fr.contentWindow.location.href}catch(e){}if(!h||h==='about:blank')return;
+      muat=false;if(kunci(location.href)!==asal)tunjuk(true);kait();sinkron()});
+    setInterval(sinkron,700)}
+  try{fr.contentWindow.location.replace(url)}catch(e){fr.src=url}}
+function keAsal(u){tunjuk(false);var x=new URL(u,location.href);if(x.hash.length>1){var el=document.getElementById(decodeURIComponent(x.hash.slice(1)));if(el){el.scrollIntoView();return}}}
+function buka(url){if(kunci(url)===kunci(location.href)&&url.split('#')[0]===location.href.split('#')[0]&&fr&&tampak&&!/#/.test(url)){try{fr.contentWindow.scrollTo(0,0)}catch(e){}return}
+  history.pushState({pd:1},'',url);akhir=url;
+  if(kunci(url)===asal){keAsal(url);return}
+  muatFr(url)}
+window.__pdBuka=buka;
+window.__pdNav=function(k,h){if(!tampak)return;akhir=h;try{if(k===0)history.pushState({pd:1},'',h);else history.replaceState(history.state,'',h)}catch(e){}};
+addEventListener('popstate',function(){if(!fr)return;var u=location.href,k=kunci(u);akhir=u;
+  if(k===asal){tunjuk(false);return}
+  var w=fr.contentWindow,cur='';try{cur=w.location.href}catch(e){}
+  if(!muat&&cur&&kunci(cur)===k){tunjuk(true);if(cur!==u){try{w.History.prototype.replaceState.call(w.history,history.state,'',u);w.dispatchEvent(new w.PopStateEvent('popstate',{state:history.state}));w.dispatchEvent(new w.HashChangeEvent('hashchange'))}catch(e){}}return}
+  muatFr(u)});
+tangkap(buka);
 })();
 
 /* revisi 58: tombol Pasang Aplikasi (PWA) */
@@ -295,13 +325,20 @@ if(ios)addEventListener('load',function(){setTimeout(pil,1500)});
 /* revisi: tombol Mulai Baca → Lanjut Baca bila flipbook pernah dibuka */
 (function(){var a=document.querySelectorAll('.kh-bacaan a.kh-baca');for(var i=0;i<a.length;i++){var h=(a[i].getAttribute('href')||'').replace(/\.html$/,''),b=a[i].querySelector('b');try{if(b&&localStorage.getItem('fbb:'+h))b.textContent='Lanjut Baca'}catch(e){}}})();
 
+/* revisi 78: sampul kitab bisa diklik = Mulai Baca */
+(function(){var c=document.querySelector('.kh-cov .k-cov');if(!c)return;
+function tujuan(){var a=document.querySelector('.kh-bacaan a.kh-baca');if(a&&a.offsetParent!==null)return a;var b=document.querySelector('.kh-aksi .kh-baca');return b&&b.offsetParent!==null?b:a}
+var t=tujuan();if(!t)return;c.classList.add('cov-klik');c.setAttribute('role','link');c.tabIndex=0;c.title='Mulai Baca';
+c.addEventListener('click',function(){var x=tujuan();if(x)x.click()});
+c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var x=tujuan();if(x)x.click()}})})();
+
 /* revisi 36: muncul saat digulir, garis kemajuan, hitung angka */
 (function(){if(!("IntersectionObserver"in window))return;var R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 var pb=document.createElement("div");pb.id="gProg";document.body.appendChild(pb);var tk=0;
 function up(){tk=0;var m=document.documentElement.scrollHeight-innerHeight;pb.style.transform="scaleX("+(m>0?scrollY/m:0)+")"}
 addEventListener("scroll",function(){if(!tk){tk=1;requestAnimationFrame(up)}},{passive:true});up();
 if(R)return;
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add("in");io.unobserve(t);setTimeout(function(){t.classList.add("rv-done")},1000+(parseFloat(t.style.getPropertyValue("--rd"))||0)*1000)}})},{rootMargin:"0px 0px -8% 0px"});
 var Q=".h-sec .h-head,.h-sec .h-teks,.h-kolase,.h-foto,.h-fitur>li,.grid>.card,.h-ulama>*,.b-bidang>*,.h-ayat-in,.h-kontak>a,.h-more,.foot .wrap>*";
 function pasang(){var L=document.querySelectorAll(Q);for(var k=0;k<L.length;k++){var el=L[k];if(el.classList.contains("rv"))continue;var r=el.getBoundingClientRect();if(r.top<innerHeight*.92&&r.bottom>0)continue;var p=el.parentNode,ix=Array.prototype.indexOf.call(p.children,el)%6;el.style.setProperty("--rd",(ix*.08)+"s");el.classList.add("rv");io.observe(el)}}
 pasang();setTimeout(pasang,900);setTimeout(pasang,2500);
